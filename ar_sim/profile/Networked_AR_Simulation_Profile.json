@@ -1,0 +1,911 @@
+{
+  "profile_id": "networked_ar_networking_v1",
+  "version": "1.0",
+  "date": "2026-11-11",
+  "title": "Networked AR Renderer",
+  "purpose": "Simulator-neutral networking requirements and test inputs",
+  "status": "Provisional simulation allocations; retained project limits are identified separately.",
+  "units": {
+    "time": "microseconds unless a field ends in _ms or _s",
+    "data_rate": "decimal bits per second",
+    "packet_cost": "bits including all transmitted overhead",
+    "coordinates": "meters in explicitly named frame"
+  },
+  "scope": {
+    "serverless": true,
+    "dedicated_server_required": false,
+    "trusted_authenticated_peers": true,
+    "participant_count_cap": null,
+    "angular_error_acceptance": "outside_scope",
+    "accounting_scope": "aggregate outbound per client across all recipients; per-client scope and rolling window are profile assumptions",
+    "excluded_from_peer_budget": [
+      "local board links",
+      "own headset pose link",
+      "own headset stereo video"
+    ],
+    "excluded_services_still_consume_airtime": true
+  },
+  "retained_limits": {
+    "remote_input_to_correct_photon_ms": 100,
+    "aggregate_transmit_bps": 200000,
+    "local_motion_to_photon_ms": 20,
+    "spatial_estimator_hz": 1000,
+    "headset_estimator_hz": 1000,
+    "render_hz": 90,
+    "resolution_per_eye_px": [
+      1280,
+      720
+    ],
+    "pixel_format": "8-bit YUV 4:2:0"
+  },
+  "timing_allocations": {
+    "status": "proposed",
+    "input_ready_max_us": 10000,
+    "urgent_period_us": {
+      "numerator": 1000000,
+      "denominator": 90
+    },
+    "successful_attempt_to_publication_max_us": 20000,
+    "publication_to_photon_max_us": 30000,
+    "added_measurement_uncertainty_max_us": 1000,
+    "worst_case_base_us_excluding_W": 61000,
+    "deadline_from_input_ready_to_publication_us": 59000,
+    "urgent_total_copies": 3,
+    "copy_schedule": "First eligible opportunity then next two opportunities; do not wait for ACK. Default sends all three for conservative load.",
+    "bounded_erased_copies_before_success": 2,
+    "boundary_rule": "All limits are inclusive. Use exact rational periods or sufficient precision; never round deadlines down."
+  },
+  "bandwidth": {
+    "window_us": 1000000,
+    "max_charged_bits_per_window": 200000,
+    "window_interval": "(t - 1000000 us, t]",
+    "charge_instant": "tx_start of each complete physical frame",
+    "debit_rule": "Charge complete coded frame bits once per physical emission, even if dropped. Charge each sender or relay separately.",
+    "silent_guards": "Consume airtime; do not count as transmitted bits.",
+    "admission": "Check rolling ledger before transmission. Reserve costs for urgent repeats and ungateable hardware retries. A token bucket alone is insufficient.",
+    "allocations_bps": {
+      "routine_state_and_cooperative_navigation": 96000,
+      "urgent_events_and_repeats": 64000,
+      "control_and_receipts": 24000,
+      "background_repair": 8000,
+      "uncommitted_headroom": 8000
+    },
+    "borrowing": "Unused capacity may be lent only when required control and pending urgent reservations remain feasible. The total ceiling is binding."
+  },
+  "protocol": {
+    "initial_application_wire_format": "CoT XML 2.0",
+    "transport": "Unreliable datagram abstraction for the initial simulator",
+    "alternative": "Negotiated TAK Protocol only with AR extension round-trip preservation",
+    "default_size_mode": "abstract_charged_cost",
+    "abstract_cost_is_interoperability_evidence": false,
+    "xml_schema_and_type_catalog": "Provide selected actual profile before encoded-wire qualification",
+    "identity_fields": [
+      "session_id",
+      "origin_owner_id",
+      "sender_id",
+      "entity_uid",
+      "event_uid",
+      "authority_epoch",
+      "revision",
+      "sequence"
+    ],
+    "timing_fields": [
+      "source_sample_time",
+      "input_onset_time",
+      "clock_id",
+      "clock_mapping_epoch",
+      "clock_uncertainty",
+      "response_deadline"
+    ],
+    "spatial_fields": [
+      "mission_frame_id",
+      "frame_epoch",
+      "calibration_epoch",
+      "pose_direction",
+      "units",
+      "quaternion_order"
+    ],
+    "transaction_fields": [
+      "operation",
+      "target_entity_uid",
+      "ack_event_uid",
+      "expiry",
+      "observation_provenance"
+    ],
+    "cot_envelope_fields": [
+      "version",
+      "uid",
+      "type",
+      "how",
+      "time",
+      "start",
+      "stale",
+      "point.lat",
+      "point.lon",
+      "point.hae",
+      "point.ce",
+      "point.le",
+      "detail"
+    ],
+    "georeference_rule": "Provide a valid mission-to-WGS84 and UTC map. An isolated synthetic mission is allowed when explicitly labeled. Do not fabricate a production position or UTC.",
+    "receiver_rule": "Authenticate, validate schema/epochs/owner and publish one authorized revision. Apply an event at most once."
+  },
+  "model_modes": {
+    "analytical_budget": {
+      "use": "Verify timing vectors only",
+      "D_ms": 20,
+      "I_ms": 10,
+      "P_ms": 30,
+      "U_ms": 1,
+      "does_not_establish": [
+        "airtime feasibility",
+        "CoT encoding size",
+        "CM5 performance",
+        "hardware photon timing"
+      ]
+    },
+    "transport_queue": {
+      "use": "Simulate bytes, service, queues, loss and contention; I and P are external allowances",
+      "default_phy_bps": 10000000,
+      "phy_rate_status": "Illustrative simulator input, not a selected or measured DDL PHY",
+      "encode_us": 250,
+      "decode_and_publish_us": 250,
+      "propagation_us": 1000,
+      "additional_jitter_us": 0,
+      "D_computation": "encode + MAC queue after encoding + serialization/FEC/guards as applicable + route delays + decode/publication; never add another fixed 20 ms",
+      "radio_medium": "One shared half-duplex collision domain unless an explicitly declared independent-channel model is selected",
+      "reservation_rule": "Every active source requires real non-overlapping service. Arbitration delay counts toward W or D according to timestamp boundary."
+    },
+    "integrated_rf_display": {
+      "use": "Add actual video schedule, headset return, RF contention, rendering and scanout",
+      "replace_I_and_P_allowances_with_traced_stages": true,
+      "video_period_us": {
+        "numerator": 1000000,
+        "denominator": 90
+      },
+      "study_coded_bits_per_eye_frame": 11404800,
+      "study_video_burst_bps_per_eye": 1750000000,
+      "study_video_burst_ms": 6.517028571428571,
+      "gross_quiet_ms_per_frame": 4.59408253968254,
+      "ddl_receive_constraint": "Both local eye transmitters silent for DDL receive",
+      "guard_pll_reacquisition_cost": "Required explicit input; never assume the entire quiet interval is net capacity",
+      "ranging_superframe_ms": 33.333333333333336,
+      "serial_ranging_reference_ms": 18.75,
+      "three_gross_quiet_windows_ms": 13.78224761904762,
+      "baseline_reference_feasible": false,
+      "hardware_not_established": [
+        "R1 720p90 stereo input and scan timing",
+        "CM5 and Monado timing",
+        "DDL net goodput",
+        "common RF delivery support",
+        "video and ranging schedule closure"
+      ]
+    }
+  },
+  "default_workload": {
+    "participant_count": 2,
+    "duration_s": 120,
+    "warmup_s": 5,
+    "drain_s": 1,
+    "seed": 1,
+    "required_recipients": "All other currently configured participants at input onset; freeze that set for scoring.",
+    "event": "Create an identified marker with an unpredictable value; receiver visible result must carry the matching ID and value.",
+    "input_pattern": "Periodic with per-node seeded phase; no required inputs during warmup or drain.",
+    "input_rate_per_node_hz": 1,
+    "state_packets_per_node_hz": 15,
+    "state_packet_charged_bits": 6400,
+    "urgent_copy_charged_bits": 6400,
+    "control_packets_per_node_hz": 7.5,
+    "control_packet_charged_bits": 3200,
+    "repair_packets_per_node_hz": 5,
+    "repair_packet_charged_bits": 1600,
+    "cost_fixture_note": "All sizes are abstract complete-frame costs, not measured XML lengths. Control fixtures represent clock, membership and receipt traffic. In encoded mode replace them with actual messages and charge every real ACK; do not omit or double-count placeholders.",
+    "fanout": "direct_unicast_per_recipient",
+    "fanout_cost_rule": "Multiply addressed application copies by actual physical emissions. Replace one-to-many unicast with one emission only for explicitly supported common RF delivery.",
+    "loss_probability": 0,
+    "size_mode": "abstract_charged_cost"
+  },
+  "sweeps": {
+    "participants": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "input_rate_per_node_hz": [
+      0.5,
+      1,
+      3
+    ],
+    "routine_state_hz": [
+      10,
+      15,
+      30
+    ],
+    "opportunities_hz": [
+      30,
+      45,
+      60,
+      90
+    ],
+    "charged_packet_bytes": [
+      400,
+      800
+    ],
+    "route_hops": [
+      1,
+      2,
+      3
+    ],
+    "topologies": [
+      "direct_unicast",
+      "common_rf_delivery_if_supported",
+      "explicit_relay"
+    ],
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "interpretation": "Sweep points are experiments, not capacity promises. Vary one dimension first; combine passing cases and search around the boundary."
+  },
+  "resource_defaults": {
+    "status": "Simulator defaults only; replace with measured capacities",
+    "urgent_events_per_node": 128,
+    "urgent_bytes_per_node": 131072,
+    "durable_transactions_per_node": 128,
+    "durable_bytes_per_node": 262144,
+    "state_queue_records_per_entity_recipient": 1,
+    "max_wire_datagram_bytes": 1200,
+    "dedup_event_entries_per_node": 4096,
+    "dedup_retention_ms": 10000,
+    "tombstone_policy": "Retain through the complete test run; reconnect after retention loss requires an epoch/snapshot barrier.",
+    "overflow": "Log cause; do not increase capacity invisibly. Rejected required inputs count as failed obligations.",
+    "late_event": "May apply after deadline for convergence; the original deadline failure remains.",
+    "fragmentation": "Explicitly chunk oversized durable transfers and charge all chunks. Urgent events must fit the configured transport unit or fail that profile."
+  },
+  "cases": [
+    {
+      "id": "Q0",
+      "kind": "bounded_qualification",
+      "name": "Clean path",
+      "loss": "none",
+      "parameters": {
+        "urgent_copy_erasure_count": 0
+      },
+      "expected": "Zero response misses and no bandwidth or profile violations."
+    },
+    {
+      "id": "Q1",
+      "kind": "bounded_qualification",
+      "name": "One erased copy",
+      "loss": "Erase urgent copy index 0 for each selected event and recipient.",
+      "parameters": {
+        "urgent_copy_erasure_count": 1
+      },
+      "expected": "Next copy succeeds; upper response budget 83.222223 ms."
+    },
+    {
+      "id": "Q2",
+      "kind": "bounded_qualification",
+      "name": "Two erased copies",
+      "loss": "Erase urgent copy indices 0 and 1.",
+      "parameters": {
+        "urgent_copy_erasure_count": 2
+      },
+      "expected": "Copy index 2 succeeds; upper response budget 94.333334 ms."
+    },
+    {
+      "id": "R0",
+      "kind": "statistical_characterization",
+      "name": "Independent loss",
+      "loss": "Independent Bernoulli decisions per transmission and recipient.",
+      "parameters": {
+        "loss_probabilities": [
+          0,
+          0.01,
+          0.03
+        ],
+        "directions": [
+          "A_to_B",
+          "B_to_A",
+          "both_independent"
+        ]
+      },
+      "expected": "Report every miss. Do not condition the trace to remove long runs."
+    },
+    {
+      "id": "J0",
+      "kind": "timing_characterization",
+      "name": "Jitter and phase",
+      "loss": "No forced erasures; combine with Q1 and Q2 for bounded variants.",
+      "parameters": {
+        "added_delay_uniform_max_ms": [
+          0,
+          5,
+          10
+        ],
+        "phase_fraction_grid": [
+          0,
+          0.08333333333333333,
+          0.16666666666666666,
+          0.25,
+          0.3333333333333333,
+          0.4166666666666667,
+          0.5,
+          0.5833333333333334,
+          0.6666666666666666,
+          0.75,
+          0.8333333333333334,
+          0.9166666666666666
+        ],
+        "phase_boundary_offsets_us": [
+          -1,
+          0,
+          1
+        ]
+      },
+      "expected": "Log D as simulated; never clamp it to 20 ms to force a pass."
+    },
+    {
+      "id": "C0",
+      "kind": "correlated_loss",
+      "name": "Shared blockage",
+      "loss": "One loss mask affects all recipients and adjacent copies.",
+      "parameters": {
+        "consecutive_urgent_copy_losses": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": "Only the bounded one/two-loss variants are deadline qualification cases."
+    },
+    {
+      "id": "S0",
+      "kind": "degradation_characterization",
+      "name": "Severe loss and outage",
+      "loss": "Unbounded random loss or bidirectional outage.",
+      "parameters": {
+        "loss_probabilities": [
+          0.05,
+          0.1
+        ],
+        "blackout_ms": [
+          50,
+          100,
+          250
+        ]
+      },
+      "expected": "Report deadline failures, recovery time and repair cost; retain local operation."
+    },
+    {
+      "id": "P0",
+      "kind": "correctness",
+      "name": "Duplicate reorder and replay",
+      "loss": "Deliver duplicates, older revisions and delayed packets.",
+      "parameters": {
+        "duplicate_probability": 0.01,
+        "reorder_probability": 0.01,
+        "reorder_extra_delay_ms": [
+          5,
+          20
+        ]
+      },
+      "expected": "No duplicate side effects, unauthorized updates or state rollback."
+    },
+    {
+      "id": "O0",
+      "kind": "capacity_characterization",
+      "name": "Overflow and simultaneous input",
+      "loss": "No injected loss; saturate queues and byte admission.",
+      "parameters": {
+        "synchronized_inputs_per_node": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": "Bound all queues; every rejected or delayed required input remains a failure candidate."
+    },
+    {
+      "id": "R1",
+      "kind": "recovery",
+      "name": "Partition and rejoin",
+      "loss": "Partition for 1000 ms; replay an old create after a newer delete.",
+      "parameters": {
+        "partition_ms": 1000
+      },
+      "expected": "No owner takeover or resurrection; log deadline failures and convergence time."
+    },
+    {
+      "id": "F0",
+      "kind": "rf_feasibility",
+      "name": "Video and ranging coexistence",
+      "loss": "Use actual radio availability, guards and contention.",
+      "parameters": {
+        "reference_nodes": 9,
+        "reference_pairs": 36,
+        "pair_rate_hz": 30,
+        "ranging_occupancy_per_superframe_ms": 18.75
+      },
+      "expected": "Inherited serial ranging study must be flagged infeasible; do not grant fictitious slots."
+    }
+  ],
+  "trace_contract": {
+    "input_obligations": [
+      "run_id",
+      "input_id",
+      "origin_id",
+      "recipient_id",
+      "t_input_us",
+      "expected_entity_uid",
+      "expected_value",
+      "required_eye",
+      "test_region",
+      "response_deadline_us"
+    ],
+    "transmissions": [
+      "run_id",
+      "tx_id",
+      "event_uid",
+      "origin_id",
+      "sender_id",
+      "recipient_ids",
+      "copy_index",
+      "hop_index",
+      "traffic_class",
+      "t_attempt_start_us",
+      "t_tx_start_us",
+      "t_tx_end_us",
+      "encoded_bytes",
+      "charged_bits",
+      "budget_balance_bits",
+      "drop_reason"
+    ],
+    "responses": [
+      "run_id",
+      "input_id",
+      "recipient_id",
+      "t_ready_us",
+      "successful_tx_id",
+      "t_publish_us",
+      "t_photon_us",
+      "uncertainty_us",
+      "effect_correct",
+      "apply_count",
+      "authority_epoch",
+      "revision",
+      "eye",
+      "test_region",
+      "failure_reason"
+    ],
+    "resources": [
+      "timestamp_us",
+      "node_id",
+      "queue_entries",
+      "queue_bytes",
+      "oldest_event_age_us",
+      "rf_busy_reason",
+      "local_estimator_deadline_misses",
+      "local_render_deadline_misses"
+    ],
+    "null_rule": "Use null for unavailable times. For photon-evaluated runs, a missing correct photon result fails after its deadline. For publication-only runs, photons and full service acceptance are not assessed; missing or incorrect publication still fails the conditional networking check.",
+    "global_time": "Use the simulator truth clock for scoring; local timestamps and clock mappings are additional modeled data.",
+    "evaluated_endpoint": [
+      "publication",
+      "modeled_photon",
+      "measured_photon"
+    ]
+  },
+  "scoring": {
+    "latency_upper_us": "t_photon_us - t_input_us + uncertainty_us",
+    "response_pass": "effect_correct and apply_count == 1 and latency_upper_us <= 100000 for every required input/recipient/eye/test-region obligation",
+    "service_pass": "All response obligations pass and every node meets the rolling transmit ceiling, with authority and duplicate invariants intact.",
+    "profile_pass": "Service pass plus all proposed stage allocations and bounded-loss assumptions satisfied.",
+    "network_only_estimate_us": "(t_publish_us - t_ready_us) + 10000 + 30000 + 1000; do not add I again if the trace already starts at physical input.",
+    "network_only_necessary_publication_bound_us": 59000,
+    "network_only_label": "Conditional networking pass under assumed I/P/U; local MTP, photons and hardware timing not assessed.",
+    "summary_metrics": [
+      "offered_required_obligations",
+      "on_time_correct",
+      "late_correct",
+      "missing",
+      "rejected",
+      "incorrect",
+      "duplicate_effects",
+      "P50",
+      "P95",
+      "P99",
+      "maximum",
+      "deadline_miss_fraction",
+      "maximum_rolling_bits_per_node",
+      "raw_packet_loss",
+      "burst_length_distribution",
+      "late_packet_fraction",
+      "state_age_at_display",
+      "queue_high_water_marks",
+      "recovery_time",
+      "rf_conflicts"
+    ],
+    "percentiles": "Compute latency percentiles on delivered-correct samples and state that denominator. Also report the full obligation failure fraction; percentiles never replace the maximum requirement.",
+    "end_of_run": "Stop generating inputs, drain for 1 s, and retain all obligations. Classify each failed obligation once; missing delivery remains missing even if a later session repairs it.",
+    "conditional_network_pass": "For every required obligation, correct authenticated publication occurs no later than 59000 us after readiness, the byte ceiling and correctness invariants hold, and I/P/U remain declared assumptions. Leave unmodeled photon times null and label full optical service acceptance not_assessed.",
+    "boundary_vectors": [
+      {
+        "elapsed_us": 99000,
+        "uncertainty_us": 1000,
+        "correct": true,
+        "apply_count": 1,
+        "response_pass": true
+      },
+      {
+        "elapsed_us": 99001,
+        "uncertainty_us": 1000,
+        "correct": true,
+        "apply_count": 1,
+        "response_pass": false
+      },
+      {
+        "elapsed_us": 98999,
+        "uncertainty_us": 1000,
+        "correct": true,
+        "apply_count": 1,
+        "response_pass": true
+      },
+      {
+        "elapsed_us": 50000,
+        "uncertainty_us": 1000,
+        "correct": false,
+        "apply_count": 1,
+        "response_pass": false
+      },
+      {
+        "elapsed_us": 50000,
+        "uncertainty_us": 1000,
+        "correct": true,
+        "apply_count": 2,
+        "response_pass": false
+      },
+      {
+        "elapsed_us": null,
+        "uncertainty_us": 1000,
+        "correct": false,
+        "apply_count": 0,
+        "response_pass": false
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "NET-001",
+      "status": "Retained",
+      "name": "Remote response",
+      "requirement": "Every valid test input shall produce its defined correct visible result at every required recipient within 100 ms, including timing uncertainty.",
+      "evidence": "Input-to-photon trace per input and recipient"
+    },
+    {
+      "id": "NET-002",
+      "status": "Profile scope",
+      "name": "Transmit ceiling",
+      "requirement": "Each client shall charge at most 200000 transmitted bits in every rolling 1000 ms window, summed across recipients, retries and forwarded copies.",
+      "evidence": "Per-client transmission ledger"
+    },
+    {
+      "id": "NET-003",
+      "status": "Retained",
+      "name": "Application format",
+      "requirement": "Every participant application exchange shall be a CoT event. XML 2.0 is the initial profile; any TAK binary form requires explicit negotiation and detail-preservation tests.",
+      "evidence": "Encoded fixtures and protocol checks"
+    },
+    {
+      "id": "NET-004",
+      "status": "Retained",
+      "name": "Serverless operation",
+      "requirement": "No dedicated application server, cloud service or global simulation sequencer shall be required for ordinary owner-authored state.",
+      "evidence": "Direct-peer and partition cases"
+    },
+    {
+      "id": "NET-005",
+      "status": "Retained",
+      "name": "Local operation",
+      "requirement": "Both navigation estimators shall continue at 1000 Hz. Peer loss or backpressure shall not pace local estimation or the 90 Hz renderer.",
+      "evidence": "Local task and render deadline logs"
+    },
+    {
+      "id": "NET-006",
+      "status": "Retained",
+      "name": "Display integration",
+      "requirement": "Retain PCB 1 CM5, PCB 2 navigation, PCB 3 HDMI capture, ROG XREAL R1 and 1280 by 720 per eye at 90 Hz. Local physical motion-to-photon shall remain at most 20 ms.",
+      "evidence": "Separate hardware integration test"
+    },
+    {
+      "id": "NET-007",
+      "status": "Proposed allocation",
+      "name": "Input processing",
+      "requirement": "Input onset to an event ready for scheduling shall be at most 10 ms in this profile, including headset return transport when present.",
+      "evidence": "t_ready - t_input"
+    },
+    {
+      "id": "NET-008",
+      "status": "Proposed allocation",
+      "name": "Urgent service",
+      "requirement": "A pending urgent event and its next two copies shall have eligible starts no more than 1000/90 ms apart, including first-slot wait, arbitration and byte admission.",
+      "evidence": "Actual encoding-start timestamps"
+    },
+    {
+      "id": "NET-009",
+      "status": "Proposed allocation",
+      "name": "Successful delivery",
+      "requirement": "A successful attempt shall publish authenticated decoded data at the recipient within 20 ms of its encoding start.",
+      "evidence": "t_publish - t_attempt_start"
+    },
+    {
+      "id": "NET-010",
+      "status": "Proposed allocation",
+      "name": "Display allowance",
+      "requirement": "Publication to the first correct visible effect in the specified eye and test region shall be at most 30 ms.",
+      "evidence": "t_photon - t_publish"
+    },
+    {
+      "id": "NET-011",
+      "status": "Proposed allocation",
+      "name": "Timing uncertainty",
+      "requirement": "Use at most 1 ms as a conservative added bound on input-to-photon timing uncertainty; do not add it twice.",
+      "evidence": "Declared clock and measurement model"
+    },
+    {
+      "id": "NET-012",
+      "status": "Proposed envelope",
+      "name": "Loss bursts",
+      "requirement": "Qualify loss of the first one or two urgent copies, with the next copy delivered within NET-009 and all other allocations met.",
+      "evidence": "Q1 and Q2 traces"
+    },
+    {
+      "id": "NET-013",
+      "status": "Architecture rule",
+      "name": "Event retention",
+      "requirement": "Retries shall preserve the event ID. Receivers shall apply each operation at most once. State coalescing shall not erase discrete events.",
+      "evidence": "Duplicate and overflow cases"
+    },
+    {
+      "id": "NET-014",
+      "status": "Architecture rule",
+      "name": "Authority",
+      "requirement": "Only authorized owners and epochs may update an entity. A disconnect shall not transfer ownership. Preserve tombstones and observation provenance.",
+      "evidence": "Partition and rejoin cases"
+    },
+    {
+      "id": "NET-015",
+      "status": "Architecture rule",
+      "name": "Bounded work",
+      "requirement": "Declare byte and entry capacities for queues, histories, parser inputs and repair. Overflow shall be logged; rejected required inputs count as deadline failures.",
+      "evidence": "Capacity and overflow traces"
+    },
+    {
+      "id": "NET-016",
+      "status": "Architecture rule",
+      "name": "Physical feasibility",
+      "requirement": "All transmit and receive operations shall obey the modeled MAC, interference, half-duplex, video, ranging and guard constraints.",
+      "evidence": "Airtime conflict ledger"
+    },
+    {
+      "id": "NET-017",
+      "status": "Test rule",
+      "name": "Complete denominator",
+      "requirement": "Freeze required recipients at input onset. Keep every valid offered input in the result, including late, rejected, missing and outage-affected inputs.",
+      "evidence": "Input obligation ledger"
+    },
+    {
+      "id": "NET-018",
+      "status": "Test rule",
+      "name": "Scaling",
+      "requirement": "Report the passing participant and activity envelope. Test populations are sweep points, not a project participant-count cap.",
+      "evidence": "Load sweep and failure boundary"
+    }
+  ],
+  "analytical_vectors": [
+    {
+      "case": "timing_45Hz_0_erased",
+      "opportunities_hz": 45,
+      "erased_attempts_before_success": 0,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 83.22222222222223,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_45Hz_1_erased",
+      "opportunities_hz": 45,
+      "erased_attempts_before_success": 1,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 105.44444444444444,
+      "expected_response_pass": false,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_45Hz_2_erased",
+      "opportunities_hz": 45,
+      "erased_attempts_before_success": 2,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 127.66666666666667,
+      "expected_response_pass": false,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_45Hz_3_erased",
+      "opportunities_hz": 45,
+      "erased_attempts_before_success": 3,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 149.88888888888889,
+      "expected_response_pass": false,
+      "note": "A fourth attempt is hypothetical when k=3; the default urgent policy has only three copies."
+    },
+    {
+      "case": "timing_60Hz_0_erased",
+      "opportunities_hz": 60,
+      "erased_attempts_before_success": 0,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 77.66666666666667,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_60Hz_1_erased",
+      "opportunities_hz": 60,
+      "erased_attempts_before_success": 1,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 94.33333333333334,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_60Hz_2_erased",
+      "opportunities_hz": 60,
+      "erased_attempts_before_success": 2,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 111.0,
+      "expected_response_pass": false,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_60Hz_3_erased",
+      "opportunities_hz": 60,
+      "erased_attempts_before_success": 3,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 127.66666666666667,
+      "expected_response_pass": false,
+      "note": "A fourth attempt is hypothetical when k=3; the default urgent policy has only three copies."
+    },
+    {
+      "case": "timing_90Hz_0_erased",
+      "opportunities_hz": 90,
+      "erased_attempts_before_success": 0,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 72.11111111111111,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_90Hz_1_erased",
+      "opportunities_hz": 90,
+      "erased_attempts_before_success": 1,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 83.22222222222223,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_90Hz_2_erased",
+      "opportunities_hz": 90,
+      "erased_attempts_before_success": 2,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 94.33333333333334,
+      "expected_response_pass": true,
+      "note": "Worst phase; sufficient bytes and airtime assumed."
+    },
+    {
+      "case": "timing_90Hz_3_erased",
+      "opportunities_hz": 90,
+      "erased_attempts_before_success": 3,
+      "input_ms": 10,
+      "successful_D_ms": 20,
+      "display_ms": 30,
+      "uncertainty_ms": 1,
+      "latency_upper_ms": 105.44444444444444,
+      "expected_response_pass": false,
+      "note": "A fourth attempt is hypothetical when k=3; the default urgent policy has only three copies."
+    }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "title": "Networked AR Renderer Architecture version 5",
+      "url": "https://chatgpt.com/library?file_id=libfile_2aa551015e6081918c23ca00c5821f1f&account_id=personal",
+      "role": "Retained architecture; the 90 Hz and numeric allocation proposals in this profile update the earlier 45 Hz study for simulation only."
+    },
+    {
+      "id": 2,
+      "title": "Riot Games 04 On Peekers Advantage and Ranked 2020",
+      "url": "https://playvalorant.com/en-us/news/game-updates/04-on-peeker-s-advantage-ranked/",
+      "role": "128 Hz, 7.8125 ms interpolation, network target and 1-3 percent loss context."
+    },
+    {
+      "id": 3,
+      "title": "Valve Source2 Telemetry HUD",
+      "url": "https://help.steampowered.com/en/faqs/view/5E6F-5B36-5485-F6B9",
+      "role": "64 Hz CS2 tick rate; missed deadlines, jitter and buffering."
+    },
+    {
+      "id": 4,
+      "title": "Blizzard High Precision Mouse Input 2019",
+      "url": "https://us.forums.blizzard.com/en/overwatch/t/new-feature-%E2%80%93-high-precision-mouse-input-gameplay-option/422094/1",
+      "role": "62.5 Hz simulation with 1000 Hz input and subframe event handling."
+    },
+    {
+      "id": 5,
+      "title": "Respawn What Makes Apex Tick 2021",
+      "url": "https://www.ea.com/games/apex-legends/apex-legends/news/servers-netcode-developer-deep-dive",
+      "role": "20 Hz snapshot model and reported 60 kB/s at game start."
+    },
+    {
+      "id": 6,
+      "title": "Beigbeder et al Effects of Loss and Latency on User Performance in Unreal Tournament 2003 NetGames 2004",
+      "url": "https://web.cs.wpi.edu/~claypool/papers/ut2003/ut2003.pdf",
+      "role": "Controlled loss studies through 5 percent; traffic and user performance observations."
+    },
+    {
+      "id": 7,
+      "title": "David Aldridge I Shot You First GDC 2011",
+      "url": "https://www.gdcvault.com/play/1014346/I-Shot-You-First-Networking",
+      "role": "Halo Reach prioritization and bandwidth comparison; numeric slide supplied in the design discussion."
+    },
+    {
+      "id": 8,
+      "title": "Riot Games VALORANT Gameplay Consistency Update 2 2022",
+      "url": "https://playvalorant.com/en-us/news/game-updates/valorant-gameplay-consistency-update-2/",
+      "role": "Buffer recovery and processing delay beyond RTT."
+    }
+  ]
+}

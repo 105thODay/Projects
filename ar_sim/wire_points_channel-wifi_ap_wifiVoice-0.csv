@@ -1,0 +1,33 @@
+point,test,result,service,profile,kbps,control_kbps,decode_fail,avatar_near_p95,avatar_far_p95,marker_near_p95,marker_far_p95
+"CoT XML, lean schema","two erasures, human renewal input",1.7 % late; worst L 6001 ms; state 103 ms; 79 kbps; airtime 25 %,0/3,0/3,79.2,12.9,0,0.255,2.169,0.315,2.198
+"TAK v1, lean schema","two erasures, human renewal input",1.3 % late; worst L 3880 ms; state 101 ms; 58 kbps; airtime 19 %,0/3,0/3,57.5,7.4,0,0.254,2.226,0.331,2.36
+"CoT XML, lean schema","phase sweep, two erasures, periodic input",0 of 432 phase points pass; worst L 6667 ms,0/432,0/432,,,,,,,
+"TAK v1, lean schema","phase sweep, two erasures, periodic input",0 of 432 phase points pass; worst L 3853 ms,0/432,0/432,,,,,,,
+"CoT XML, lean schema","all 16 fire 7-pull strings in lockstep, 154 ms splits, two erasures",75.1 % late; worst L 12351 ms; state 418 ms; 104 kbps; airtime 21 %,0/3,0/3,103.6,27.6,0,0.473,2.355,0.738,2.355
+"TAK v1, lean schema","all 16 fire 7-pull strings in lockstep, 154 ms splits, two erasures",60.8 % late; worst L 6603 ms; state 187 ms; 108 kbps; airtime 20 %,0/3,0/3,107.9,18.5,0,0.307,2.254,0.61,2.419
+"CoT XML, lean schema","all 16 fire 10-pull strings in lockstep, 100 ms splits, two erasures",84.3 % late; worst L 13821 ms; state 548 ms; 104 kbps; airtime 20 %,0/3,0/3,104.1,30.3,0,0.562,2.536,1.23,2.512
+"TAK v1, lean schema","all 16 fire 10-pull strings in lockstep, 100 ms splits, two erasures",69.2 % late; worst L 9066 ms; state 190 ms; 107 kbps; airtime 20 %,0/3,0/3,107.3,18.9,0,0.34,2.445,0.78,2.662
+"CoT XML, lean schema","jitter 10 ms, two erasures",1.4 % late; worst L 4974 ms; state 109 ms; 78 kbps; airtime 25 %,0/3,0/3,78.4,12.3,0,0.269,2.302,0.348,2.546
+"TAK v1, lean schema","jitter 10 ms, two erasures",1.6 % late; worst L 3059 ms; state 107 ms; 58 kbps; airtime 19 %,0/3,0/3,57.5,7.3,0,0.272,2.365,0.319,2.663
+"CoT XML, lean schema",independent loss 1 %,on time; worst L 78 ms; state 102 ms; 76 kbps; airtime 25 %,3/3,3/3,76.4,11.1,0,0.283,2.585,0.311,2.672
+"TAK v1, lean schema",independent loss 1 %,2 of 39345 late; worst L 1995 ms; state 101 ms; 56 kbps; airtime 19 %,1/3,1/3,56.5,7.2,0,0.266,2.454,0.31,2.597
+"CoT XML, lean schema",independent loss 3 %,on time; worst L 83 ms; state 102 ms; 76 kbps; airtime 25 %,3/3,3/3,76.4,11.2,0,0.302,2.282,0.359,2.427
+"TAK v1, lean schema",independent loss 3 %,5 of 39345 late; worst L 1967 ms; state 101 ms; 56 kbps; airtime 19 %,0/3,0/3,56.4,7.0,0,0.291,2.307,0.32,2.414
+"CoT XML, lean schema","two erasures, 1 % loss, 5 ms jitter",3.0 % late; worst L 6246 ms; state 108 ms; 81 kbps; airtime 25 %,0/3,0/3,80.9,13.8,0,0.311,2.421,0.341,2.453
+"TAK v1, lean schema","two erasures, 1 % loss, 5 ms jitter",2.5 % late; worst L 4082 ms; state 104 ms; 59 kbps; airtime 19 %,0/3,0/3,58.6,7.8,0,0.262,1.942,0.337,2.038
+"CoT XML, lean schema","blockage, 1 copy period",0.3 % late; worst L 5116 ms; state 101 ms; 76 kbps; airtime 25 %,0/3,0/3,76.5,11.0,0,0.272,2.559,0.317,2.741
+"TAK v1, lean schema","blockage, 1 copy period",0.8 % late; worst L 4090 ms; state 101 ms; 57 kbps; airtime 19 %,0/3,0/3,56.9,7.1,0,0.235,2.074,0.28,2.246
+"CoT XML, lean schema","blockage, 2 copy periods",51.5 % late; worst L 48217 ms; state 988 ms; 104 kbps; airtime 19 %,0/3,0/3,103.9,59.2,0,1.181,2.405,1.567,2.669
+"TAK v1, lean schema","blockage, 2 copy periods",49.3 % late; worst L 14058 ms; state 310 ms; 106 kbps; airtime 22 %,0/3,0/3,106.2,23.3,0,0.451,2.253,1.184,2.582
+"CoT XML, lean schema","blockage, 3 copy periods",100.0 % late; worst L 53756 ms; state 981 ms; 104 kbps; airtime 19 %,0/3,0/3,104.2,59.6,0,1.239,2.707,1.91,3.046
+"TAK v1, lean schema","blockage, 3 copy periods",99.9 % late; worst L 39720 ms; state 934 ms; 122 kbps; airtime 21 %,0/3,0/3,121.7,32.3,0,1.102,2.473,1.751,2.61
+"CoT XML, lean schema",blackout 50 ms every 10 s,0.4 % late; worst L 4450 ms; state 101 ms; 77 kbps; airtime 25 %,1/3,1/3,77.4,11.8,0,0.284,2.044,0.348,2.19
+"TAK v1, lean schema",blackout 50 ms every 10 s,0.3 % late; worst L 2845 ms; state 101 ms; 57 kbps; airtime 19 %,1/3,1/3,56.8,7.2,0,0.263,2.123,0.295,2.271
+"CoT XML, lean schema",duplicates and reordering,on time; worst L 75 ms; state 102 ms; 76 kbps; airtime 25 %,3/3,0/3,76.5,11.2,0,0.254,2.058,0.319,2.119
+"TAK v1, lean schema",duplicates and reordering,on time; worst L 73 ms; state 101 ms; 56 kbps; airtime 19 %,3/3,1/3,56.3,7.0,0,0.282,2.274,0.325,2.374
+"CoT XML, lean schema","partition 1 s, replay, takeover",0.2 % late; worst L 5226 ms; state 101 ms; 77 kbps; airtime 25 %,0/3,0/3,76.8,11.5,0,0.286,2.256,0.319,2.425
+"TAK v1, lean schema","partition 1 s, replay, takeover",0.2 % late; worst L 3570 ms; state 101 ms; 56 kbps; airtime 19 %,0/3,0/3,56.5,7.1,0,0.277,2.18,0.308,2.349
+"CoT XML, lean schema","PHY 5 Mbit/s, two erasures",1.7 % late; worst L 6001 ms; state 103 ms; 79 kbps; airtime 25 %,0/3,0/3,79.2,12.9,0,0.255,2.169,0.315,2.198
+"TAK v1, lean schema","PHY 5 Mbit/s, two erasures",1.3 % late; worst L 3880 ms; state 101 ms; 58 kbps; airtime 19 %,0/3,0/3,57.5,7.4,0,0.254,2.226,0.331,2.36
+"CoT XML, lean schema","PHY 2 Mbit/s, two erasures",1.7 % late; worst L 6001 ms; state 103 ms; 79 kbps; airtime 25 %,0/3,0/3,79.2,12.9,0,0.255,2.169,0.315,2.198
+"TAK v1, lean schema","PHY 2 Mbit/s, two erasures",1.3 % late; worst L 3880 ms; state 101 ms; 58 kbps; airtime 19 %,0/3,0/3,57.5,7.4,0,0.254,2.226,0.331,2.36

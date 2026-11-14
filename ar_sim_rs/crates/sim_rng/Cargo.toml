@@ -1,0 +1,13 @@
+[package]
+name = "sim_rng"
+description = "The ar_sim random streams: MT19937-64 engines seeded per stream, with portable draws from the raw output"
+edition.workspace = true
+version.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+rand_mt = { version = "6", default-features = false }
+
+[dev-dependencies]
+serde_json = "1"

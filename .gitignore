@@ -1,0 +1,8 @@
+ar_sim/ar_sim
+ar_sim/*.exe
+ar_sim/*.obj
+ar_sim_rs/target/
+ar_sim_rs/corpus/
+ar_sim_rs/corpus_msvc/
+ar_sim_rs/gate_*.log
+__pycache__/

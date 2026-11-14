@@ -1,0 +1,865 @@
+players,frame_bytes,state_hz,control,repair_fixture,copies,input_hz,reserve_bits,knobs_changed,service,profile,obligations,on_time,L_max,state_age_p95,state_kbps,charged_kbps,max_rolling,airtime
+8,800,15,7.5 Hz,5 Hz,3,1,268800,0,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,5 Hz,3,0.5,134400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,5 Hz,2,1,179200,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,5 Hz,2,0.5,89600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,off,3,1,268800,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,off,3,0.5,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,off,2,1,179200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,7.5 Hz,off,2,0.5,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,2 Hz,5 Hz,3,1,268800,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,2 Hz,5 Hz,3,0.5,134400,2,PASS,PASS,4543,4543,91.554,1877.4,28.6,126.2,200000,10.11
+8,800,15,2 Hz,5 Hz,2,1,179200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,2 Hz,5 Hz,2,0.5,89600,3,PASS,PASS,4543,4543,78.434,909.3,67.2,150.8,200000,12.07
+8,800,15,2 Hz,off,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,2 Hz,off,3,0.5,134400,3,PASS,FAIL,4536,4536,92.857,1837.2,28.7,118.1,192000,9.47
+8,800,15,2 Hz,off,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,2 Hz,off,2,0.5,89600,4,PASS,PASS,4536,4536,72.525,907.7,69.5,142.7,192000,11.43
+8,800,15,1 Hz,5 Hz,3,1,268800,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,1 Hz,5 Hz,3,0.5,134400,2,PASS,FAIL,4543,4543,96.194,1784.0,31.3,126.2,200000,10.11
+8,800,15,1 Hz,5 Hz,2,1,179200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,1 Hz,5 Hz,2,0.5,89600,3,PASS,PASS,4543,4543,78.434,896.2,72.6,150.8,200000,12.07
+8,800,15,1 Hz,off,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,1 Hz,off,3,0.5,134400,3,PASS,FAIL,4536,4536,88.413,1754.6,32.4,115.3,192000,9.24
+8,800,15,1 Hz,off,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,15,1 Hz,off,2,0.5,89600,4,PASS,PASS,4536,4536,72.525,877.6,77.1,139.9,192000,11.21
+8,800,10,7.5 Hz,5 Hz,3,1,268800,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,5 Hz,3,0.5,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,5 Hz,2,1,179200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,5 Hz,2,0.5,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,off,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,off,3,0.5,134400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,off,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,7.5 Hz,off,2,0.5,89600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,2 Hz,5 Hz,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,2 Hz,5 Hz,3,0.5,134400,3,PASS,PASS,4543,4543,90.306,1872.9,27.8,126.2,200000,10.11
+8,800,10,2 Hz,5 Hz,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,2 Hz,5 Hz,2,0.5,89600,4,PASS,PASS,4543,4543,76.866,919.0,66.2,150.8,200000,12.07
+8,800,10,2 Hz,off,3,1,268800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,2 Hz,off,3,0.5,134400,4,PASS,FAIL,4536,4536,89.337,1897.5,28.1,118.1,192000,9.47
+8,800,10,2 Hz,off,2,1,179200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,2 Hz,off,2,0.5,89600,5,PASS,FAIL,4536,4536,76.577,918.1,67.9,142.7,192000,11.43
+8,800,10,1 Hz,5 Hz,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,1 Hz,5 Hz,3,0.5,134400,3,PASS,PASS,4543,4543,90.306,1804.8,31.2,126.2,200000,10.11
+8,800,10,1 Hz,5 Hz,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,1 Hz,5 Hz,2,0.5,89600,4,PASS,PASS,4543,4543,76.866,893.1,72.9,150.8,200000,12.07
+8,800,10,1 Hz,off,3,1,268800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,1 Hz,off,3,0.5,134400,4,PASS,FAIL,4536,4536,88.413,1770.0,32.4,115.3,192000,9.24
+8,800,10,1 Hz,off,2,1,179200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,10,1 Hz,off,2,0.5,89600,5,PASS,PASS,4536,4536,78.177,868.1,77.1,139.9,192000,11.21
+8,800,5,7.5 Hz,5 Hz,3,1,268800,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,5 Hz,3,0.5,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,5 Hz,2,1,179200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,5 Hz,2,0.5,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,off,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,off,3,0.5,134400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,off,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,7.5 Hz,off,2,0.5,89600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,2 Hz,5 Hz,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,2 Hz,5 Hz,3,0.5,134400,3,PASS,PASS,4543,4543,90.306,1938.2,28.9,126.2,200000,10.11
+8,800,5,2 Hz,5 Hz,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,2 Hz,5 Hz,2,0.5,89600,4,PASS,PASS,4543,4543,76.866,995.9,61.9,150.8,200000,12.07
+8,800,5,2 Hz,off,3,1,268800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,2 Hz,off,3,0.5,134400,4,PASS,PASS,4536,4536,88.093,1995.5,26.8,118.1,192000,9.47
+8,800,5,2 Hz,off,2,1,179200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,2 Hz,off,2,0.5,89600,5,PASS,FAIL,4536,4536,76.24,966.6,64.2,142.7,192000,11.43
+8,800,5,1 Hz,5 Hz,3,1,268800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,1 Hz,5 Hz,3,0.5,134400,3,PASS,PASS,4543,4543,90.306,1854.7,31.4,126.2,200000,10.11
+8,800,5,1 Hz,5 Hz,2,1,179200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,1 Hz,5 Hz,2,0.5,89600,4,PASS,PASS,4543,4543,76.866,902.0,72.3,150.8,200000,12.07
+8,800,5,1 Hz,off,3,1,268800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,1 Hz,off,3,0.5,134400,4,PASS,PASS,4536,4536,88.413,1730.5,32.3,115.2,192000,9.24
+8,800,5,1 Hz,off,2,1,179200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,800,5,1 Hz,off,2,0.5,89600,5,PASS,PASS,4536,4536,72.525,875.1,77.0,139.8,192000,11.2
+8,400,15,7.5 Hz,5 Hz,3,1,134400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,5 Hz,3,0.5,67200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,5 Hz,2,1,89600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,5 Hz,2,0.5,44800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,off,3,1,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,off,3,0.5,67200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,off,2,1,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,7.5 Hz,off,2,0.5,44800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,15,2 Hz,5 Hz,3,1,134400,2,PASS,PASS,9086,9086,82.849,1296.9,25.3,126.2,200000,10.11
+8,400,15,2 Hz,5 Hz,3,0.5,67200,3,PASS,PASS,4543,4543,82.558,722.5,79.3,163.1,200000,13.05
+8,400,15,2 Hz,5 Hz,2,1,89600,3,PASS,PASS,9086,9086,72.986,796.9,61.6,150.8,200000,12.07
+8,400,15,2 Hz,5 Hz,2,0.5,44800,4,PASS,PASS,4543,4543,72.037,550.3,97.1,175.4,200000,14.04
+8,400,15,2 Hz,off,3,1,134400,3,PASS,PASS,9086,9086,82.583,1193.4,28.4,118.2,192000,9.47
+8,400,15,2 Hz,off,3,0.5,67200,4,PASS,PASS,4536,4536,80.468,694.1,85.5,155.0,192000,12.41
+8,400,15,2 Hz,off,2,1,89600,4,PASS,PASS,9086,9086,70.513,782.0,66.0,142.8,192000,11.43
+8,400,15,2 Hz,off,2,0.5,44800,5,PASS,PASS,4536,4536,69.242,545.6,105.7,167.4,192000,13.4
+8,400,15,1 Hz,5 Hz,3,1,134400,2,PASS,PASS,9086,9086,80.618,899.0,33.9,126.2,200000,10.11
+8,400,15,1 Hz,5 Hz,3,0.5,67200,3,PASS,PASS,4543,4543,84.41,553.4,94.3,163.1,200000,13.05
+8,400,15,1 Hz,5 Hz,2,1,89600,3,PASS,PASS,9086,9086,71.624,667.7,75.2,150.8,200000,12.07
+8,400,15,1 Hz,5 Hz,2,0.5,44800,4,PASS,PASS,4543,4543,69.793,492.3,113.6,175.4,200000,14.03
+8,400,15,1 Hz,off,3,1,134400,3,PASS,PASS,9086,9086,82.583,894.4,35.4,118.2,192000,9.47
+8,400,15,1 Hz,off,3,0.5,67200,4,PASS,PASS,4536,4536,79.967,536.0,102.5,155.0,192000,12.41
+8,400,15,1 Hz,off,2,1,89600,4,PASS,PASS,9086,9086,72.918,716.0,80.1,142.8,192000,11.43
+8,400,15,1 Hz,off,2,0.5,44800,5,PASS,PASS,4536,4536,71.892,477.6,124.8,167.3,192000,13.4
+8,400,10,7.5 Hz,5 Hz,3,1,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,5 Hz,3,0.5,67200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,5 Hz,2,1,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,5 Hz,2,0.5,44800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,off,3,1,134400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,off,3,0.5,67200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,off,2,1,89600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,7.5 Hz,off,2,0.5,44800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,10,2 Hz,5 Hz,3,1,134400,3,PASS,PASS,9086,9086,82.049,1320.1,24.7,126.2,200000,10.11
+8,400,10,2 Hz,5 Hz,3,0.5,67200,4,PASS,PASS,4543,4543,81.29,664.7,74.4,163.1,200000,13.05
+8,400,10,2 Hz,5 Hz,2,1,89600,4,PASS,PASS,9086,9086,72.896,768.2,56.8,150.8,200000,12.07
+8,400,10,2 Hz,5 Hz,2,0.5,44800,5,PASS,PASS,4543,4543,71.656,519.4,91.2,175.2,200000,14.02
+8,400,10,2 Hz,off,3,1,134400,4,PASS,PASS,9086,9086,80.663,1289.1,27.1,118.2,192000,9.47
+8,400,10,2 Hz,off,3,0.5,67200,5,PASS,PASS,4536,4536,78.703,626.7,81.9,155.0,192000,12.41
+8,400,10,2 Hz,off,2,1,89600,5,PASS,PASS,9086,9086,71.738,744.6,62.6,142.8,192000,11.43
+8,400,10,2 Hz,off,2,0.5,44800,6,PASS,PASS,4536,4536,69.957,479.6,102.7,167.1,192000,13.39
+8,400,10,1 Hz,5 Hz,3,1,134400,3,PASS,PASS,9086,9086,79.807,909.0,34.2,126.2,200000,10.11
+8,400,10,1 Hz,5 Hz,3,0.5,67200,4,PASS,PASS,4543,4543,79.611,516.7,92.0,163.1,200000,13.05
+8,400,10,1 Hz,5 Hz,2,1,89600,4,PASS,PASS,9086,9086,71.509,639.9,73.0,150.8,200000,12.07
+8,400,10,1 Hz,5 Hz,2,0.5,44800,5,PASS,PASS,4543,4543,71.136,439.6,109.7,175.2,200000,14.02
+8,400,10,1 Hz,off,3,1,134400,4,PASS,PASS,9086,9086,81.622,897.9,35.4,118.2,192000,9.47
+8,400,10,1 Hz,off,3,0.5,67200,5,PASS,PASS,4536,4536,80.15,480.4,102.4,154.9,192000,12.41
+8,400,10,1 Hz,off,2,1,89600,5,PASS,PASS,9086,9086,72.726,631.5,80.1,142.8,192000,11.43
+8,400,10,1 Hz,off,2,0.5,44800,6,PASS,PASS,4536,4536,69.157,379.3,124.5,167.0,192000,13.38
+8,400,5,7.5 Hz,5 Hz,3,1,134400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,5 Hz,3,0.5,67200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,5 Hz,2,1,89600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,5 Hz,2,0.5,44800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,off,3,1,134400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,off,3,0.5,67200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,off,2,1,89600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,7.5 Hz,off,2,0.5,44800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+8,400,5,2 Hz,5 Hz,3,1,134400,3,PASS,PASS,9086,9086,84.65,1773.7,21.4,126.2,200000,10.11
+8,400,5,2 Hz,5 Hz,3,0.5,67200,4,PASS,PASS,4543,4543,81.079,580.9,65.6,162.8,200000,13.03
+8,400,5,2 Hz,5 Hz,2,1,89600,4,PASS,PASS,9086,9086,68.941,731.0,51.2,150.8,200000,12.07
+8,400,5,2 Hz,5 Hz,2,0.5,44800,5,PASS,PASS,4543,4543,69.097,452.3,80.5,174.8,200000,13.99
+8,400,5,2 Hz,off,3,1,134400,4,PASS,PASS,9086,9086,81.197,1443.5,22.7,118.2,192000,9.47
+8,400,5,2 Hz,off,3,0.5,67200,5,PASS,PASS,4536,4536,79.109,449.7,79.8,154.7,192000,12.41
+8,400,5,2 Hz,off,2,1,89600,5,PASS,PASS,9086,9086,72.135,660.3,58.0,142.7,192000,11.43
+8,400,5,2 Hz,off,2,0.5,44800,6,PASS,PASS,4536,4536,69.073,332.4,101.9,166.8,192000,13.38
+8,400,5,1 Hz,5 Hz,3,1,134400,3,PASS,PASS,9086,9086,82.732,926.0,33.1,126.2,200000,10.11
+8,400,5,1 Hz,5 Hz,3,0.5,67200,4,PASS,PASS,4543,4543,79.725,455.1,80.5,162.8,200000,13.04
+8,400,5,1 Hz,5 Hz,2,1,89600,4,PASS,PASS,9086,9086,74.109,566.8,66.2,150.7,200000,12.07
+8,400,5,1 Hz,5 Hz,2,0.5,44800,5,PASS,PASS,4543,4543,70.506,371.6,94.0,174.8,200000,13.99
+8,400,5,1 Hz,off,3,1,134400,4,PASS,PASS,9086,9086,82.63,904.3,35.4,118.2,192000,9.47
+8,400,5,1 Hz,off,3,0.5,67200,5,PASS,PASS,4536,4536,81.068,334.8,102.0,154.7,192000,12.41
+8,400,5,1 Hz,off,2,1,89600,5,PASS,PASS,9086,9086,69.573,453.0,79.9,142.6,192000,11.43
+8,400,5,1 Hz,off,2,0.5,44800,6,PASS,PASS,4536,4536,69.45,195.1,112.0,154.6,192000,12.37
+8,200,15,7.5 Hz,5 Hz,3,1,67200,1,PASS,PASS,9086,9086,80.862,487.0,58.4,162.9,200000,13.04
+8,200,15,7.5 Hz,5 Hz,3,0.5,33600,2,PASS,PASS,4543,4543,80.241,367.8,77.2,181.0,200000,14.48
+8,200,15,7.5 Hz,5 Hz,2,1,44800,2,PASS,PASS,9086,9086,68.359,410.6,70.4,175.0,200000,14.0
+8,200,15,7.5 Hz,5 Hz,2,0.5,22400,3,PASS,PASS,4543,4543,67.281,332.6,83.4,186.9,200000,14.96
+8,200,15,7.5 Hz,off,3,1,67200,2,PASS,PASS,9086,9086,77.627,429.7,64.6,154.9,192000,12.41
+8,200,15,7.5 Hz,off,3,0.5,33600,3,PASS,PASS,4536,4536,77.075,288.2,87.3,172.8,192000,13.85
+8,200,15,7.5 Hz,off,2,1,44800,3,PASS,PASS,9086,9086,67.067,344.1,78.9,166.9,192000,13.37
+8,200,15,7.5 Hz,off,2,0.5,22400,4,PASS,PASS,4536,4536,66.085,249.2,95.1,178.8,192000,14.32
+8,200,15,2 Hz,5 Hz,3,1,67200,2,PASS,PASS,9086,9086,79.252,308.3,84.8,162.7,200000,13.03
+8,200,15,2 Hz,5 Hz,3,0.5,33600,3,PASS,PASS,4543,4543,81.35,200.2,108.8,180.7,200000,14.46
+8,200,15,2 Hz,5 Hz,2,1,44800,3,PASS,PASS,9086,9086,67.025,221.1,101.2,174.7,200000,13.99
+8,200,15,2 Hz,5 Hz,2,0.5,22400,4,PASS,PASS,4543,4543,66.305,175.4,116.6,186.6,200000,14.94
+8,200,15,2 Hz,off,3,1,67200,3,PASS,PASS,9086,9086,77.585,221.7,102.0,154.7,192000,12.4
+8,200,15,2 Hz,off,3,0.5,33600,4,PASS,PASS,4536,4536,76.952,138.5,135.2,172.7,192000,13.85
+8,200,15,2 Hz,off,2,1,44800,4,PASS,PASS,9086,9086,66.732,157.2,124.1,166.7,192000,13.37
+8,200,15,2 Hz,off,2,0.5,22400,5,PASS,PASS,4536,4536,67.019,124.6,146.2,178.6,192000,14.32
+8,200,15,1 Hz,5 Hz,3,1,67200,2,PASS,PASS,9086,9086,78.849,264.0,92.8,162.7,200000,13.03
+8,200,15,1 Hz,5 Hz,3,0.5,33600,3,PASS,PASS,4543,4543,81.002,179.2,117.0,180.6,200000,14.47
+8,200,15,1 Hz,5 Hz,2,1,44800,3,PASS,PASS,9086,9086,66.602,198.5,109.6,174.7,200000,13.99
+8,200,15,1 Hz,5 Hz,2,0.5,22400,4,PASS,PASS,4543,4543,67.156,159.5,124.8,186.6,200000,14.94
+8,200,15,1 Hz,off,3,1,67200,3,PASS,PASS,9086,9086,77.585,191.3,113.2,154.7,192000,12.4
+8,200,15,1 Hz,off,3,0.5,33600,4,PASS,PASS,4536,4536,77.259,124.6,146.3,172.7,192000,13.85
+8,200,15,1 Hz,off,2,1,44800,4,PASS,PASS,9086,9086,67.212,136.9,135.3,166.7,192000,13.37
+8,200,15,1 Hz,off,2,0.5,22400,5,PASS,PASS,4536,4536,66.699,115.1,157.4,178.6,192000,14.32
+8,200,10,7.5 Hz,5 Hz,3,1,67200,2,PASS,PASS,9086,9086,80.069,481.6,52.1,162.8,200000,13.03
+8,200,10,7.5 Hz,5 Hz,3,0.5,33600,3,PASS,PASS,4543,4543,80.254,355.4,67.3,180.7,200000,14.46
+8,200,10,7.5 Hz,5 Hz,2,1,44800,3,PASS,PASS,9086,9086,67.968,393.9,62.4,174.8,200000,13.99
+8,200,10,7.5 Hz,5 Hz,2,0.5,22400,4,PASS,PASS,4543,4543,69.267,311.6,72.7,186.7,200000,14.94
+8,200,10,7.5 Hz,off,3,1,67200,3,PASS,PASS,9086,9086,77.585,400.5,58.1,154.7,192000,12.39
+8,200,10,7.5 Hz,off,3,0.5,33600,4,PASS,PASS,4536,4536,78.306,246.9,79.2,172.7,192000,13.83
+8,200,10,7.5 Hz,off,2,1,44800,4,PASS,PASS,9086,9086,67.067,295.1,71.5,166.6,192000,13.34
+8,200,10,7.5 Hz,off,2,0.5,22400,5,PASS,PASS,4536,4536,65.96,203.3,87.2,178.6,192000,14.3
+8,200,10,2 Hz,5 Hz,3,1,67200,3,PASS,PASS,9086,9086,78.926,283.6,77.3,162.5,200000,13.01
+8,200,10,2 Hz,5 Hz,3,0.5,33600,4,PASS,PASS,4543,4543,78.363,179.7,97.4,180.5,200000,14.44
+8,200,10,2 Hz,5 Hz,2,1,44800,4,PASS,PASS,9086,9086,67.268,207.9,90.8,174.4,200000,13.97
+8,200,10,2 Hz,5 Hz,2,0.5,22400,5,PASS,PASS,4543,4543,66.367,161.4,103.9,186.4,200000,14.92
+8,200,10,2 Hz,off,3,1,67200,4,PASS,PASS,9086,9086,77.425,168.0,101.8,154.5,192000,12.37
+8,200,10,2 Hz,off,3,0.5,33600,5,PASS,PASS,4536,4536,77.71,98.7,112.0,149.5,179200,11.97
+8,200,10,2 Hz,off,2,1,44800,5,PASS,PASS,9086,9086,66.899,98.9,112.0,154.6,190400,12.37
+8,200,10,2 Hz,off,2,0.5,22400,6,PASS,PASS,4536,4536,66.598,98.7,112.0,144.5,168000,11.56
+8,200,10,1 Hz,5 Hz,3,1,67200,3,PASS,PASS,9086,9086,80.529,242.1,85.0,162.5,200000,13.02
+8,200,10,1 Hz,5 Hz,3,0.5,33600,4,PASS,PASS,4543,4543,77.847,164.2,103.9,180.5,200000,14.44
+8,200,10,1 Hz,5 Hz,2,1,44800,4,PASS,PASS,9086,9086,68.051,179.7,97.9,174.5,200000,13.97
+8,200,10,1 Hz,5 Hz,2,0.5,22400,5,PASS,PASS,4543,4543,65.836,147.1,110.4,186.4,200000,14.92
+8,200,10,1 Hz,off,3,1,67200,4,PASS,PASS,9086,9086,77.425,126.1,112.0,153.4,192000,12.28
+8,200,10,1 Hz,off,3,0.5,33600,5,PASS,PASS,4536,4536,78.507,98.5,112.0,138.3,168000,11.07
+8,200,10,1 Hz,off,2,1,44800,5,PASS,PASS,9086,9086,67.473,98.5,112.0,143.4,179200,11.48
+8,200,10,1 Hz,off,2,0.5,22400,6,PASS,PASS,4536,4536,66.136,98.5,112.0,133.3,156800,10.67
+8,200,5,7.5 Hz,5 Hz,3,1,67200,2,PASS,PASS,9086,9086,77.833,476.3,40.4,162.7,200000,13.02
+8,200,5,7.5 Hz,5 Hz,3,0.5,33600,3,PASS,PASS,4543,4543,77.488,331.4,50.1,180.6,200000,14.45
+8,200,5,7.5 Hz,5 Hz,2,1,44800,3,PASS,PASS,9086,9086,66.899,380.4,47.1,174.6,200000,13.97
+8,200,5,7.5 Hz,5 Hz,2,0.5,22400,4,PASS,PASS,4543,4543,68.718,293.2,53.7,186.6,200000,14.94
+8,200,5,7.5 Hz,off,3,1,67200,3,PASS,PASS,9086,9086,80.548,410.4,45.5,154.5,192000,12.39
+8,200,5,7.5 Hz,off,3,0.5,33600,4,PASS,PASS,4536,4536,77.726,187.5,56.0,155.1,188800,12.41
+8,200,5,7.5 Hz,off,2,1,44800,4,PASS,PASS,9086,9086,66.585,194.7,56.0,160.2,192000,12.82
+8,200,5,7.5 Hz,off,2,0.5,22400,5,PASS,PASS,4536,4536,66.136,187.5,56.0,150.1,177600,12.01
+8,200,5,2 Hz,5 Hz,3,1,67200,3,PASS,PASS,9086,9086,77.8,257.6,55.9,162.3,200000,13.0
+8,200,5,2 Hz,5 Hz,3,0.5,33600,4,PASS,PASS,4543,4543,77.697,186.2,56.0,149.5,179200,11.97
+8,200,5,2 Hz,5 Hz,2,1,44800,4,PASS,PASS,9086,9086,67.014,186.2,56.0,154.6,190400,12.37
+8,200,5,2 Hz,5 Hz,2,0.5,22400,5,PASS,PASS,4543,4543,66.038,186.2,56.0,144.5,168000,11.56
+8,200,5,2 Hz,off,3,1,67200,4,PASS,PASS,9086,9086,77.744,187.5,56.0,108.7,156800,8.7
+8,200,5,2 Hz,off,3,0.5,33600,5,PASS,PASS,4536,4536,77.285,187.5,56.0,93.5,121600,7.49
+8,200,5,2 Hz,off,2,1,44800,5,PASS,PASS,9086,9086,66.314,187.5,56.0,98.6,134400,7.89
+8,200,5,2 Hz,off,2,0.5,22400,6,PASS,PASS,4536,4536,66.598,187.5,56.0,88.5,110400,7.08
+8,200,5,1 Hz,5 Hz,3,1,67200,3,PASS,PASS,9086,9086,78.324,186.2,56.0,153.5,196800,12.29
+8,200,5,1 Hz,5 Hz,3,0.5,33600,4,PASS,PASS,4543,4543,77.697,186.2,56.0,138.3,168000,11.07
+8,200,5,1 Hz,5 Hz,2,1,44800,4,PASS,PASS,9086,9086,66.377,186.2,56.0,143.4,174400,11.48
+8,200,5,1 Hz,5 Hz,2,0.5,22400,5,PASS,PASS,4543,4543,66.038,186.1,56.0,133.3,156800,10.67
+8,200,5,1 Hz,off,3,1,67200,4,PASS,PASS,9086,9086,77.744,187.5,56.0,97.5,144000,7.81
+8,200,5,1 Hz,off,3,0.5,33600,5,PASS,PASS,4536,4536,77.387,187.5,56.0,82.3,112000,6.59
+8,200,5,1 Hz,off,2,1,44800,5,PASS,PASS,9086,9086,66.654,187.5,56.0,87.4,123200,7.0
+8,200,5,1 Hz,off,2,0.5,22400,6,PASS,PASS,4536,4536,65.841,187.5,56.0,77.3,100800,6.19
+8,100,15,7.5 Hz,5 Hz,3,1,33600,1,PASS,PASS,9086,9086,76.646,113.8,74.4,180.2,200000,14.43
+8,100,15,7.5 Hz,5 Hz,3,0.5,16800,2,PASS,PASS,4543,4543,76.577,89.6,83.2,188.6,200000,15.1
+8,100,15,7.5 Hz,5 Hz,2,1,22400,2,PASS,PASS,9086,9086,65.36,101.2,80.3,186.1,200000,14.89
+8,100,15,7.5 Hz,5 Hz,2,0.5,11200,3,PASS,PASS,4543,4543,65.372,71.0,84.0,187.0,200000,14.97
+8,100,15,7.5 Hz,off,3,1,33600,2,PASS,PASS,9086,9086,76.531,70.2,84.0,141.1,167200,11.29
+8,100,15,7.5 Hz,off,3,0.5,16800,3,PASS,PASS,4536,4536,76.751,70.2,84.0,133.5,151200,10.69
+8,100,15,7.5 Hz,off,2,1,22400,3,PASS,PASS,9086,9086,65.488,70.2,84.0,136.1,156000,10.89
+8,100,15,7.5 Hz,off,2,0.5,11200,4,PASS,PASS,4536,4536,65.605,70.2,84.0,131.0,145600,10.48
+8,100,15,2 Hz,5 Hz,3,1,33600,2,PASS,PASS,9086,9086,76.615,70.8,84.0,166.4,190400,13.31
+8,100,15,2 Hz,5 Hz,3,0.5,16800,3,PASS,PASS,4543,4543,77.137,70.8,84.0,158.8,176000,12.7
+8,100,15,2 Hz,5 Hz,2,1,22400,3,PASS,PASS,9086,9086,66.065,70.8,84.0,161.3,179200,12.91
+8,100,15,2 Hz,5 Hz,2,0.5,11200,4,PASS,PASS,4543,4543,65.806,70.8,84.0,156.2,170400,12.5
+8,100,15,2 Hz,off,3,1,33600,3,PASS,PASS,9086,9086,76.531,70.2,84.0,110.3,133600,8.83
+8,100,15,2 Hz,off,3,0.5,16800,4,PASS,PASS,4536,4536,76.751,70.2,84.0,102.7,117600,8.22
+8,100,15,2 Hz,off,2,1,22400,4,PASS,PASS,9086,9086,65.488,70.2,84.0,105.3,122400,8.43
+8,100,15,2 Hz,off,2,0.5,11200,5,PASS,PASS,4536,4536,65.605,70.2,84.0,100.2,112000,8.02
+8,100,15,1 Hz,5 Hz,3,1,33600,2,PASS,PASS,9086,9086,76.775,70.8,84.0,160.8,184800,12.86
+8,100,15,1 Hz,5 Hz,3,0.5,16800,3,PASS,PASS,4543,4543,77.137,70.7,84.0,153.2,170400,12.26
+8,100,15,1 Hz,5 Hz,2,1,22400,3,PASS,PASS,9086,9086,66.065,70.7,84.0,155.7,173600,12.46
+8,100,15,1 Hz,5 Hz,2,0.5,11200,4,PASS,PASS,4543,4543,65.806,70.7,84.0,150.6,164800,12.05
+8,100,15,1 Hz,off,3,1,33600,3,PASS,PASS,9086,9086,76.531,70.2,84.0,104.7,128000,8.38
+8,100,15,1 Hz,off,3,0.5,16800,4,PASS,PASS,4536,4536,76.751,70.2,84.0,97.1,112000,7.78
+8,100,15,1 Hz,off,2,1,22400,4,PASS,PASS,9086,9086,65.488,70.2,84.0,99.7,116800,7.98
+8,100,15,1 Hz,off,2,0.5,11200,5,PASS,PASS,4536,4536,65.605,70.2,84.0,94.6,106400,7.57
+8,100,10,7.5 Hz,5 Hz,3,1,33600,2,PASS,PASS,9086,9086,76.76,100.1,56.0,169.1,194400,13.54
+8,100,10,7.5 Hz,5 Hz,3,0.5,16800,3,PASS,PASS,4543,4543,77.137,100.1,56.0,161.6,180000,12.93
+8,100,10,7.5 Hz,5 Hz,2,1,22400,3,PASS,PASS,9086,9086,66.065,100.1,56.0,164.1,184800,13.13
+8,100,10,7.5 Hz,5 Hz,2,0.5,11200,4,PASS,PASS,4543,4543,65.806,100.1,56.0,159.0,174400,12.73
+8,100,10,7.5 Hz,off,3,1,33600,3,PASS,PASS,9086,9086,76.483,98.1,56.0,113.2,140000,9.05
+8,100,10,7.5 Hz,off,3,0.5,16800,4,PASS,PASS,4536,4536,76.83,98.0,56.0,105.6,123200,8.45
+8,100,10,7.5 Hz,off,2,1,22400,4,PASS,PASS,9086,9086,65.779,98.0,56.0,108.1,128800,8.65
+8,100,10,7.5 Hz,off,2,0.5,11200,5,PASS,PASS,4536,4536,65.281,98.0,56.0,103.0,117600,8.24
+8,100,10,2 Hz,5 Hz,3,1,33600,3,PASS,PASS,9086,9086,76.863,100.1,56.0,138.4,162400,11.07
+8,100,10,2 Hz,5 Hz,3,0.5,16800,4,PASS,PASS,4543,4543,77.137,100.1,56.0,130.8,146400,10.46
+8,100,10,2 Hz,5 Hz,2,1,22400,4,PASS,PASS,9086,9086,66.065,100.1,56.0,133.3,151200,10.67
+8,100,10,2 Hz,5 Hz,2,0.5,11200,5,PASS,PASS,4543,4543,65.806,100.1,56.0,128.2,140800,10.26
+8,100,10,2 Hz,off,3,1,33600,4,PASS,PASS,9086,9086,76.531,98.1,56.0,82.4,105600,6.59
+8,100,10,2 Hz,off,3,0.5,16800,5,PASS,PASS,4536,4536,76.59,98.1,56.0,74.8,89600,5.98
+8,100,10,2 Hz,off,2,1,22400,5,PASS,PASS,9086,9086,65.273,98.1,56.0,77.3,94400,6.19
+8,100,10,2 Hz,off,2,0.5,11200,6,PASS,PASS,4536,4536,65.478,98.1,56.0,72.2,84000,5.78
+8,100,10,1 Hz,5 Hz,3,1,33600,3,PASS,PASS,9086,9086,76.863,100.1,56.0,132.8,156800,10.62
+8,100,10,1 Hz,5 Hz,3,0.5,16800,4,PASS,PASS,4543,4543,77.137,100.1,56.0,125.2,140800,10.02
+8,100,10,1 Hz,5 Hz,2,1,22400,4,PASS,PASS,9086,9086,66.065,100.1,56.0,127.7,145600,10.22
+8,100,10,1 Hz,5 Hz,2,0.5,11200,5,PASS,PASS,4543,4543,65.806,100.1,56.0,122.6,135200,9.81
+8,100,10,1 Hz,off,3,1,33600,4,PASS,PASS,9086,9086,76.483,98.0,56.0,76.8,100000,6.14
+8,100,10,1 Hz,off,3,0.5,16800,5,PASS,PASS,4536,4536,76.59,98.0,56.0,69.2,84000,5.54
+8,100,10,1 Hz,off,2,1,22400,5,PASS,PASS,9086,9086,65.273,98.0,56.0,71.7,88800,5.74
+8,100,10,1 Hz,off,2,0.5,11200,6,PASS,PASS,4536,4536,65.281,98.0,56.0,66.6,78400,5.33
+8,100,5,7.5 Hz,5 Hz,3,1,33600,2,PASS,PASS,9086,9086,76.513,186.1,28.0,141.2,164000,11.3
+8,100,5,7.5 Hz,5 Hz,3,0.5,16800,3,PASS,PASS,4543,4543,77.137,186.1,28.0,133.6,152000,10.69
+8,100,5,7.5 Hz,5 Hz,2,1,22400,3,PASS,PASS,9086,9086,65.505,186.1,28.0,136.1,152000,10.89
+8,100,5,7.5 Hz,5 Hz,2,0.5,11200,4,PASS,PASS,4543,4543,65.276,186.1,28.0,131.0,146400,10.49
+8,100,5,7.5 Hz,off,3,1,33600,3,PASS,PASS,9086,9086,76.624,187.2,28.0,85.2,106400,6.81
+8,100,5,7.5 Hz,off,3,0.5,16800,4,PASS,PASS,4536,4536,76.392,187.2,28.0,77.6,93600,6.21
+8,100,5,7.5 Hz,off,2,1,22400,4,PASS,PASS,9086,9086,65.465,187.2,28.0,80.1,95200,6.41
+8,100,5,7.5 Hz,off,2,0.5,11200,5,PASS,PASS,4536,4536,65.281,187.2,28.0,75.0,88000,6.0
+8,100,5,2 Hz,5 Hz,3,1,33600,3,PASS,PASS,9086,9086,76.513,186.1,28.0,110.4,134400,8.83
+8,100,5,2 Hz,5 Hz,3,0.5,16800,4,PASS,PASS,4543,4543,77.137,186.1,28.0,102.8,118400,8.22
+8,100,5,2 Hz,5 Hz,2,1,22400,4,PASS,PASS,9086,9086,65.894,186.1,28.0,105.3,123200,8.43
+8,100,5,2 Hz,5 Hz,2,0.5,11200,5,PASS,PASS,4543,4543,65.276,186.1,28.0,100.2,112800,8.02
+8,100,5,2 Hz,off,3,1,33600,4,PASS,PASS,9086,9086,76.624,187.2,28.0,54.4,77600,4.35
+8,100,5,2 Hz,off,3,0.5,16800,5,PASS,PASS,4536,4536,76.392,187.2,28.0,46.8,60000,3.74
+8,100,5,2 Hz,off,2,1,22400,5,PASS,PASS,9086,9086,65.273,187.2,28.0,49.3,66400,3.95
+8,100,5,2 Hz,off,2,0.5,11200,6,PASS,PASS,4536,4536,65.478,187.2,28.0,44.2,54400,3.54
+8,100,5,1 Hz,5 Hz,3,1,33600,3,PASS,PASS,9086,9086,76.513,186.0,28.0,104.8,124800,8.38
+8,100,5,1 Hz,5 Hz,3,0.5,16800,4,PASS,PASS,4543,4543,77.137,186.0,28.0,97.2,112800,7.78
+8,100,5,1 Hz,5 Hz,2,1,22400,4,PASS,PASS,9086,9086,65.505,186.0,28.0,99.7,113600,7.98
+8,100,5,1 Hz,5 Hz,2,0.5,11200,5,PASS,PASS,4543,4543,65.276,186.0,28.0,94.6,107200,7.57
+8,100,5,1 Hz,off,3,1,33600,4,PASS,PASS,9086,9086,76.624,187.2,28.0,48.8,72000,3.9
+8,100,5,1 Hz,off,3,0.5,16800,5,PASS,PASS,4536,4536,76.392,187.2,28.0,41.2,56000,3.3
+8,100,5,1 Hz,off,2,1,22400,5,PASS,PASS,9086,9086,65.273,187.2,28.0,43.7,60800,3.5
+8,100,5,1 Hz,off,2,0.5,11200,6,PASS,PASS,4536,4536,65.281,187.2,28.0,38.6,50400,3.09
+12,800,15,7.5 Hz,5 Hz,3,1,422400,0,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,5 Hz,3,0.5,211200,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,5 Hz,2,1,281600,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,5 Hz,2,0.5,140800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,off,3,1,422400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,off,3,0.5,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,off,2,1,281600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,7.5 Hz,off,2,0.5,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,5 Hz,3,1,422400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,5 Hz,3,0.5,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,5 Hz,2,1,281600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,5 Hz,2,0.5,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,off,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,off,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,off,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,2 Hz,off,2,0.5,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,5 Hz,3,1,422400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,5 Hz,3,0.5,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,5 Hz,2,1,281600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,5 Hz,2,0.5,140800,3,PASS,FAIL,10703,10703,94.493,5352.2,13.1,122.7,200000,14.73
+12,800,15,1 Hz,off,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,off,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,off,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,15,1 Hz,off,2,0.5,140800,4,PASS,FAIL,10703,10703,81.549,5299.8,13.4,112.0,192000,13.45
+12,800,10,7.5 Hz,5 Hz,3,1,422400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,5 Hz,3,0.5,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,5 Hz,2,1,281600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,5 Hz,2,0.5,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,off,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,off,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,off,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,7.5 Hz,off,2,0.5,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,5 Hz,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,5 Hz,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,5 Hz,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,5 Hz,2,0.5,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,off,3,1,422400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,off,3,0.5,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,off,2,1,281600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,2 Hz,off,2,0.5,140800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,5 Hz,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,5 Hz,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,5 Hz,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,5 Hz,2,0.5,140800,4,PASS,FAIL,10703,10703,88.845,5361.2,13.2,122.7,200000,14.73
+12,800,10,1 Hz,off,3,1,422400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,off,3,0.5,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,off,2,1,281600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,10,1 Hz,off,2,0.5,140800,5,PASS,FAIL,10703,10703,80.331,5314.6,13.4,112.0,192000,13.45
+12,800,5,7.5 Hz,5 Hz,3,1,422400,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,5 Hz,3,0.5,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,5 Hz,2,1,281600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,5 Hz,2,0.5,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,off,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,off,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,off,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,7.5 Hz,off,2,0.5,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,5 Hz,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,5 Hz,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,5 Hz,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,5 Hz,2,0.5,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,off,3,1,422400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,off,3,0.5,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,off,2,1,281600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,2 Hz,off,2,0.5,140800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,5 Hz,3,1,422400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,5 Hz,3,0.5,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,5 Hz,2,1,281600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,5 Hz,2,0.5,140800,4,PASS,FAIL,10703,10703,88.845,5444.0,12.9,122.7,200000,14.73
+12,800,5,1 Hz,off,3,1,422400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,off,3,0.5,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,off,2,1,281600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,800,5,1 Hz,off,2,0.5,140800,5,PASS,FAIL,10703,10703,80.971,5373.3,13.4,112.0,192000,13.45
+12,400,15,7.5 Hz,5 Hz,3,1,211200,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,5 Hz,3,0.5,105600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,5 Hz,2,1,140800,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,5 Hz,2,0.5,70400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,off,3,1,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,off,3,0.5,105600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,off,2,1,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,7.5 Hz,off,2,0.5,70400,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,2 Hz,5 Hz,3,1,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,2 Hz,5 Hz,3,0.5,105600,3,PASS,FAIL,10703,10703,94.173,1300.2,38.3,142.0,200000,17.05
+12,400,15,2 Hz,5 Hz,2,1,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,2 Hz,5 Hz,2,0.5,70400,4,PASS,FAIL,10703,10703,82.653,877.6,66.7,161.3,200000,19.37
+12,400,15,2 Hz,off,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,2 Hz,off,3,0.5,105600,4,PASS,FAIL,10703,10703,91.272,1328.5,39.3,134.0,192000,16.09
+12,400,15,2 Hz,off,2,1,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,2 Hz,off,2,0.5,70400,5,PASS,FAIL,10703,10703,77.442,874.7,70.2,153.3,192000,18.41
+12,400,15,1 Hz,5 Hz,3,1,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,1 Hz,5 Hz,3,0.5,105600,3,PASS,FAIL,10703,10703,95.453,922.7,48.2,142.0,200000,17.05
+12,400,15,1 Hz,5 Hz,2,1,140800,3,PASS,FAIL,21395,21395,93.335,2467.4,16.2,122.6,200000,14.74
+12,400,15,1 Hz,5 Hz,2,0.5,70400,4,PASS,FAIL,10703,10703,81.693,845.8,80.6,161.3,200000,19.37
+12,400,15,1 Hz,off,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,15,1 Hz,off,3,0.5,105600,4,PASS,PASS,10703,10703,90.632,915.8,51.4,134.0,192000,16.09
+12,400,15,1 Hz,off,2,1,140800,4,PASS,FAIL,21395,21395,78.722,2604.2,16.4,114.6,192000,13.77
+12,400,15,1 Hz,off,2,0.5,70400,5,PASS,PASS,10703,10703,78.837,833.3,86.5,153.3,192000,18.41
+12,400,10,7.5 Hz,5 Hz,3,1,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,5 Hz,3,0.5,105600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,5 Hz,2,1,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,5 Hz,2,0.5,70400,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,off,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,off,3,0.5,105600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,off,2,1,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,7.5 Hz,off,2,0.5,70400,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,2 Hz,5 Hz,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,2 Hz,5 Hz,3,0.5,105600,4,PASS,FAIL,10703,10703,90.423,1321.5,38.0,142.0,200000,17.05
+12,400,10,2 Hz,5 Hz,2,1,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,2 Hz,5 Hz,2,0.5,70400,5,PASS,FAIL,10703,10703,77.156,886.1,63.5,161.3,200000,19.36
+12,400,10,2 Hz,off,3,1,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,2 Hz,off,3,0.5,105600,5,PASS,PASS,10703,10703,87.821,1351.2,37.8,134.0,192000,16.09
+12,400,10,2 Hz,off,2,1,140800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,2 Hz,off,2,0.5,70400,6,PASS,PASS,10703,10703,74.67,874.2,66.8,153.3,192000,18.41
+12,400,10,1 Hz,5 Hz,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,1 Hz,5 Hz,3,0.5,105600,4,PASS,FAIL,10703,10703,93.111,938.6,48.1,142.0,200000,17.05
+12,400,10,1 Hz,5 Hz,2,1,140800,4,PASS,FAIL,21395,21395,95.575,2556.2,16.2,122.6,200000,14.74
+12,400,10,1 Hz,5 Hz,2,0.5,70400,5,PASS,PASS,10703,10703,76.356,832.9,79.3,161.3,200000,19.36
+12,400,10,1 Hz,off,3,1,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,10,1 Hz,off,3,0.5,105600,5,PASS,FAIL,10703,10703,85.792,924.6,51.4,134.0,192000,16.09
+12,400,10,1 Hz,off,2,1,140800,5,PASS,PASS,21395,21395,74.214,2566.9,16.4,114.6,192000,13.77
+12,400,10,1 Hz,off,2,0.5,70400,6,PASS,PASS,10703,10703,75.232,799.4,86.5,153.3,192000,18.41
+12,400,5,7.5 Hz,5 Hz,3,1,211200,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,5 Hz,3,0.5,105600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,5 Hz,2,1,140800,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,5 Hz,2,0.5,70400,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,off,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,off,3,0.5,105600,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,off,2,1,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,7.5 Hz,off,2,0.5,70400,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,2 Hz,5 Hz,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,2 Hz,5 Hz,3,0.5,105600,4,PASS,PASS,10703,10703,85.254,1772.9,34.1,142.0,200000,17.05
+12,400,5,2 Hz,5 Hz,2,1,140800,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,2 Hz,5 Hz,2,0.5,70400,5,PASS,PASS,10703,10703,76.34,934.0,55.3,161.3,200000,19.36
+12,400,5,2 Hz,off,3,1,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,2 Hz,off,3,0.5,105600,5,PASS,PASS,10703,10703,85.531,1826.8,32.7,134.0,192000,16.09
+12,400,5,2 Hz,off,2,1,140800,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,2 Hz,off,2,0.5,70400,6,PASS,PASS,10703,10703,73.89,922.5,57.5,153.0,192000,18.37
+12,400,5,1 Hz,5 Hz,3,1,211200,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,1 Hz,5 Hz,3,0.5,105600,4,PASS,PASS,10703,10703,88.969,973.3,47.1,142.0,200000,17.05
+12,400,5,1 Hz,5 Hz,2,1,140800,4,PASS,FAIL,21395,21395,86.615,2590.6,16.1,122.6,200000,14.74
+12,400,5,1 Hz,5 Hz,2,0.5,70400,5,PASS,PASS,10703,10703,77.677,791.1,73.9,161.2,200000,19.36
+12,400,5,1 Hz,off,3,1,211200,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,400,5,1 Hz,off,3,0.5,105600,5,PASS,PASS,10703,10703,84.169,963.0,51.3,134.0,192000,16.09
+12,400,5,1 Hz,off,2,1,140800,5,PASS,PASS,21395,21395,75.541,2595.8,16.4,114.6,192000,13.77
+12,400,5,1 Hz,off,2,0.5,70400,6,PASS,PASS,10703,10703,75.931,712.6,86.1,152.9,192000,18.37
+12,200,15,7.5 Hz,5 Hz,3,1,105600,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,15,7.5 Hz,5 Hz,3,0.5,52800,2,PASS,PASS,10703,10703,83.803,719.6,65.9,171.0,200000,20.52
+12,200,15,7.5 Hz,5 Hz,2,1,70400,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,15,7.5 Hz,5 Hz,2,0.5,35200,3,PASS,PASS,10703,10703,70.898,672.1,75.2,180.6,200000,21.67
+12,200,15,7.5 Hz,off,3,1,105600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,15,7.5 Hz,off,3,0.5,52800,3,PASS,PASS,10703,10703,82.932,669.9,69.1,162.8,192000,19.54
+12,200,15,7.5 Hz,off,2,1,70400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,15,7.5 Hz,off,2,0.5,35200,4,PASS,PASS,10703,10703,72.783,594.8,79.7,172.2,192000,20.67
+12,200,15,2 Hz,5 Hz,3,1,105600,2,PASS,PASS,21395,21395,86.159,791.4,51.8,141.9,200000,17.06
+12,200,15,2 Hz,5 Hz,3,0.5,52800,3,PASS,PASS,10703,10703,82.232,523.4,89.1,170.8,200000,20.51
+12,200,15,2 Hz,5 Hz,2,1,70400,3,PASS,PASS,21395,21395,72.559,658.1,76.8,161.3,200000,19.37
+12,200,15,2 Hz,5 Hz,2,0.5,35200,4,PASS,PASS,10703,10703,73.026,472.1,101.6,180.3,200000,21.63
+12,200,15,2 Hz,off,3,1,105600,3,PASS,PASS,21395,21395,83.239,751.3,57.7,133.9,192000,16.09
+12,200,15,2 Hz,off,3,0.5,52800,4,PASS,PASS,10703,10703,83.774,450.1,104.9,162.4,192000,19.5
+12,200,15,2 Hz,off,2,1,70400,4,PASS,PASS,21395,21395,75.565,517.4,89.1,153.0,192000,18.38
+12,200,15,2 Hz,off,2,0.5,35200,5,PASS,PASS,10703,10703,73.758,390.1,121.2,171.8,192000,20.63
+12,200,15,1 Hz,5 Hz,3,1,105600,2,PASS,PASS,21395,21395,86.799,757.6,60.3,141.9,200000,17.06
+12,200,15,1 Hz,5 Hz,3,0.5,52800,3,PASS,PASS,10703,10703,82.74,487.8,99.5,170.8,200000,20.5
+12,200,15,1 Hz,5 Hz,2,1,70400,3,PASS,PASS,21395,21395,73.133,538.2,86.4,161.3,200000,19.37
+12,200,15,1 Hz,5 Hz,2,0.5,35200,4,PASS,PASS,10703,10703,73.645,437.2,112.9,180.2,200000,21.63
+12,200,15,1 Hz,off,3,1,105600,3,PASS,PASS,21395,21395,82.849,716.2,68.8,133.9,192000,16.09
+12,200,15,1 Hz,off,3,0.5,52800,4,PASS,PASS,10703,10703,80.61,405.7,121.0,162.4,192000,19.49
+12,200,15,1 Hz,off,2,1,70400,4,PASS,PASS,21395,21395,70.461,466.9,103.8,153.0,192000,18.37
+12,200,15,1 Hz,off,2,0.5,35200,5,PASS,PASS,10703,10703,73.758,347.9,138.4,171.8,192000,20.62
+12,200,10,7.5 Hz,5 Hz,3,1,105600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,10,7.5 Hz,5 Hz,3,0.5,52800,3,PASS,PASS,10703,10703,83.974,705.6,58.5,170.9,200000,20.51
+12,200,10,7.5 Hz,5 Hz,2,1,70400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,10,7.5 Hz,5 Hz,2,0.5,35200,4,PASS,PASS,10703,10703,72.951,649.9,66.5,180.4,200000,21.65
+12,200,10,7.5 Hz,off,3,1,105600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,10,7.5 Hz,off,3,0.5,52800,4,PASS,PASS,10703,10703,83.653,631.5,62.6,162.5,192000,19.51
+12,200,10,7.5 Hz,off,2,1,70400,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,10,7.5 Hz,off,2,0.5,35200,5,PASS,PASS,10703,10703,70.792,559.7,72.3,171.9,192000,20.63
+12,200,10,2 Hz,5 Hz,3,1,105600,3,PASS,PASS,21395,21395,82.487,776.4,47.2,141.9,200000,17.06
+12,200,10,2 Hz,5 Hz,3,0.5,52800,4,PASS,PASS,10703,10703,82.647,498.0,80.7,170.4,200000,20.46
+12,200,10,2 Hz,5 Hz,2,1,70400,4,PASS,PASS,21395,21395,71.863,614.7,69.8,161.1,200000,19.34
+12,200,10,2 Hz,5 Hz,2,0.5,35200,5,PASS,PASS,10703,10703,70.647,435.0,91.9,179.8,200000,21.59
+12,200,10,2 Hz,off,3,1,105600,4,PASS,PASS,21395,21395,84.0,698.9,54.4,133.9,192000,16.08
+12,200,10,2 Hz,off,3,0.5,52800,5,PASS,PASS,10703,10703,81.405,351.6,103.1,162.1,192000,19.45
+12,200,10,2 Hz,off,2,1,70400,5,PASS,PASS,21395,21395,71.549,450.5,86.0,152.6,192000,18.33
+12,200,10,2 Hz,off,2,0.5,35200,6,PASS,PASS,10703,10703,70.571,270.2,120.4,171.4,192000,20.57
+12,200,10,1 Hz,5 Hz,3,1,105600,3,PASS,PASS,21395,21395,82.183,724.5,56.4,141.9,200000,17.06
+12,200,10,1 Hz,5 Hz,3,0.5,52800,4,PASS,PASS,10703,10703,82.322,445.2,91.4,170.4,200000,20.45
+12,200,10,1 Hz,5 Hz,2,1,70400,4,PASS,PASS,21395,21395,71.561,510.2,80.5,160.9,200000,19.33
+12,200,10,1 Hz,5 Hz,2,0.5,35200,5,PASS,PASS,10703,10703,72.921,391.6,102.8,179.8,200000,21.58
+12,200,10,1 Hz,off,3,1,105600,4,PASS,PASS,21395,21395,83.99,603.7,68.7,133.8,192000,16.08
+12,200,10,1 Hz,off,3,0.5,52800,5,PASS,PASS,10703,10703,80.993,288.8,120.6,162.0,192000,19.46
+12,200,10,1 Hz,off,2,1,70400,5,PASS,PASS,21395,21395,71.127,376.1,103.3,152.6,192000,18.33
+12,200,10,1 Hz,off,2,0.5,35200,6,PASS,PASS,10703,10703,71.115,221.8,138.0,171.4,192000,20.58
+12,200,5,7.5 Hz,5 Hz,3,1,105600,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,5,7.5 Hz,5 Hz,3,0.5,52800,3,PASS,PASS,10703,10703,82.782,725.6,44.1,170.6,200000,20.48
+12,200,5,7.5 Hz,5 Hz,2,1,70400,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,5,7.5 Hz,5 Hz,2,0.5,35200,4,PASS,PASS,10703,10703,70.848,651.3,50.2,180.0,200000,21.6
+12,200,5,7.5 Hz,off,3,1,105600,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,5,7.5 Hz,off,3,0.5,52800,4,PASS,PASS,10703,10703,80.222,694.2,46.0,162.2,192000,19.47
+12,200,5,7.5 Hz,off,2,1,70400,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+12,200,5,7.5 Hz,off,2,0.5,35200,5,PASS,PASS,10703,10703,70.855,606.1,53.3,171.6,192000,20.59
+12,200,5,2 Hz,5 Hz,3,1,105600,3,PASS,PASS,21395,21395,85.039,748.4,40.8,141.9,200000,17.05
+12,200,5,2 Hz,5 Hz,3,0.5,52800,4,PASS,PASS,10703,10703,82.533,442.7,66.4,170.1,200000,20.42
+12,200,5,2 Hz,5 Hz,2,1,70400,4,PASS,PASS,21395,21395,73.359,542.2,57.6,160.6,200000,19.3
+12,200,5,2 Hz,5 Hz,2,0.5,35200,5,PASS,PASS,10703,10703,70.056,369.1,74.4,179.4,200000,21.54
+12,200,5,2 Hz,off,3,1,105600,4,PASS,PASS,21395,21395,80.319,573.3,50.9,133.5,192000,16.05
+12,200,5,2 Hz,off,3,0.5,52800,5,PASS,PASS,10703,10703,79.469,188.7,88.0,147.0,192000,17.64
+12,200,5,2 Hz,off,2,1,70400,5,PASS,PASS,21395,21395,70.923,314.6,85.3,152.1,192000,18.27
+12,200,5,2 Hz,off,2,0.5,35200,6,PASS,PASS,10703,10703,67.671,188.2,88.0,139.0,176000,16.69
+12,200,5,1 Hz,5 Hz,3,1,105600,3,PASS,PASS,21395,21395,84.748,653.7,48.8,141.8,200000,17.04
+12,200,5,1 Hz,5 Hz,3,0.5,52800,4,PASS,PASS,10703,10703,84.788,370.5,74.6,170.0,200000,20.4
+12,200,5,1 Hz,5 Hz,2,1,70400,4,PASS,PASS,21395,21395,74.13,445.6,66.1,160.6,200000,19.28
+12,200,5,1 Hz,5 Hz,2,0.5,35200,5,PASS,PASS,10703,10703,72.07,313.7,82.1,179.4,200000,21.53
+12,200,5,1 Hz,off,3,1,105600,4,PASS,PASS,21395,21395,82.239,420.4,68.3,133.3,192000,16.02
+12,200,5,1 Hz,off,3,0.5,52800,5,PASS,PASS,10703,10703,79.51,188.2,88.0,129.4,176000,15.53
+12,200,5,1 Hz,off,2,1,70400,5,PASS,PASS,21395,21395,68.644,188.6,88.0,137.3,192000,16.49
+12,200,5,1 Hz,off,2,0.5,35200,6,PASS,PASS,10703,10703,67.729,188.2,88.0,121.4,158400,14.58
+12,100,15,7.5 Hz,5 Hz,3,1,52800,1,PASS,PASS,21395,21395,80.31,385.3,62.3,170.3,200000,20.45
+12,100,15,7.5 Hz,5 Hz,3,0.5,26400,2,PASS,PASS,10703,10703,82.281,303.5,74.4,184.4,200000,22.13
+12,100,15,7.5 Hz,5 Hz,2,1,35200,2,PASS,PASS,21395,21395,69.003,334.1,70.1,179.7,200000,21.57
+12,100,15,7.5 Hz,5 Hz,2,0.5,17600,3,PASS,PASS,10703,10703,69.578,272.6,78.7,189.0,200000,22.68
+12,100,15,7.5 Hz,off,3,1,52800,2,PASS,PASS,21395,21395,79.67,209.5,79.3,161.8,192000,19.43
+12,100,15,7.5 Hz,off,3,0.5,26400,3,PASS,PASS,10703,10703,78.044,141.5,99.5,175.9,192000,21.11
+12,100,15,7.5 Hz,off,2,1,35200,3,PASS,PASS,21395,21395,66.766,152.7,92.2,171.2,192000,20.56
+12,100,15,7.5 Hz,off,2,0.5,17600,4,PASS,PASS,10703,10703,66.644,131.9,107.1,180.4,192000,21.66
+12,100,15,2 Hz,5 Hz,3,1,52800,2,PASS,PASS,21395,21395,80.425,270.2,79.3,170.0,200000,20.41
+12,100,15,2 Hz,5 Hz,3,0.5,26400,3,PASS,PASS,10703,10703,80.972,171.1,93.6,184.1,200000,22.09
+12,100,15,2 Hz,5 Hz,2,1,35200,3,PASS,PASS,21395,21395,69.952,192.0,89.5,179.4,200000,21.53
+12,100,15,2 Hz,5 Hz,2,0.5,17600,4,PASS,PASS,10703,10703,70.285,153.5,98.7,188.8,200000,22.66
+12,100,15,2 Hz,off,3,1,52800,3,PASS,PASS,21395,21395,78.066,117.0,120.3,161.7,192000,19.41
+12,100,15,2 Hz,off,3,0.5,26400,4,PASS,PASS,10703,10703,77.361,70.7,132.0,161.5,184800,19.38
+12,100,15,2 Hz,off,2,1,35200,4,PASS,PASS,21395,21395,65.985,71.3,132.0,165.4,192000,19.86
+12,100,15,2 Hz,off,2,0.5,17600,5,PASS,PASS,10703,10703,66.644,70.7,132.0,157.5,176000,18.9
+12,100,15,1 Hz,5 Hz,3,1,52800,2,PASS,PASS,21395,21395,80.195,211.2,84.7,170.0,200000,20.41
+12,100,15,1 Hz,5 Hz,3,0.5,26400,3,PASS,PASS,10703,10703,80.484,153.2,98.8,184.0,200000,22.09
+12,100,15,1 Hz,5 Hz,2,1,35200,3,PASS,PASS,21395,21395,69.729,168.3,94.0,179.4,200000,21.53
+12,100,15,1 Hz,5 Hz,2,0.5,17600,4,PASS,PASS,10703,10703,70.202,138.7,104.0,188.7,200000,22.65
+12,100,15,1 Hz,off,3,1,52800,3,PASS,PASS,21395,21395,77.596,104.9,128.8,161.4,192000,19.37
+12,100,15,1 Hz,off,3,0.5,26400,4,PASS,PASS,10703,10703,77.361,70.7,132.0,152.7,176000,18.32
+12,100,15,1 Hz,off,2,1,35200,4,PASS,PASS,21395,21395,66.69,70.7,132.0,156.6,184800,18.8
+12,100,15,1 Hz,off,2,0.5,17600,5,PASS,PASS,10703,10703,66.644,70.7,132.0,148.7,167200,17.85
+12,100,10,7.5 Hz,5 Hz,3,1,52800,2,PASS,PASS,21395,21395,78.944,382.4,52.8,170.1,200000,20.43
+12,100,10,7.5 Hz,5 Hz,3,0.5,26400,3,PASS,PASS,10703,10703,81.001,284.7,62.8,184.2,200000,22.11
+12,100,10,7.5 Hz,5 Hz,2,1,35200,3,PASS,PASS,21395,21395,70.424,316.4,59.6,179.5,200000,21.55
+12,100,10,7.5 Hz,5 Hz,2,0.5,17600,4,PASS,PASS,10703,10703,70.298,257.7,66.0,188.9,200000,22.67
+12,100,10,7.5 Hz,off,3,1,52800,3,PASS,PASS,21395,21395,78.213,191.2,72.6,161.7,192000,19.42
+12,100,10,7.5 Hz,off,3,0.5,26400,4,PASS,PASS,10703,10703,78.555,100.4,88.0,165.9,192000,19.91
+12,100,10,7.5 Hz,off,2,1,35200,4,PASS,PASS,21395,21395,66.513,125.3,87.7,169.5,192000,20.36
+12,100,10,7.5 Hz,off,2,0.5,17600,5,PASS,PASS,10703,10703,66.1,100.3,88.0,161.9,184800,19.43
+12,100,10,2 Hz,5 Hz,3,1,52800,3,PASS,PASS,21395,21395,79.904,235.4,67.9,169.9,200000,20.39
+12,100,10,2 Hz,5 Hz,3,0.5,26400,4,PASS,PASS,10703,10703,80.131,167.2,80.4,183.9,200000,22.08
+12,100,10,2 Hz,5 Hz,2,1,35200,4,PASS,PASS,21395,21395,69.154,179.6,76.7,179.2,200000,21.52
+12,100,10,2 Hz,5 Hz,2,0.5,17600,5,PASS,PASS,10703,10703,70.264,159.4,83.8,188.6,200000,22.64
+12,100,10,2 Hz,off,3,1,52800,4,PASS,PASS,21395,21395,78.093,100.1,88.0,129.4,167200,15.53
+12,100,10,2 Hz,off,3,0.5,26400,5,PASS,PASS,10703,10703,77.755,100.1,88.0,117.5,140800,14.1
+12,100,10,2 Hz,off,2,1,35200,5,PASS,PASS,21395,21395,66.803,100.1,88.0,121.4,149600,14.58
+12,100,10,2 Hz,off,2,0.5,17600,6,PASS,PASS,10703,10703,65.911,100.1,88.0,113.5,132000,13.62
+12,100,10,1 Hz,5 Hz,3,1,52800,3,PASS,PASS,21395,21395,81.055,204.5,71.8,169.8,200000,20.39
+12,100,10,1 Hz,5 Hz,3,0.5,26400,4,PASS,PASS,10703,10703,80.441,161.7,83.5,183.9,200000,22.07
+12,100,10,1 Hz,5 Hz,2,1,35200,4,PASS,PASS,21395,21395,69.59,169.2,80.0,179.2,200000,21.51
+12,100,10,1 Hz,5 Hz,2,0.5,17600,5,PASS,PASS,10703,10703,67.377,140.8,86.8,188.5,200000,22.62
+12,100,10,1 Hz,off,3,1,52800,4,PASS,PASS,21395,21395,78.093,100.1,88.0,120.6,158400,14.47
+12,100,10,1 Hz,off,3,0.5,26400,5,PASS,PASS,10703,10703,77.755,100.1,88.0,108.7,132000,13.04
+12,100,10,1 Hz,off,2,1,35200,5,PASS,PASS,21395,21395,66.803,100.1,88.0,112.6,140800,13.52
+12,100,10,1 Hz,off,2,0.5,17600,6,PASS,PASS,10703,10703,65.969,100.1,88.0,104.7,123200,12.57
+12,100,5,7.5 Hz,5 Hz,3,1,52800,2,PASS,PASS,21395,21395,79.989,373.0,36.8,169.9,200000,20.4
+12,100,5,7.5 Hz,5 Hz,3,0.5,26400,3,PASS,PASS,10703,10703,80.714,275.5,42.9,184.0,200000,22.08
+12,100,5,7.5 Hz,5 Hz,2,1,35200,3,PASS,PASS,21395,21395,70.796,301.8,40.7,179.2,200000,21.52
+12,100,5,7.5 Hz,5 Hz,2,0.5,17600,4,PASS,PASS,10703,10703,69.59,258.9,43.8,188.7,200000,22.64
+12,100,5,7.5 Hz,off,3,1,52800,3,PASS,PASS,21395,21395,77.424,187.4,44.0,133.7,176000,16.06
+12,100,5,7.5 Hz,off,3,0.5,26400,4,PASS,PASS,10703,10703,77.755,187.4,44.0,121.9,149600,14.63
+12,100,5,7.5 Hz,off,2,1,35200,4,PASS,PASS,21395,21395,66.673,187.4,44.0,125.8,158400,15.1
+12,100,5,7.5 Hz,off,2,0.5,17600,5,PASS,PASS,10703,10703,66.1,187.4,44.0,117.9,140800,14.15
+12,100,5,2 Hz,5 Hz,3,1,52800,3,PASS,PASS,21395,21395,80.012,230.4,44.0,169.3,200000,20.33
+12,100,5,2 Hz,5 Hz,3,0.5,26400,4,PASS,PASS,10703,10703,78.215,186.2,44.0,161.5,194400,19.38
+12,100,5,2 Hz,5 Hz,2,1,35200,4,PASS,PASS,21395,21395,66.974,186.3,44.0,165.4,194400,19.86
+12,100,5,2 Hz,5 Hz,2,0.5,17600,5,PASS,PASS,10703,10703,67.388,186.2,44.0,157.5,185600,18.9
+12,100,5,2 Hz,off,3,1,52800,4,PASS,PASS,21395,21395,77.183,187.6,44.0,85.4,123200,10.25
+12,100,5,2 Hz,off,3,0.5,26400,5,PASS,PASS,10703,10703,77.309,187.5,44.0,73.5,96800,8.82
+12,100,5,2 Hz,off,2,1,35200,5,PASS,PASS,21395,21395,66.313,187.5,44.0,77.4,103200,9.3
+12,100,5,2 Hz,off,2,0.5,17600,6,PASS,PASS,10703,10703,65.911,187.5,44.0,69.5,88000,8.35
+12,100,5,1 Hz,5 Hz,3,1,52800,3,PASS,PASS,21395,21395,77.318,189.4,44.0,164.6,200000,19.76
+12,100,5,1 Hz,5 Hz,3,0.5,26400,4,PASS,PASS,10703,10703,78.215,186.2,44.0,152.7,185600,18.32
+12,100,5,1 Hz,5 Hz,2,1,35200,4,PASS,PASS,21395,21395,67.412,186.2,44.0,156.6,185600,18.8
+12,100,5,1 Hz,5 Hz,2,0.5,17600,5,PASS,PASS,10703,10703,67.388,186.2,44.0,148.7,176800,17.85
+12,100,5,1 Hz,off,3,1,52800,4,PASS,PASS,21395,21395,77.183,187.5,44.0,76.6,114400,9.2
+12,100,5,1 Hz,off,3,0.5,26400,5,PASS,PASS,10703,10703,77.309,187.5,44.0,64.7,88000,7.77
+12,100,5,1 Hz,off,2,1,35200,5,PASS,PASS,21395,21395,66.313,187.5,44.0,68.6,96000,8.24
+12,100,5,1 Hz,off,2,0.5,17600,6,PASS,PASS,10703,10703,65.969,187.5,44.0,60.7,79200,7.29
+16,800,15,7.5 Hz,5 Hz,3,1,576000,0,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,5 Hz,3,0.5,288000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,5 Hz,2,1,384000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,5 Hz,2,0.5,192000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,off,3,1,576000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,off,3,0.5,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,off,2,1,384000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,7.5 Hz,off,2,0.5,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,5 Hz,3,1,576000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,5 Hz,3,0.5,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,5 Hz,2,1,384000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,5 Hz,2,0.5,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,off,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,off,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,off,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,2 Hz,off,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,5 Hz,3,1,576000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,5 Hz,3,0.5,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,5 Hz,2,1,384000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,5 Hz,2,0.5,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,off,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,off,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,off,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,15,1 Hz,off,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,5 Hz,3,1,576000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,5 Hz,3,0.5,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,5 Hz,2,1,384000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,5 Hz,2,0.5,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,off,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,off,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,off,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,7.5 Hz,off,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,5 Hz,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,5 Hz,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,5 Hz,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,5 Hz,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,off,3,1,576000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,off,3,0.5,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,off,2,1,384000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,2 Hz,off,2,0.5,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,5 Hz,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,5 Hz,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,5 Hz,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,5 Hz,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,off,3,1,576000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,off,3,0.5,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,off,2,1,384000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,10,1 Hz,off,2,0.5,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,5 Hz,3,1,576000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,5 Hz,3,0.5,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,5 Hz,2,1,384000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,5 Hz,2,0.5,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,off,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,off,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,off,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,7.5 Hz,off,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,5 Hz,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,5 Hz,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,5 Hz,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,5 Hz,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,off,3,1,576000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,off,3,0.5,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,off,2,1,384000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,2 Hz,off,2,0.5,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,5 Hz,3,1,576000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,5 Hz,3,0.5,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,5 Hz,2,1,384000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,5 Hz,2,0.5,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,off,3,1,576000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,off,3,0.5,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,off,2,1,384000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,800,5,1 Hz,off,2,0.5,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,5 Hz,3,1,288000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,5 Hz,3,0.5,144000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,5 Hz,2,1,192000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,5 Hz,2,0.5,96000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,off,3,1,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,off,3,0.5,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,off,2,1,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,7.5 Hz,off,2,0.5,96000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,5 Hz,3,1,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,5 Hz,3,0.5,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,5 Hz,2,1,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,5 Hz,2,0.5,96000,4,PASS,FAIL,19470,19470,89.819,1909.7,36.9,147.3,200000,23.58
+16,400,15,2 Hz,off,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,off,3,0.5,144000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,off,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,2 Hz,off,2,0.5,96000,5,PASS,FAIL,19470,19470,99.094,965.5,36.2,139.3,192000,22.3
+16,400,15,1 Hz,5 Hz,3,1,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,1 Hz,5 Hz,3,0.5,144000,3,FAIL,FAIL,19470,19421,109.39,-1.0,0.7,120.9,200000,19.38
+16,400,15,1 Hz,5 Hz,2,1,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,1 Hz,5 Hz,2,0.5,96000,4,PASS,FAIL,19470,19470,87.31,946.1,48.0,147.3,200000,23.58
+16,400,15,1 Hz,off,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,1 Hz,off,3,0.5,144000,4,FAIL,FAIL,19470,19451,106.829,-1.0,0.8,112.9,192000,18.1
+16,400,15,1 Hz,off,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,15,1 Hz,off,2,0.5,96000,5,PASS,FAIL,19470,19470,95.563,947.7,48.2,139.3,192000,22.3
+16,400,10,7.5 Hz,5 Hz,3,1,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,5 Hz,3,0.5,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,5 Hz,2,1,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,5 Hz,2,0.5,96000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,off,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,off,3,0.5,144000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,off,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,7.5 Hz,off,2,0.5,96000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,5 Hz,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,5 Hz,3,0.5,144000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,5 Hz,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,5 Hz,2,0.5,96000,5,PASS,FAIL,19470,19470,91.973,1845.8,37.7,147.3,200000,23.58
+16,400,10,2 Hz,off,3,1,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,off,3,0.5,144000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,off,2,1,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,2 Hz,off,2,0.5,96000,6,PASS,FAIL,19470,19470,95.184,995.5,36.1,139.3,192000,22.3
+16,400,10,1 Hz,5 Hz,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,1 Hz,5 Hz,3,0.5,144000,4,FAIL,FAIL,19470,19431,109.39,-1.0,0.7,120.9,200000,19.38
+16,400,10,1 Hz,5 Hz,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,1 Hz,5 Hz,2,0.5,96000,5,PASS,FAIL,19470,19470,91.973,975.5,48.0,147.3,200000,23.58
+16,400,10,1 Hz,off,3,1,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,1 Hz,off,3,0.5,144000,5,FAIL,FAIL,19470,19467,100.863,-1.0,0.8,112.9,192000,18.1
+16,400,10,1 Hz,off,2,1,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,10,1 Hz,off,2,0.5,96000,6,PASS,FAIL,19470,19470,91.847,972.6,48.2,139.3,192000,22.3
+16,400,5,7.5 Hz,5 Hz,3,1,288000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,5 Hz,3,0.5,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,5 Hz,2,1,192000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,5 Hz,2,0.5,96000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,off,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,off,3,0.5,144000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,off,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,7.5 Hz,off,2,0.5,96000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,5 Hz,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,5 Hz,3,0.5,144000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,5 Hz,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,5 Hz,2,0.5,96000,5,PASS,FAIL,19470,19470,90.033,1891.7,35.4,147.3,200000,23.58
+16,400,5,2 Hz,off,3,1,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,off,3,0.5,144000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,off,2,1,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,2 Hz,off,2,0.5,96000,6,PASS,FAIL,19470,19470,87.912,1416.0,33.0,139.3,192000,22.3
+16,400,5,1 Hz,5 Hz,3,1,288000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,1 Hz,5 Hz,3,0.5,144000,4,FAIL,FAIL,19470,19419,105.233,-1.0,0.6,120.9,200000,19.38
+16,400,5,1 Hz,5 Hz,2,1,192000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,1 Hz,5 Hz,2,0.5,96000,5,PASS,FAIL,19470,19470,90.033,1051.2,47.8,147.3,200000,23.58
+16,400,5,1 Hz,off,3,1,288000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,1 Hz,off,3,0.5,144000,5,PASS,FAIL,19470,19470,99.903,-1.0,0.7,112.9,192000,18.1
+16,400,5,1 Hz,off,2,1,192000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,400,5,1 Hz,off,2,0.5,96000,6,PASS,FAIL,19470,19470,86.952,1049.6,48.1,139.3,192000,22.3
+16,200,15,7.5 Hz,5 Hz,3,1,144000,1,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,5 Hz,3,0.5,72000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,5 Hz,2,1,96000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,5 Hz,2,0.5,48000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,off,3,1,144000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,off,3,0.5,72000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,off,2,1,96000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,7.5 Hz,off,2,0.5,48000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,15,2 Hz,5 Hz,3,1,144000,2,PASS,FAIL,38910,38910,95.706,1309.0,20.1,120.9,200000,19.35
+16,200,15,2 Hz,5 Hz,3,0.5,72000,3,PASS,FAIL,19470,19470,93.909,787.3,72.5,160.5,200000,25.69
+16,200,15,2 Hz,5 Hz,2,1,96000,3,PASS,PASS,38910,38910,81.626,851.7,54.7,147.2,200000,23.57
+16,200,15,2 Hz,5 Hz,2,0.5,48000,4,PASS,PASS,19470,19470,77.389,731.8,89.8,173.6,200000,27.79
+16,200,15,2 Hz,off,3,1,144000,3,PASS,PASS,38925,38925,92.104,955.3,19.6,112.9,192000,18.07
+16,200,15,2 Hz,off,3,0.5,72000,4,PASS,PASS,19470,19470,85.292,745.0,82.2,152.5,192000,24.41
+16,200,15,2 Hz,off,2,1,96000,4,PASS,PASS,38925,38925,77.151,823.4,61.3,139.3,192000,22.29
+16,200,15,2 Hz,off,2,0.5,48000,5,PASS,PASS,19470,19470,77.929,666.4,103.1,165.5,192000,26.48
+16,200,15,1 Hz,5 Hz,3,1,144000,2,PASS,FAIL,38910,38910,95.706,943.9,24.0,120.9,200000,19.35
+16,200,15,1 Hz,5 Hz,3,0.5,72000,3,PASS,FAIL,19470,19470,93.909,751.1,83.2,160.5,200000,25.69
+16,200,15,1 Hz,5 Hz,2,1,96000,3,PASS,FAIL,38910,38910,81.626,830.5,62.4,147.2,200000,23.57
+16,200,15,1 Hz,5 Hz,2,0.5,48000,4,PASS,PASS,19470,19470,77.389,668.3,100.9,173.6,200000,27.79
+16,200,15,1 Hz,off,3,1,144000,3,PASS,FAIL,38925,38925,93.775,943.9,24.2,112.9,192000,18.07
+16,200,15,1 Hz,off,3,0.5,72000,4,PASS,PASS,19470,19470,89.183,709.0,96.0,152.5,192000,24.41
+16,200,15,1 Hz,off,2,1,96000,4,PASS,PASS,38925,38925,75.133,792.2,72.0,139.3,192000,22.29
+16,200,15,1 Hz,off,2,0.5,48000,5,PASS,PASS,19470,19470,77.812,527.7,119.8,165.4,192000,26.48
+16,200,10,7.5 Hz,5 Hz,3,1,144000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,5 Hz,3,0.5,72000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,5 Hz,2,1,96000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,5 Hz,2,0.5,48000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,off,3,1,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,off,3,0.5,72000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,off,2,1,96000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,7.5 Hz,off,2,0.5,48000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,10,2 Hz,5 Hz,3,1,144000,3,PASS,FAIL,38910,38910,89.097,1775.2,20.1,120.9,200000,19.35
+16,200,10,2 Hz,5 Hz,3,0.5,72000,4,PASS,FAIL,19470,19470,92.75,769.4,66.8,160.5,200000,25.69
+16,200,10,2 Hz,5 Hz,2,1,96000,4,PASS,FAIL,38910,38910,77.145,845.7,51.0,147.2,200000,23.57
+16,200,10,2 Hz,5 Hz,2,0.5,48000,5,PASS,PASS,19470,19470,76.11,708.2,81.3,173.4,200000,27.76
+16,200,10,2 Hz,off,3,1,144000,4,PASS,PASS,38925,38925,87.053,984.8,19.5,112.9,192000,18.07
+16,200,10,2 Hz,off,3,0.5,72000,5,PASS,PASS,19470,19470,88.543,683.6,77.2,152.1,192000,24.35
+16,200,10,2 Hz,off,2,1,96000,5,PASS,PASS,38925,38925,75.693,802.6,57.8,139.2,192000,22.29
+16,200,10,2 Hz,off,2,0.5,48000,6,PASS,PASS,19470,19470,76.383,564.4,97.3,164.9,192000,26.39
+16,200,10,1 Hz,5 Hz,3,1,144000,3,PASS,FAIL,38910,38910,88.297,970.5,23.9,120.9,200000,19.35
+16,200,10,1 Hz,5 Hz,3,0.5,72000,4,PASS,FAIL,19470,19470,92.75,728.8,76.6,160.4,200000,25.69
+16,200,10,1 Hz,5 Hz,2,1,96000,4,PASS,PASS,38910,38910,76.699,810.7,60.3,147.2,200000,23.57
+16,200,10,1 Hz,5 Hz,2,0.5,48000,5,PASS,PASS,19470,19470,77.101,647.2,92.4,173.3,200000,27.74
+16,200,10,1 Hz,off,3,1,144000,4,PASS,PASS,38925,38925,87.892,969.9,24.1,112.9,192000,18.07
+16,200,10,1 Hz,off,3,0.5,72000,5,PASS,PASS,19470,19470,86.21,605.9,95.6,152.1,192000,24.34
+16,200,10,1 Hz,off,2,1,96000,5,PASS,PASS,38925,38925,75.693,737.2,72.0,139.2,192000,22.29
+16,200,10,1 Hz,off,2,0.5,48000,6,PASS,PASS,19470,19470,76.009,465.3,119.2,164.9,192000,26.39
+16,200,5,7.5 Hz,5 Hz,3,1,144000,2,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,5 Hz,3,0.5,72000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,5 Hz,2,1,96000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,5 Hz,2,0.5,48000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,off,3,1,144000,3,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,off,3,0.5,72000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,off,2,1,96000,4,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,7.5 Hz,off,2,0.5,48000,5,skipped: reserve plus control exceed the ceiling,,,,,,,,,
+16,200,5,2 Hz,5 Hz,3,1,144000,3,PASS,PASS,38910,38910,86.241,1369.7,18.9,120.9,200000,19.35
+16,200,5,2 Hz,5 Hz,3,0.5,72000,4,PASS,PASS,19470,19470,89.681,754.3,55.7,160.1,200000,25.63
+16,200,5,2 Hz,5 Hz,2,1,96000,4,PASS,PASS,38910,38910,74.197,866.8,44.4,147.2,200000,23.57
+16,200,5,2 Hz,5 Hz,2,0.5,48000,5,PASS,PASS,19470,19470,73.613,654.5,67.4,172.8,200000,27.67
+16,200,5,2 Hz,off,3,1,144000,4,PASS,PASS,38925,38925,85.624,1407.5,16.7,112.9,192000,18.07
+16,200,5,2 Hz,off,3,0.5,72000,5,PASS,PASS,19470,19470,85.698,553.7,71.2,151.6,192000,24.27
+16,200,5,2 Hz,off,2,1,96000,5,PASS,PASS,38925,38925,74.181,780.1,49.7,138.7,192000,22.21
+16,200,5,2 Hz,off,2,0.5,48000,6,PASS,PASS,19470,19470,75.103,397.2,94.7,164.3,192000,26.3
+16,200,5,1 Hz,5 Hz,3,1,144000,3,PASS,PASS,38910,38910,86.753,1050.4,23.8,120.9,200000,19.35
+16,200,5,1 Hz,5 Hz,3,0.5,72000,4,PASS,PASS,19470,19470,90.161,668.6,66.2,160.0,200000,25.62
+16,200,5,1 Hz,5 Hz,2,1,96000,4,PASS,PASS,38910,38910,79.318,774.5,53.5,147.1,200000,23.56
+16,200,5,1 Hz,5 Hz,2,0.5,48000,5,PASS,PASS,19470,19470,73.713,552.2,78.3,172.8,200000,27.66
+16,200,5,1 Hz,off,3,1,144000,4,PASS,PASS,38925,38925,87.268,1047.4,24.1,112.9,192000,18.07
+16,200,5,1 Hz,off,3,0.5,72000,5,PASS,PASS,19470,19470,84.91,411.7,95.0,151.4,192000,24.24
+16,200,5,1 Hz,off,2,1,96000,5,PASS,PASS,38925,38925,74.788,578.1,71.5,138.7,192000,22.2
+16,200,5,1 Hz,off,2,0.5,48000,6,PASS,PASS,19470,19470,71.095,307.1,118.2,163.8,192000,26.22
+16,100,15,7.5 Hz,5 Hz,3,1,72000,1,PASS,PASS,38910,38910,82.524,662.8,54.4,160.4,200000,25.67
+16,100,15,7.5 Hz,5 Hz,3,0.5,36000,2,PASS,PASS,19470,19470,86.358,466.2,70.3,179.6,200000,28.76
+16,100,15,7.5 Hz,5 Hz,2,1,48000,2,PASS,PASS,38910,38910,71.183,498.2,64.6,173.2,200000,27.73
+16,100,15,7.5 Hz,5 Hz,2,0.5,24000,3,PASS,PASS,19470,19470,72.126,434.6,76.1,186.0,200000,29.78
+16,100,15,7.5 Hz,off,3,1,72000,2,PASS,PASS,38925,38925,83.946,486.2,64.3,151.9,192000,24.3
+16,100,15,7.5 Hz,off,3,0.5,36000,3,PASS,PASS,19470,19470,79.582,342.9,86.9,171.0,192000,27.37
+16,100,15,7.5 Hz,off,2,1,48000,3,PASS,PASS,38925,38925,71.212,384.8,79.1,164.7,192000,26.35
+16,100,15,7.5 Hz,off,2,0.5,24000,4,PASS,PASS,19470,19470,71.339,296.5,94.5,177.5,192000,28.39
+16,100,15,2 Hz,5 Hz,3,1,72000,2,PASS,PASS,38910,38910,81.357,498.4,66.9,160.1,200000,25.64
+16,100,15,2 Hz,5 Hz,3,0.5,36000,3,PASS,PASS,19470,19470,82.813,392.4,87.1,179.4,200000,28.71
+16,100,15,2 Hz,5 Hz,2,1,48000,3,PASS,PASS,38910,38910,71.77,418.5,81.1,172.9,200000,27.68
+16,100,15,2 Hz,5 Hz,2,0.5,24000,4,PASS,PASS,19470,19470,71.418,361.2,93.9,185.7,200000,29.73
+16,100,15,2 Hz,off,3,1,72000,3,PASS,PASS,38925,38925,81.055,324.2,95.2,151.6,192000,24.27
+16,100,15,2 Hz,off,3,0.5,36000,4,PASS,PASS,19470,19470,81.698,168.2,130.6,170.8,192000,27.34
+16,100,15,2 Hz,off,2,1,48000,4,PASS,PASS,38925,38925,71.348,194.8,118.8,164.4,192000,26.32
+16,100,15,2 Hz,off,2,0.5,24000,5,PASS,PASS,19470,19470,69.736,146.3,142.4,177.2,192000,28.36
+16,100,15,1 Hz,5 Hz,3,1,72000,2,PASS,PASS,38910,38910,80.996,466.5,73.4,160.1,200000,25.63
+16,100,15,1 Hz,5 Hz,3,0.5,36000,3,PASS,PASS,19470,19470,83.293,355.2,93.7,179.3,200000,28.71
+16,100,15,1 Hz,5 Hz,2,1,48000,3,PASS,PASS,38910,38910,71.258,388.1,87.9,172.9,200000,27.67
+16,100,15,1 Hz,5 Hz,2,0.5,24000,4,PASS,PASS,19470,19470,69.978,320.4,100.6,185.7,200000,29.73
+16,100,15,1 Hz,off,3,1,72000,3,PASS,PASS,38925,38925,80.208,271.2,107.2,151.6,192000,24.27
+16,100,15,1 Hz,off,3,0.5,36000,4,PASS,PASS,19470,19470,81.1,147.7,142.5,170.8,192000,27.34
+16,100,15,1 Hz,off,2,1,48000,4,PASS,PASS,38925,38925,71.428,173.7,130.8,164.4,192000,26.32
+16,100,15,1 Hz,off,2,0.5,24000,5,PASS,PASS,19470,19470,69.942,129.5,154.4,177.2,192000,28.36
+16,100,10,7.5 Hz,5 Hz,3,1,72000,2,PASS,PASS,38910,38910,81.834,647.2,46.7,160.2,200000,25.65
+16,100,10,7.5 Hz,5 Hz,3,0.5,36000,3,PASS,PASS,19470,19470,84.425,484.9,60.2,179.4,200000,28.72
+16,100,10,7.5 Hz,5 Hz,2,1,48000,3,PASS,PASS,38910,38910,70.693,544.5,56.1,173.0,200000,27.69
+16,100,10,7.5 Hz,5 Hz,2,0.5,24000,4,PASS,PASS,19470,19470,70.123,445.6,64.4,185.8,200000,29.74
+16,100,10,7.5 Hz,off,3,1,72000,3,PASS,PASS,38925,38925,85.853,477.0,56.8,151.6,192000,24.27
+16,100,10,7.5 Hz,off,3,0.5,36000,4,PASS,PASS,19470,19470,79.549,298.5,77.1,170.8,192000,27.33
+16,100,10,7.5 Hz,off,2,1,48000,4,PASS,PASS,38925,38925,70.585,354.1,70.1,164.4,192000,26.31
+16,100,10,7.5 Hz,off,2,0.5,24000,5,PASS,PASS,19470,19470,71.019,247.7,83.7,177.2,192000,28.36
+16,100,10,2 Hz,5 Hz,3,1,72000,3,PASS,PASS,38910,38910,82.699,483.0,58.6,159.8,200000,25.59
+16,100,10,2 Hz,5 Hz,3,0.5,36000,4,PASS,PASS,19470,19470,83.673,347.0,76.3,179.1,200000,28.67
+16,100,10,2 Hz,5 Hz,2,1,48000,4,PASS,PASS,38910,38910,71.662,394.9,69.6,172.6,200000,27.63
+16,100,10,2 Hz,5 Hz,2,0.5,24000,5,PASS,PASS,19470,19470,71.144,299.2,82.7,185.4,200000,29.68
+16,100,10,2 Hz,off,3,1,72000,4,PASS,PASS,38925,38925,80.823,213.2,94.9,151.3,192000,24.22
+16,100,10,2 Hz,off,3,0.5,36000,5,PASS,PASS,19470,19470,78.925,100.0,120.0,160.2,192000,25.64
+16,100,10,2 Hz,off,2,1,48000,5,PASS,PASS,38925,38925,68.646,154.1,118.1,163.6,192000,26.19
+16,100,10,2 Hz,off,2,0.5,24000,6,PASS,PASS,19470,19470,68.557,100.0,120.0,154.8,180000,24.77
+16,100,10,1 Hz,5 Hz,3,1,72000,3,PASS,PASS,38910,38910,81.313,440.2,63.5,159.8,200000,25.59
+16,100,10,1 Hz,5 Hz,3,0.5,36000,4,PASS,PASS,19470,19470,84.817,306.6,81.9,179.0,200000,28.66
+16,100,10,1 Hz,5 Hz,2,1,48000,4,PASS,PASS,38910,38910,69.885,358.9,75.3,172.6,200000,27.63
+16,100,10,1 Hz,5 Hz,2,0.5,24000,5,PASS,PASS,19470,19470,71.993,270.4,87.0,185.4,200000,29.68
+16,100,10,1 Hz,off,3,1,72000,4,PASS,PASS,38925,38925,81.861,183.7,106.8,151.3,192000,24.22
+16,100,10,1 Hz,off,3,0.5,36000,5,PASS,PASS,19470,19470,78.925,100.0,120.0,148.2,180000,23.72
+16,100,10,1 Hz,off,2,1,48000,5,PASS,PASS,38925,38925,68.474,100.2,120.0,153.6,192000,24.58
+16,100,10,1 Hz,off,2,0.5,24000,6,PASS,PASS,19470,19470,68.412,100.0,120.0,142.8,168000,22.85
+16,100,5,7.5 Hz,5 Hz,3,1,72000,2,PASS,PASS,38910,38910,83.073,654.6,33.9,159.9,200000,25.59
+16,100,5,7.5 Hz,5 Hz,3,0.5,36000,3,PASS,PASS,19470,19470,84.321,515.6,41.5,179.1,200000,28.67
+16,100,5,7.5 Hz,5 Hz,2,1,48000,3,PASS,PASS,38910,38910,71.431,558.6,38.9,172.7,200000,27.65
+16,100,5,7.5 Hz,5 Hz,2,0.5,24000,4,PASS,PASS,19470,19470,70.742,464.4,44.6,185.5,200000,29.7
+16,100,5,7.5 Hz,off,3,1,72000,3,PASS,PASS,38925,38925,80.054,482.1,42.2,151.4,192000,24.23
+16,100,5,7.5 Hz,off,3,0.5,36000,4,PASS,PASS,19470,19470,78.672,194.9,60.0,166.2,192000,26.6
+16,100,5,7.5 Hz,off,2,1,48000,4,PASS,PASS,38925,38925,68.765,348.9,53.9,164.2,192000,26.28
+16,100,5,7.5 Hz,off,2,0.5,24000,5,PASS,PASS,19470,19470,67.434,187.3,60.0,160.8,192000,25.73
+16,100,5,2 Hz,5 Hz,3,1,72000,3,PASS,PASS,38910,38910,81.992,476.1,44.5,159.6,200000,25.55
+16,100,5,2 Hz,5 Hz,3,0.5,36000,4,PASS,PASS,19470,19470,81.947,320.6,55.0,178.8,200000,28.62
+16,100,5,2 Hz,5 Hz,2,1,48000,4,PASS,PASS,38910,38910,72.265,363.7,52.1,172.3,200000,27.59
+16,100,5,2 Hz,5 Hz,2,0.5,24000,5,PASS,PASS,19470,19470,69.191,259.3,59.1,184.9,200000,29.6
+16,100,5,2 Hz,off,3,1,72000,4,PASS,PASS,38925,38925,80.122,187.4,60.0,116.5,168000,18.64
+16,100,5,2 Hz,off,3,0.5,36000,5,PASS,PASS,19470,19470,78.106,187.4,60.0,100.2,132000,16.04
+16,100,5,2 Hz,off,2,1,48000,5,PASS,PASS,38925,38925,68.909,187.4,60.0,105.7,144000,16.9
+16,100,5,2 Hz,off,2,0.5,24000,6,PASS,PASS,19470,19470,67.434,187.4,60.0,94.8,120000,15.18
+16,100,5,1 Hz,5 Hz,3,1,72000,3,PASS,PASS,38910,38910,81.217,406.4,48.3,159.5,200000,25.54
+16,100,5,1 Hz,5 Hz,3,0.5,36000,4,PASS,PASS,19470,19470,81.522,264.0,59.0,178.5,200000,28.57
+16,100,5,1 Hz,5 Hz,2,1,48000,4,PASS,PASS,38910,38910,74.423,332.4,54.5,172.3,200000,27.59
+16,100,5,1 Hz,5 Hz,2,0.5,24000,5,PASS,PASS,19470,19470,70.483,286.7,59.7,185.1,200000,29.64
+16,100,5,1 Hz,off,3,1,72000,4,PASS,PASS,38925,38925,78.922,187.4,60.0,104.5,156000,16.72
+16,100,5,1 Hz,off,3,0.5,36000,5,PASS,PASS,19470,19470,78.106,187.3,60.0,88.2,120000,14.12
+16,100,5,1 Hz,off,2,1,48000,5,PASS,PASS,38925,38925,68.909,187.3,60.0,93.7,132000,14.98
+16,100,5,1 Hz,off,2,0.5,24000,6,PASS,PASS,19470,19470,67.434,187.3,60.0,82.8,108000,13.26

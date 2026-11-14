@@ -1,0 +1,5 @@
+# Same bytes on every checkout, so corpus hashes and rustfmt checks hold on Windows.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.zip binary
+*.csv -text

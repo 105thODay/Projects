@@ -1,0 +1,92 @@
+# Gates for the Rust port of ar_sim (stages 0 and 1). See ar_sim_rs/PLAN_ar_sim_rust_port.md.
+#
+# windows-msvc: gate.bat under the MSVC developer environment. The authoritative gates
+#   (Rust against the shipped glibc corpus of record, ruling R6) fail the job; the
+#   informational steps report where the MSVC build of the C++ departs from glibc.
+# linux-glibc: gate.sh on a second machine: the C++ must regenerate the corpus of record
+#   byte for byte, and every gate must pass.
+
+name: ar_sim Rust port gates
+
+on:
+  push:
+    paths: ["ar_sim/**", "ar_sim_rs/**", ".github/workflows/ar_sim_gates.yml"]
+  pull_request:
+    paths: ["ar_sim/**", "ar_sim_rs/**", ".github/workflows/ar_sim_gates.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-msvc:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TAK .proto files (ATAK-CIV takproto)
+        shell: bash
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/deptofdefense/AndroidTacticalAssaultKit-CIV "$RUNNER_TEMP/atak"
+          git -C "$RUNNER_TEMP/atak" sparse-checkout set takproto
+          echo "TAKPROTO_DIR=$RUNNER_TEMP/atak/takproto" >> "$GITHUB_ENV"
+
+      - name: Rust stable with rustfmt and clippy
+        run: |
+          rustup update stable --no-self-update
+          rustup default stable
+          rustup component add rustfmt clippy
+          rustc --version
+
+      - name: gate.bat in the MSVC developer environment
+        shell: cmd
+        working-directory: ar_sim_rs
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSINSTALL=%%i"
+          call "%VSINSTALL%\VC\Auxiliary\Build\vcvars64.bat" || exit /b 1
+          echo Visual Studio: %VSINSTALL%
+          cl 2>&1 | findstr /c:"Version"
+          call gate.bat > gate_windows.log 2>&1
+          set GATE=%ERRORLEVEL%
+          type gate_windows.log
+          exit /b %GATE%
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate_windows_log
+          path: ar_sim_rs/gate_windows.log
+
+  linux-glibc:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TAK .proto files (ATAK-CIV takproto)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/deptofdefense/AndroidTacticalAssaultKit-CIV "$RUNNER_TEMP/atak"
+          git -C "$RUNNER_TEMP/atak" sparse-checkout set takproto
+          echo "TAKPROTO_DIR=$RUNNER_TEMP/atak/takproto" >> "$GITHUB_ENV"
+
+      - name: Rust stable with rustfmt and clippy
+        run: |
+          rustup update stable --no-self-update
+          rustup default stable
+          rustup component add rustfmt clippy
+
+      - name: gate.sh
+        working-directory: ar_sim_rs
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gate.sh 2>&1 | tee gate_linux.log
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate_linux_log
+          path: ar_sim_rs/gate_linux.log

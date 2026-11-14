@@ -1,0 +1,19 @@
+id,status,name,requirement,verification
+NET-001,Retained,Remote response,"Every valid test input shall produce its defined correct visible result at every required recipient within 100 ms, including timing uncertainty.",Input-to-photon trace per input and recipient
+NET-002,Profile scope,Transmit ceiling,"Each client shall charge at most 200000 transmitted bits in every rolling 1000 ms window, summed across recipients, retries and forwarded copies.",Per-client transmission ledger
+NET-003,Retained,Application format,Every participant application exchange shall be a CoT event. XML 2.0 is the initial profile; any TAK binary form requires explicit negotiation and detail-preservation tests.,Encoded fixtures and protocol checks
+NET-004,Retained,Serverless operation,"No dedicated application server, cloud service or global simulation sequencer shall be required for ordinary owner-authored state.",Direct-peer and partition cases
+NET-005,Retained,Local operation,Both navigation estimators shall continue at 1000 Hz. Peer loss or backpressure shall not pace local estimation or the 90 Hz renderer.,Local task and render deadline logs
+NET-006,Retained,Display integration,"Retain PCB 1 CM5, PCB 2 navigation, PCB 3 HDMI capture, ROG XREAL R1 and 1280 by 720 per eye at 90 Hz. Local physical motion-to-photon shall remain at most 20 ms.",Separate hardware integration test
+NET-007,Proposed allocation,Input processing,"Input onset to an event ready for scheduling shall be at most 10 ms in this profile, including headset return transport when present.",t_ready - t_input
+NET-008,Proposed allocation,Urgent service,"A pending urgent event and its next two copies shall have eligible starts no more than 1000/90 ms apart, including first-slot wait, arbitration and byte admission.",Actual encoding-start timestamps
+NET-009,Proposed allocation,Successful delivery,A successful attempt shall publish authenticated decoded data at the recipient within 20 ms of its encoding start.,t_publish - t_attempt_start
+NET-010,Proposed allocation,Display allowance,Publication to the first correct visible effect in the specified eye and test region shall be at most 30 ms.,t_photon - t_publish
+NET-011,Proposed allocation,Timing uncertainty,Use at most 1 ms as a conservative added bound on input-to-photon timing uncertainty; do not add it twice.,Declared clock and measurement model
+NET-012,Proposed envelope,Loss bursts,"Qualify loss of the first one or two urgent copies, with the next copy delivered within NET-009 and all other allocations met.",Q1 and Q2 traces
+NET-013,Architecture rule,Event retention,Retries shall preserve the event ID. Receivers shall apply each operation at most once. State coalescing shall not erase discrete events.,Duplicate and overflow cases
+NET-014,Architecture rule,Authority,Only authorized owners and epochs may update an entity. A disconnect shall not transfer ownership. Preserve tombstones and observation provenance.,Partition and rejoin cases
+NET-015,Architecture rule,Bounded work,"Declare byte and entry capacities for queues, histories, parser inputs and repair. Overflow shall be logged; rejected required inputs count as deadline failures.",Capacity and overflow traces
+NET-016,Architecture rule,Physical feasibility,"All transmit and receive operations shall obey the modeled MAC, interference, half-duplex, video, ranging and guard constraints.",Airtime conflict ledger
+NET-017,Test rule,Complete denominator,"Freeze required recipients at input onset. Keep every valid offered input in the result, including late, rejected, missing and outage-affected inputs.",Input obligation ledger
+NET-018,Test rule,Scaling,"Report the passing participant and activity envelope. Test populations are sweep points, not a project participant-count cap.",Load sweep and failure boundary

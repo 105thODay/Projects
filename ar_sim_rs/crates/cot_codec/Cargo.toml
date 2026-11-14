@@ -1,0 +1,12 @@
+[package]
+name = "cot_codec"
+description = "Encoded-wire CoT for the Networked AR Renderer: CoT XML and TAK Protocol v1, byte-identical to the ar_sim C++ reference"
+edition.workspace = true
+version.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[dev-dependencies]
+serde_json = "1"

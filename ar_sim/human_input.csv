@@ -1,0 +1,145 @@
+encoding,players,fanout,input_model,urgent_bytes,state_bytes,control_bytes,promised_per_s,carried_per_s,reserve_bits,capped,service,profile,obligations,on_time,late_pct,L_max,state_age_p95,charged_kbps,airtime
+"CoT XML, as specified",8,unicast,renewal,1275,991,720,3,0,151680,True,FAIL,FAIL,9135,90,99.01,19106.394,-1.0,174.2,14.02
+"CoT XML, as specified",8,unicast,string4,1275,991,720,4,0,151680,True,FAIL,FAIL,8708,79,99.09,27292.194,-1.0,162.8,13.3
+"CoT XML, as specified",8,unicast,string7,1275,991,720,7,0,151680,True,FAIL,FAIL,9149,65,99.29,32857.492,-1.0,162.5,13.52
+"CoT XML, as specified",8,unicast,string10,1275,991,720,10,0,151680,True,FAIL,FAIL,9597,50,99.48,44570.998,-1.0,156.4,13.22
+"CoT XML, as specified",8,common,renewal,1275,991,720,3,6,91800,False,FAIL,FAIL,9135,9065,0.77,135.831,98.6,112.7,9.06
+"CoT XML, as specified",8,common,string4,1275,991,720,4,6,122400,False,FAIL,FAIL,8708,7966,8.52,437.021,208.2,95.3,7.69
+"CoT XML, as specified",8,common,string7,1275,991,720,7,6,186240,True,FAIL,FAIL,9149,7777,15.0,196.333,-1.0,33.5,2.79
+"CoT XML, as specified",8,common,string10,1275,991,720,10,6,186240,True,FAIL,FAIL,9597,5446,43.25,1042.286,-1.0,34.7,2.9
+"CoT XML, as specified",12,unicast,renewal,1275,991,720,3,0,128640,True,FAIL,FAIL,21582,2,99.99,32856.327,-1.0,181.8,21.86
+"CoT XML, as specified",12,unicast,string4,1275,991,720,4,0,128640,True,FAIL,FAIL,21450,3,99.99,42528.194,-1.0,179.1,21.72
+"CoT XML, as specified",12,unicast,string7,1275,991,720,7,0,128640,True,FAIL,FAIL,20427,3,99.99,42729.485,-1.0,177.4,21.56
+"CoT XML, as specified",12,unicast,string10,1275,991,720,10,0,128640,True,FAIL,FAIL,22066,3,99.99,47315.271,-1.0,175.2,21.35
+"CoT XML, as specified",12,common,renewal,1275,991,720,3,6,91800,False,FAIL,FAIL,21582,21384,0.92,142.039,100.6,112.8,13.64
+"CoT XML, as specified",12,common,string4,1275,991,720,4,6,122400,False,FAIL,FAIL,21450,19690,8.21,430.583,205.6,96.4,11.68
+"CoT XML, as specified",12,common,string7,1275,991,720,7,6,186240,True,FAIL,FAIL,20427,17380,14.92,192.644,-1.0,32.0,3.95
+"CoT XML, as specified",12,common,string10,1275,991,720,10,6,186240,True,FAIL,FAIL,22066,12474,43.47,1167.45,-1.0,34.0,4.24
+"CoT XML, as specified",16,unicast,renewal,1275,991,720,3,0,105600,True,FAIL,FAIL,39345,0,100.0,40036.913,-1.0,184.1,29.52
+"CoT XML, as specified",16,unicast,string4,1275,991,720,4,0,105600,True,FAIL,FAIL,39720,0,100.0,47073.338,-1.0,183.3,29.42
+"CoT XML, as specified",16,unicast,string7,1275,991,720,7,0,105600,True,FAIL,FAIL,39345,2,99.99,46719.539,-1.0,182.7,29.45
+"CoT XML, as specified",16,unicast,string10,1275,991,720,10,0,105600,True,FAIL,FAIL,38850,0,100.0,49832.058,-1.0,181.6,29.3
+"CoT XML, as specified",16,common,renewal,1275,991,720,3,6,91800,False,FAIL,FAIL,39345,38985,0.91,344.517,99.9,112.8,18.13
+"CoT XML, as specified",16,common,string4,1275,991,720,4,6,122400,False,FAIL,FAIL,39720,35955,9.48,420.333,205.0,96.8,15.7
+"CoT XML, as specified",16,common,string7,1275,991,720,7,6,186240,True,FAIL,FAIL,39345,33450,14.98,200.329,-1.0,33.6,5.56
+"CoT XML, as specified",16,common,string10,1275,991,720,10,6,186240,True,FAIL,FAIL,38850,22020,43.32,1167.019,-1.0,33.1,5.44
+"CoT XML, lean schema",8,unicast,renewal,712,606,440,3,1,167360,True,FAIL,FAIL,9135,2882,68.45,2618.629,-1.0,128.3,10.4
+"CoT XML, lean schema",8,unicast,string4,712,606,440,4,1,167360,True,FAIL,FAIL,8708,1179,86.46,7340.817,-1.0,116.4,9.57
+"CoT XML, lean schema",8,unicast,string7,712,606,440,7,1,167360,True,FAIL,FAIL,9149,724,92.09,10219.572,-1.0,118.8,9.82
+"CoT XML, lean schema",8,unicast,string10,712,606,440,10,1,167360,True,FAIL,FAIL,9597,512,94.66,20314.992,-1.0,119.7,9.68
+"CoT XML, lean schema",8,common,renewal,712,606,440,3,11,51264,False,PASS,PASS,9135,9135,0.0,76.393,98.3,67.5,5.43
+"CoT XML, lean schema",8,common,string4,712,606,440,4,11,68352,False,PASS,PASS,8708,8708,0.0,76.396,98.3,66.7,5.38
+"CoT XML, lean schema",8,common,string7,712,606,440,7,11,119616,False,PASS,PASS,9149,9149,0.0,76.719,98.3,67.5,5.46
+"CoT XML, lean schema",8,common,string10,712,606,440,10,11,170880,False,PASS,PASS,9597,9597,0.0,76.364,718.5,34.4,2.81
+"CoT XML, lean schema",12,unicast,renewal,712,606,440,3,0,153280,True,FAIL,FAIL,21582,989,95.42,12394.163,-1.0,174.1,21.07
+"CoT XML, lean schema",12,unicast,string4,712,606,440,4,0,153280,True,FAIL,FAIL,21450,777,96.38,18861.889,-1.0,162.0,19.8
+"CoT XML, lean schema",12,unicast,string7,712,606,440,7,0,153280,True,FAIL,FAIL,20427,584,97.14,32710.114,-1.0,158.1,19.53
+"CoT XML, lean schema",12,unicast,string10,712,606,440,10,0,153280,True,FAIL,FAIL,22066,458,97.92,37173.973,-1.0,156.2,19.47
+"CoT XML, lean schema",12,common,renewal,712,606,440,3,11,51264,False,PASS,PASS,21582,21582,0.0,76.663,100.3,67.5,8.16
+"CoT XML, lean schema",12,common,string4,712,606,440,4,11,68352,False,PASS,PASS,21450,21450,0.0,77.018,100.3,67.4,8.16
+"CoT XML, lean schema",12,common,string7,712,606,440,7,11,119616,False,PASS,PASS,20427,20427,0.0,76.621,100.3,66.7,8.06
+"CoT XML, lean schema",12,common,string10,712,606,440,10,11,170880,False,PASS,PASS,22066,22066,0.0,76.376,723.9,33.9,4.16
+"CoT XML, lean schema",16,unicast,renewal,712,606,440,3,0,139200,True,FAIL,FAIL,39345,39,99.9,24351.847,-1.0,183.7,29.47
+"CoT XML, lean schema",16,unicast,string4,712,606,440,4,0,139200,True,FAIL,FAIL,39720,46,99.88,31200.237,-1.0,176.4,28.56
+"CoT XML, lean schema",16,unicast,string7,712,606,440,7,0,139200,True,FAIL,FAIL,39345,29,99.93,40804.186,-1.0,174.9,28.4
+"CoT XML, lean schema",16,unicast,string10,712,606,440,10,0,139200,True,FAIL,FAIL,38850,36,99.91,42999.932,-1.0,169.0,28.02
+"CoT XML, lean schema",16,common,renewal,712,606,440,3,11,51264,False,PASS,PASS,39345,39345,0.0,76.673,99.6,67.5,10.86
+"CoT XML, lean schema",16,common,string4,712,606,440,4,11,68352,False,PASS,PASS,39720,39720,0.0,77.34,99.6,67.7,10.96
+"CoT XML, lean schema",16,common,string7,712,606,440,7,11,119616,False,PASS,PASS,39345,39345,0.0,76.926,99.6,67.6,10.91
+"CoT XML, lean schema",16,common,string10,712,606,440,10,11,170880,False,PASS,PASS,38850,38850,0.0,76.31,727.2,33.4,5.43
+"TAK v1, lean schema",8,unicast,renewal,556,450,262,3,1,177328,True,FAIL,FAIL,9135,6706,26.59,1545.89,-1.0,98.8,8.04
+"TAK v1, lean schema",8,unicast,string4,556,450,262,4,1,177328,True,FAIL,FAIL,8708,2746,68.47,4494.692,-1.0,92.2,7.58
+"TAK v1, lean schema",8,unicast,string7,556,450,262,7,1,177328,True,FAIL,FAIL,9149,1639,82.09,6368.272,-1.0,93.5,7.79
+"TAK v1, lean schema",8,unicast,string10,556,450,262,10,1,177328,True,FAIL,FAIL,9597,1139,88.13,13538.869,-1.0,96.6,7.9
+"TAK v1, lean schema",8,common,renewal,556,450,262,3,14,40032,False,PASS,PASS,9135,9135,0.0,76.269,98.2,50.2,4.04
+"TAK v1, lean schema",8,common,string4,556,450,262,4,14,53376,False,PASS,PASS,8708,8708,0.0,76.271,98.2,49.6,4.0
+"TAK v1, lean schema",8,common,string7,556,450,262,7,14,93408,False,PASS,PASS,9149,9149,0.0,76.47,98.2,50.2,4.06
+"TAK v1, lean schema",8,common,string10,556,450,262,10,14,133440,False,PASS,PASS,9597,9597,0.0,76.239,98.2,50.8,4.12
+"TAK v1, lean schema",12,unicast,renewal,556,450,262,3,1,168944,True,FAIL,FAIL,21582,4409,79.57,5072.229,-1.0,146.9,17.97
+"TAK v1, lean schema",12,unicast,string4,556,450,262,4,1,168944,True,FAIL,FAIL,21450,2312,89.22,12934.433,-1.0,135.5,16.65
+"TAK v1, lean schema",12,unicast,string7,556,450,262,7,1,168944,True,FAIL,FAIL,20427,1492,92.7,21367.549,-1.0,131.1,16.06
+"TAK v1, lean schema",12,unicast,string10,556,450,262,10,1,168944,True,FAIL,FAIL,22066,1049,95.25,27873.848,-1.0,132.6,16.37
+"TAK v1, lean schema",12,common,renewal,556,450,262,3,14,40032,False,PASS,PASS,21582,21582,0.0,76.395,100.1,50.2,6.07
+"TAK v1, lean schema",12,common,string4,556,450,262,4,14,53376,False,PASS,PASS,21450,21450,0.0,76.53,100.1,50.1,6.07
+"TAK v1, lean schema",12,common,string7,556,450,262,7,14,93408,False,PASS,PASS,20427,20427,0.0,76.26,100.1,49.5,5.99
+"TAK v1, lean schema",12,common,string10,556,450,262,10,14,133440,False,PASS,PASS,22066,22066,0.0,76.251,100.1,50.5,6.13
+"TAK v1, lean schema",16,unicast,renewal,556,450,262,3,0,160560,True,FAIL,FAIL,39345,1101,97.2,16540.35,-1.0,172.5,27.93
+"TAK v1, lean schema",16,unicast,string4,556,450,262,4,0,160560,True,FAIL,FAIL,39720,1045,97.37,24255.204,-1.0,159.9,25.95
+"TAK v1, lean schema",16,unicast,string7,556,450,262,7,0,160560,True,FAIL,FAIL,39345,809,97.94,30549.351,-1.0,158.9,26.12
+"TAK v1, lean schema",16,unicast,string10,556,450,262,10,0,160560,True,FAIL,FAIL,38850,728,98.13,41729.095,-1.0,150.4,24.83
+"TAK v1, lean schema",16,common,renewal,556,450,262,3,14,40032,False,PASS,PASS,39345,39345,0.0,76.423,99.4,50.2,8.07
+"TAK v1, lean schema",16,common,string4,556,450,262,4,14,53376,False,PASS,PASS,39720,39720,0.0,76.716,99.4,50.4,8.15
+"TAK v1, lean schema",16,common,string7,556,450,262,7,14,93408,False,PASS,PASS,39345,39345,0.0,76.552,99.4,50.2,8.12
+"TAK v1, lean schema",16,common,string10,556,450,262,10,14,133440,False,PASS,PASS,38850,38850,0.0,76.194,99.4,50.1,8.08
+"XML + session dictionary, as specified",8,unicast,renewal,234,170,122,3,4,117936,False,FAIL,FAIL,9135,8978,1.72,410.724,270.0,109.0,8.78
+"XML + session dictionary, as specified",8,unicast,string4,234,170,122,4,4,157248,False,FAIL,FAIL,8708,7893,9.36,463.569,750.6,67.9,5.52
+"XML + session dictionary, as specified",8,unicast,string7,234,170,122,7,4,185168,True,FAIL,FAIL,9149,5887,35.65,667.055,-1.0,42.3,3.53
+"XML + session dictionary, as specified",8,unicast,string10,234,170,122,10,4,185168,True,FAIL,FAIL,9597,4083,57.46,1519.231,-1.0,43.6,3.63
+"XML + session dictionary, as specified",8,common,renewal,234,170,122,3,34,16848,False,PASS,PASS,9135,9135,0.0,76.011,98.0,19.7,1.58
+"XML + session dictionary, as specified",8,common,string4,234,170,122,4,34,22464,False,PASS,PASS,8708,8708,0.0,76.013,98.0,19.4,1.57
+"XML + session dictionary, as specified",8,common,string7,234,170,122,7,34,39312,False,PASS,PASS,9149,9149,0.0,76.014,98.0,19.7,1.59
+"XML + session dictionary, as specified",8,common,string10,234,170,122,10,34,56160,False,PASS,PASS,9597,9597,0.0,75.982,98.0,19.9,1.62
+"XML + session dictionary, as specified",12,unicast,renewal,234,170,122,3,2,181264,True,FAIL,FAIL,21582,21051,2.46,469.834,-1.0,66.9,8.23
+"XML + session dictionary, as specified",12,unicast,string4,234,170,122,4,2,181264,True,FAIL,FAIL,21450,13247,38.24,2038.945,-1.0,65.9,8.13
+"XML + session dictionary, as specified",12,unicast,string7,234,170,122,7,2,181264,True,FAIL,FAIL,20427,7285,64.34,2812.411,-1.0,62.2,7.67
+"XML + session dictionary, as specified",12,unicast,string10,234,170,122,10,2,181264,True,FAIL,FAIL,22066,5258,76.17,5162.768,-1.0,65.5,8.09
+"XML + session dictionary, as specified",12,common,renewal,234,170,122,3,34,16848,False,PASS,PASS,21582,21582,0.0,76.007,99.9,19.7,2.38
+"XML + session dictionary, as specified",12,common,string4,234,170,122,4,34,22464,False,PASS,PASS,21450,21450,0.0,76.048,99.9,19.6,2.38
+"XML + session dictionary, as specified",12,common,string7,234,170,122,7,34,39312,False,PASS,PASS,20427,20427,0.0,76.002,99.9,19.4,2.35
+"XML + session dictionary, as specified",12,common,string10,234,170,122,10,34,56160,False,PASS,PASS,22066,22066,0.0,75.994,99.9,19.8,2.4
+"XML + session dictionary, as specified",16,unicast,renewal,234,170,122,3,2,177360,True,FAIL,FAIL,39345,30856,21.58,1432.761,-1.0,91.1,14.8
+"XML + session dictionary, as specified",16,unicast,string4,234,170,122,4,2,177360,True,FAIL,FAIL,39720,13146,66.9,3210.538,-1.0,89.2,14.82
+"XML + session dictionary, as specified",16,unicast,string7,234,170,122,7,2,177360,True,FAIL,FAIL,39345,8323,78.85,6626.294,-1.0,86.4,14.25
+"XML + session dictionary, as specified",16,unicast,string10,234,170,122,10,2,177360,True,FAIL,FAIL,38850,5552,85.71,11885.419,-1.0,84.6,13.94
+"XML + session dictionary, as specified",16,common,renewal,234,170,122,3,34,16848,False,PASS,PASS,39345,39345,0.0,76.014,99.2,19.7,3.17
+"XML + session dictionary, as specified",16,common,string4,234,170,122,4,34,22464,False,PASS,PASS,39720,39720,0.0,76.02,99.2,19.8,3.2
+"XML + session dictionary, as specified",16,common,string7,234,170,122,7,34,39312,False,PASS,PASS,39345,39345,0.0,76.027,99.2,19.7,3.18
+"XML + session dictionary, as specified",16,common,string10,234,170,122,10,34,56160,False,PASS,PASS,38850,38850,0.0,75.928,99.2,19.6,3.17
+"XML + session dictionary, lean",8,unicast,renewal,191,172,91,3,5,96264,False,FAIL,FAIL,9135,9006,1.41,351.784,166.1,123.2,9.91
+"XML + session dictionary, lean",8,unicast,string4,191,172,91,4,5,128352,False,FAIL,FAIL,8708,8026,7.83,458.376,366.8,90.4,7.3
+"XML + session dictionary, lean",8,unicast,string7,191,172,91,7,5,186904,True,FAIL,FAIL,9149,7779,14.97,240.521,-1.0,34.2,2.85
+"XML + session dictionary, lean",8,unicast,string10,191,172,91,10,5,186904,True,FAIL,FAIL,9597,5430,43.42,1175.058,-1.0,35.5,2.97
+"XML + session dictionary, lean",8,common,renewal,191,172,91,3,41,13752,False,PASS,PASS,9135,9135,0.0,75.977,98.0,18.6,1.5
+"XML + session dictionary, lean",8,common,string4,191,172,91,4,41,18336,False,PASS,PASS,8708,8708,0.0,75.979,98.0,18.5,1.49
+"XML + session dictionary, lean",8,common,string7,191,172,91,7,41,32088,False,PASS,PASS,9149,9149,0.0,75.98,98.0,18.7,1.51
+"XML + session dictionary, lean",8,common,string10,191,172,91,10,41,45840,False,PASS,PASS,9597,9597,0.0,75.947,98.0,18.9,1.53
+"XML + session dictionary, lean",12,unicast,renewal,191,172,91,3,3,151272,False,FAIL,FAIL,21582,21073,2.36,468.676,814.8,85.6,10.44
+"XML + session dictionary, lean",12,unicast,string4,191,172,91,4,3,183992,True,FAIL,FAIL,21450,15953,25.63,1083.355,-1.0,53.1,6.57
+"XML + session dictionary, lean",12,unicast,string7,191,172,91,7,3,183992,True,FAIL,FAIL,20427,8770,57.07,1566.376,-1.0,50.7,6.26
+"XML + session dictionary, lean",12,unicast,string10,191,172,91,10,3,183992,True,FAIL,FAIL,22066,6269,71.59,3338.979,-1.0,53.6,6.69
+"XML + session dictionary, lean",12,common,renewal,191,172,91,3,41,13752,False,PASS,PASS,21582,21582,0.0,75.973,99.9,18.7,2.25
+"XML + session dictionary, lean",12,common,string4,191,172,91,4,41,18336,False,PASS,PASS,21450,21450,0.0,76.016,99.9,18.6,2.25
+"XML + session dictionary, lean",12,common,string7,191,172,91,7,41,32088,False,PASS,PASS,20427,20427,0.0,75.968,99.9,18.4,2.23
+"XML + session dictionary, lean",12,common,string10,191,172,91,10,41,45840,False,PASS,PASS,22066,22066,0.0,75.959,99.9,18.7,2.27
+"XML + session dictionary, lean",16,unicast,renewal,191,172,91,3,2,181080,True,FAIL,FAIL,39345,33511,14.83,877.136,-1.0,73.4,11.93
+"XML + session dictionary, lean",16,unicast,string4,191,172,91,4,2,181080,True,FAIL,FAIL,39720,16892,57.47,2200.18,-1.0,72.7,12.11
+"XML + session dictionary, lean",16,unicast,string7,191,172,91,7,2,181080,True,FAIL,FAIL,39345,9852,74.96,4361.445,-1.0,71.3,11.8
+"XML + session dictionary, lean",16,unicast,string10,191,172,91,10,2,181080,True,FAIL,FAIL,38850,6764,82.59,6962.289,-1.0,69.7,11.48
+"XML + session dictionary, lean",16,common,renewal,191,172,91,3,41,13752,False,PASS,PASS,39345,39345,0.0,75.98,99.2,18.7,3.0
+"XML + session dictionary, lean",16,common,string4,191,172,91,4,41,18336,False,PASS,PASS,39720,39720,0.0,75.986,99.2,18.7,3.03
+"XML + session dictionary, lean",16,common,string7,191,172,91,7,41,32088,False,PASS,PASS,39345,39345,0.0,75.985,99.2,18.6,3.01
+"XML + session dictionary, lean",16,common,string10,191,172,91,10,41,45840,False,PASS,PASS,38850,38850,0.0,75.894,99.2,18.6,3.0
+"binary AR detail, lean (new TAK version)",8,unicast,renewal,301,271,178,3,3,151704,False,FAIL,FAIL,9135,8960,1.92,533.481,849.3,84.1,6.81
+"binary AR detail, lean (new TAK version)",8,unicast,string4,301,271,178,4,3,182032,True,FAIL,FAIL,8708,6054,30.48,987.802,-1.0,53.1,4.36
+"binary AR detail, lean (new TAK version)",8,unicast,string7,301,271,178,7,3,182032,True,FAIL,FAIL,9149,3654,60.06,1373.331,-1.0,55.0,4.59
+"binary AR detail, lean (new TAK version)",8,unicast,string10,301,271,178,10,3,182032,True,FAIL,FAIL,9597,2607,72.84,3625.774,-1.0,56.6,4.71
+"binary AR detail, lean (new TAK version)",8,common,renewal,301,271,178,3,26,21672,False,PASS,PASS,9135,9135,0.0,76.065,98.1,29.7,2.38
+"binary AR detail, lean (new TAK version)",8,common,string4,301,271,178,4,26,28896,False,PASS,PASS,8708,8708,0.0,76.067,98.1,29.3,2.36
+"binary AR detail, lean (new TAK version)",8,common,string7,301,271,178,7,26,50568,False,PASS,PASS,9149,9149,0.0,76.122,98.1,29.7,2.4
+"binary AR detail, lean (new TAK version)",8,common,string10,301,271,178,10,26,72240,False,PASS,PASS,9597,9597,0.0,76.035,98.1,30.0,2.43
+"binary AR detail, lean (new TAK version)",12,unicast,renewal,301,271,178,3,2,176336,True,FAIL,FAIL,21582,17108,20.73,1195.42,-1.0,87.6,10.78
+"binary AR detail, lean (new TAK version)",12,unicast,string4,301,271,178,4,2,176336,True,FAIL,FAIL,21450,7476,65.15,3106.629,-1.0,85.0,10.5
+"binary AR detail, lean (new TAK version)",12,unicast,string7,301,271,178,7,2,176336,True,FAIL,FAIL,20427,4478,78.08,4487.563,-1.0,80.4,9.86
+"binary AR detail, lean (new TAK version)",12,unicast,string10,301,271,178,10,2,176336,True,FAIL,FAIL,22066,3182,85.58,7763.256,-1.0,83.4,10.2
+"binary AR detail, lean (new TAK version)",12,common,renewal,301,271,178,3,26,21672,False,PASS,PASS,21582,21582,0.0,76.061,100.0,29.7,3.59
+"binary AR detail, lean (new TAK version)",12,common,string4,301,271,178,4,26,28896,False,PASS,PASS,21450,21450,0.0,76.183,100.0,29.6,3.58
+"binary AR detail, lean (new TAK version)",12,common,string7,301,271,178,7,26,50568,False,PASS,PASS,20427,20427,0.0,76.056,100.0,29.3,3.54
+"binary AR detail, lean (new TAK version)",12,common,string10,301,271,178,10,26,72240,False,PASS,PASS,22066,22066,0.0,76.047,100.0,29.8,3.62
+"binary AR detail, lean (new TAK version)",16,unicast,renewal,301,271,178,3,1,170640,True,FAIL,FAIL,39345,14152,64.03,2938.604,-1.0,116.9,18.97
+"binary AR detail, lean (new TAK version)",16,unicast,string4,301,271,178,4,1,170640,True,FAIL,FAIL,39720,5767,85.48,5893.159,-1.0,111.6,18.4
+"binary AR detail, lean (new TAK version)",16,unicast,string7,301,271,178,7,1,170640,True,FAIL,FAIL,39345,3562,90.95,8837.19,-1.0,109.2,17.9
+"binary AR detail, lean (new TAK version)",16,unicast,string10,301,271,178,10,1,170640,True,FAIL,FAIL,38850,2454,93.68,18951.113,-1.0,106.9,17.51
+"binary AR detail, lean (new TAK version)",16,common,renewal,301,271,178,3,26,21672,False,PASS,PASS,39345,39345,0.0,76.076,99.3,29.7,4.77
+"binary AR detail, lean (new TAK version)",16,common,string4,301,271,178,4,26,28896,False,PASS,PASS,39720,39720,0.0,76.127,99.3,29.8,4.81
+"binary AR detail, lean (new TAK version)",16,common,string7,301,271,178,7,26,50568,False,PASS,PASS,39345,39345,0.0,76.135,99.3,29.7,4.79
+"binary AR detail, lean (new TAK version)",16,common,string10,301,271,178,10,26,72240,False,PASS,PASS,38850,38850,0.0,75.982,99.3,29.6,4.77

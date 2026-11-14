@@ -108,6 +108,18 @@ int64_t Simulation::Below(std::mt19937_64& aRng, int64_t aBound)
    return static_cast<int64_t>(Unit(aRng) * static_cast<double>(aBound));
 }
 
+// A normal deviate with standard deviation aScale, by Box-Muller. The two draws are separate
+// statements, the logarithm's first: C++ leaves the order of a product's operands unspecified,
+// and MSVC draws them in the opposite order from GCC, which moved every alignment result on
+// Windows (finding F3). The scale multiplies first, as in the expressions this replaces, so the
+// rounding is unchanged.
+double Simulation::Gauss(std::mt19937_64& aRng, double aScale)
+{
+   const double radius = Unit(aRng);
+   const double angle  = Unit(aRng);
+   return aScale * std::sqrt(-2.0 * std::log(radius)) * std::cos(2.0 * cPI * angle);
+}
+
 Simulation::Simulation(const DoeConfig& aConfig)
    : mConfig(aConfig), mPeriod(PeriodFromMilliHz(aConfig.mOpportunityMilliHz)), mDisplayPeriod(PeriodFromMilliHz(cDISPLAY_MILLIHZ)),
      mEnd(aConfig.mDurationS * TimeUnit::cPER_S), mNow(0), mSeq(0), mNextTxId(1), mNextInputId(1),
@@ -243,9 +255,9 @@ Simulation::Simulation(const DoeConfig& aConfig)
       for (Alignment& alignment : mAlign)
       {
          // A participant starts aligned from its own GPS-aided solution, so with that solution's error.
-         alignment.mError[0] = mAlignConfig.mFarSigmaM * std::sqrt(-2.0 * std::log(Unit(mRngAlign))) * std::cos(2.0 * cPI * Unit(mRngAlign));
-         alignment.mError[1] = mAlignConfig.mFarSigmaM * std::sqrt(-2.0 * std::log(Unit(mRngAlign))) * std::cos(2.0 * cPI * Unit(mRngAlign));
-         alignment.mError[3] = mAlignConfig.mFarSigmaYawRad * std::sqrt(-2.0 * std::log(Unit(mRngAlign))) * std::cos(2.0 * cPI * Unit(mRngAlign));
+         alignment.mError[0] = Gauss(mRngAlign, mAlignConfig.mFarSigmaM);
+         alignment.mError[1] = Gauss(mRngAlign, mAlignConfig.mFarSigmaM);
+         alignment.mError[3] = Gauss(mRngAlign, mAlignConfig.mFarSigmaYawRad);
          alignment.mDriftDirection = 2.0 * cPI * Unit(mRngAlign);
          alignment.mDriftYawSign   = (Unit(mRngAlign) < 0.5) ? -1.0 : 1.0;
       }
@@ -1738,7 +1750,7 @@ void Simulation::UpdateAlignment(Node& aNode)
    const TruthPose me        = mMotion->At(aNode.mId, mNow);
    const double    dt        = (alignment.mLastUpdate < 0) ? 0.0 : SecondsOf(mNow - alignment.mLastUpdate);
    alignment.mLastUpdate = mNow;
-   auto gauss = [this]() { return std::sqrt(-2.0 * std::log(Unit(mRngAlign))) * std::cos(2.0 * cPI * Unit(mRngAlign)); };
+   auto gauss = [this]() { return Gauss(mRngAlign, 1.0); };
    const bool measuring = mNow >= mConfig.mWarmupS * TimeUnit::cPER_S;
 
    // Drift grows with distance walked, in a slowly turning direction; heading drifts at a steady rate.

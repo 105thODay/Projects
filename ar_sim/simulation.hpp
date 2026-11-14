@@ -354,6 +354,7 @@ private:
    // the engine's raw output does not.
    static double  Unit(std::mt19937_64& aRng);
    static int64_t Below(std::mt19937_64& aRng, int64_t aBound);
+   static double  Gauss(std::mt19937_64& aRng, double aScale);
    SimTime        NextInputTime(Node& aNode);       // the next input instant under the configured input model
 
    void Schedule(SimTime aTime, int aKind, int aNode, int aIndex);

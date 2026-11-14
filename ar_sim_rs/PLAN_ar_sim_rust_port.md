@@ -1,7 +1,7 @@
 # PLAN — Staged Rust port of `ar_sim`, codec first
 
 _2026-11-14. Reference: `ar_sim` Rev 7 (C++17, 6,469 lines). Companion to `HANDOFF_ar_sim.md`._
-_Status: stages 0 and 1 complete on Linux; the stage 1 Windows gate (gate 7) awaits a run on the MSVC workstation._
+_Status: stages 0 and 1 complete on Linux and on Windows with MSVC (GitHub Actions, `105thODay/projects`, branch `ar-sim-rust-port`)._
 
 ## 0. Aim and governing rule
 
@@ -30,7 +30,9 @@ and each then gets its own revision and re-baseline, as with the C++ code.
 ar_sim_rs/
   Cargo.toml                 workspace; rust-version = "1.97" (a toolchain file needs the rustup
                              server, which this sandbox cannot reach)
-  gate.sh, gate.bat          every stage 0 and stage 1 gate, Linux and Windows/MSVC
+  gate.sh, gate.bat          every stage 0 and stage 1 gate, Linux and Windows/MSVC; the repository's
+                             .github/workflows/ar_sim_gates.yml runs both on every push
+  tools/corpus_diff.py       per-field differences between two corpora, with ulp distances
   corpus_ref/                the corpus of record (zip, 9.6 MB) and its SHA-256 sums
   crates/cot_codec/          stage 1: message model, C library emulation, XML subset parser,
                              TAK v1 writer/reader; #![forbid(unsafe_code)]; no dependencies
@@ -62,7 +64,7 @@ parse its text, so the Rust binary must print the same lines.
 
 **Gate passed:** the corpus regenerates with identical hashes (`corpus_ref/SHA256SUMS`).
 
-### Stage 1 — The Rust codec crate — **complete on Linux**
+### Stage 1 — The Rust codec crate — **complete**
 
 Ported: the message model (enums for form, kind and operation), field tables,
 identifiers, calendar and ISO times, the strict XML subset parser, the hand-written TAK
@@ -78,7 +80,7 @@ writer and reader (ruling R2), and the C library behavior the wire depends on (f
 | 5a. C library emulation against live glibc | **Pass:** 1,000,000 generated cases per routine |
 | 5b. Random streams | **Pass:** 270,000 draws identical |
 | 6. Speed (same process, same 2,000 messages, best of 25) | Rust encodes in 0.64 and decodes in 0.72 of the C++ time over all 24 form-kind cells. Lean TAK event: C++ 5.59 / 5.74 µs, Rust 3.31 / 5.22 µs |
-| 7. `cargo test` on the Windows workstation with MSVC | **Open:** run `gate.bat` (see ruling R6) |
+| 7. `cargo test` on Windows with MSVC | **Pass** on GitHub's `windows-latest` (Visual Studio 2026, MSVC 19.51, Rust 1.100): every authoritative gate against the corpus of record; the C++ builds, and its analytic, Q0 and codec anchors match Linux. A second Linux machine (`ubuntu-24.04`) regenerates the corpus with identical hashes. Both jobs rerun on every push |
 
 The gates showed why both the corpus and the fuzzer are needed: a planted fault (reject a
 trailing comma in `missing`) passes the corpus, because no message carries one, and the
@@ -148,19 +150,28 @@ C++ in three cells); its roster lookup is linear and is the first candidate.
   differently (`-nan(ind)`), so the C++ itself writes different bytes on Windows for such
   values. A Windows-made corpus is never the reference. `gate.bat` runs the
   authoritative gates against the shipped corpus, then reports, for information, where
-  the MSVC build of the C++ departs from glibc.
+  the MSVC build of the C++ departs from glibc. Measured: every UCRT difference in the
+  corpus involves NaN (`-nan(ind)` on the wire; `strtod("nan")` gives an all-ones payload),
+  in 688 of 6,360 synthetic records and 4 of 100 corruption records.
 - **R7. C++ bounds fix (finding F2), folded into Rev 7** (decided 2026-11-14; the
   separate-revision rule is waived for this fix). `CotCodec::Participant` returns empty
   text for an index outside the roster, which is what the Rust codec does. Output is
   unchanged: the corpus regenerates with identical hashes, and the analytic, Q0 and codec
   anchors hold.
+- **R9. Box-Muller draws sequenced (finding F3), folded into Rev 7** (decided 2026-11-14).
+  `Simulation::Gauss` draws the logarithm's uniform first, then the angle's, in separate
+  statements, and keeps the original association (scale × sqrt × cos). Linux output is
+  unchanged: identical corpus hashes; analytic, Q0, codec, phase Q2 and F0 anchors hold.
 
 **Open**
 
-- **R3. Math library.** Platform `f64` functions match the C++ bit for bit on Linux but may
-  differ in the last bit on Windows, as the C++ does today. A pure-Rust math library gives
-  identical alignment numbers on every platform but re-baselines the alignment figures
-  once, after stage 5.
+- **R3. Math library.** Platform `f64` functions match the C++ bit for bit on Linux but
+  differ on Windows, as the C++ does today. Measured after F3: 2,032 of 21,360 simulator
+  messages differ under MSVC, pose by at most 128 ulps, calibration delta by 230 and
+  velocity by 2; none reaches the wire or changes a decision in the corpus runs. Over a
+  long run such a difference could cross a threshold (calibration, near-peer range) and
+  move a result. A pure-Rust math library gives identical numbers on every platform but
+  re-baselines the alignment figures once, after stage 5.
 - **R4. Phone target.** Native Kotlin and Swift, Unity (C#) or Unreal (C++).
 - **R5. The C++ build after stage 6.** Retire it, or keep it frozen as the reference.
 - **R8. XML nesting depth.** Both parsers recurse once per nested element. A 1,200-byte
@@ -185,6 +196,14 @@ C++ in three cells); its roster lookup is linear and is the first candidate.
   `std::bad_alloc`. Any peer, or any corruption the transport's authentication does not
   catch, could trigger it. The Rust decoder rejects such a message ("envelope uid does not
   match the detail"), and the fixed C++ now does the same.
+- **F3. The C++ simulator gave different results on Windows (fixed in Rev 7, R9).** The alignment
+  model drew normal deviates as `sqrt(-2·log(Unit())) * cos(2π·Unit())` in one expression
+  (`simulation.cpp`, initial errors and the drift lambda). C++ leaves the order of a
+  product's operands unspecified; GCC draws the logarithm's operand first, MSVC the
+  other. Every participant's initial alignment error and drift therefore differed between
+  the builds, and 19,997 of 21,360 simulator corpus messages differed, positions by about
+  0.35 m from the first message. Rust evaluates operands left to right, so a direct port
+  matches GCC; the port writes the draws as separate statements regardless.
 
 ## 6. Risks
 

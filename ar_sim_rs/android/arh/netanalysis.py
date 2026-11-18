@@ -1,4 +1,4 @@
-"""Offline analysis of a live multicast run: clocks, urgent events, state, catch-up, ledger, codec cost."""
+"""Offline analysis of an L4 live traffic run: clocks, urgent events, state, catch-up, ledger, L6 codec cost."""
 
 import json
 import math
@@ -290,7 +290,7 @@ def analyze(out, name):
                 "ledger_max_rolling_bits", "ledger_violations", "deferred", "sent", "send_failures",
                 "decode_failures", "events_created", "inputs_delayed", "blackout_drops")}})
 
-    # Codec cost inside the live run.
+    # L6 codec cost inside the live run.
     for index in range(count):
         encode = {}
         for row in logs[index]["sends"]:
@@ -324,7 +324,9 @@ def net_report_lines(report):
     phones = report["phones"]
     meta = report["meta"]
     name = lambda i: f"{i} {phones[i]['model']}"
-    lines = ["# Live multicast traffic on the phones", "",
+    lines = ["# L4 live traffic on the phones", "",
+             "Layer 4 behavior (multicast, three urgent copies, the rolling ledger, summary-driven repair) with real "
+             "L6 encoding inside; L5 appears only as the leader's catch-up burst.", "",
              f"{len(phones)} phones, {meta['duration_s']} s, avatar state {meta['state_hz']} Hz, summaries "
              f"{meta['summary_hz']} Hz, inputs {meta['input_hz']} per s per phone, group {meta['group']}. "
              f"Measured from {meta['warmup_s'] + 1} s to 2 s before the end. Network budget per urgent event: "
@@ -364,7 +366,7 @@ def net_report_lines(report):
         deferred = ", ".join(f"{k} {v}" for k, v in l["deferred"].items()) or "none"
         lines.append(f"| {name(l['id'])} | {l['ledger_max_rolling_bits']:,} bit | {l['ledger_violations']} | "
                      f"{deferred} | {l['send_failures']} | {l['decode_failures']} |")
-    lines += ["", "## Codec cost inside the run (microseconds)", "",
+    lines += ["", "## L6 codec cost inside the run (microseconds)", "",
               "| Phone | Kind | Encode P50 / P99 | Decode P50 / P99 |", "|---|---|---|---|"]
     for c in report["codec"]:
         lines.append(f"| {name(c['id'])} | {c['kind']} | {fmt(c['encode_us_p50'])} / {fmt(c['encode_us_p99'])} | "

@@ -1,11 +1,11 @@
-//! `ar_device`: the on-phone half of the Android test harness.
+//! `ar_device`: the on-phone half of the Android test harness for the networking model (OSI layers 4 to 7).
 //!
 //! One static binary, pushed to /data/local/tmp over adb and run from `adb shell`:
 //!
 //!   ar_device info                         device, CPU and clock facts as one JSON line
-//!   ar_device gate <corpus_dir>            the golden-corpus gate (messages, sim_messages, flips)
-//!   ar_device bench [key=value ...]        encode and decode speed per wire form and kind
-//!   ar_device net id=<i> n=<n> ...         live traffic per the Network Layer ICD over UDP multicast
+//!   ar_device gate <corpus_dir>            L6 conformance: the golden-corpus gate (messages, sim_messages, flips)
+//!   ar_device bench [key=value ...]        L6 performance: codec encode and decode speed per wire form and kind
+//!   ar_device net id=<i> n=<n> ...         L4 live traffic per the Network Layer ICD over UDP multicast
 //!
 //! Every subcommand prints JSON lines on stdout, so the host controller (`android/harness.py`)
 //! can parse them; `net` also writes a per-device event log for offline analysis.

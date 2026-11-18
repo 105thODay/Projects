@@ -1,6 +1,6 @@
 [package]
 name = "ar_device"
-description = "On-device harness for Android phones: codec gate and benchmark, and live multicast traffic per the Network Layer ICD"
+description = "On-device harness for Android phones: L6 codec conformance and performance, and L4 live multicast traffic per the Network Layer ICD"
 edition.workspace = true
 version.workspace = true
 publish.workspace = true

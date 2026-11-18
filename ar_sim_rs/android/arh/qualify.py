@@ -1,5 +1,8 @@
 """Qualifying phones: what each one is fit to test, recorded in a fleet inventory that grows run by run.
 
+The networking model spans OSI layers 4 to 7; the harness tests L6 (the CoT codec: conformance and
+performance) and L4 (live multicast traffic, with real L6 encoding inside it).
+
 Every phone adb can see goes through the same checks, in order; a hard failure stops that phone
 and leaves the others running:
 
@@ -7,19 +10,20 @@ and leaves the others running:
   install    the ar_device binary for its ABI, the gzip corpus, the helper app
   runs       ar_device starts and reports itself (catches loader and libc problems)
   clock      the monotonic clock resolves to 1 us or better
-  gate       all 83,647 golden-corpus records reproduce the reference exactly
-  speed      a short benchmark: TAK lean encode and decode against the simulator's 250 us
-             allowances, the codec's share of one core at the ICD load, and sustained-rate fall-off
-  multicast  after every phone is done: one group session in which each phone must hear, and be
-             heard by, at least half of the others' frames (needs the helper app's lock)
+  L6 conformance  all 83,647 golden-corpus records reproduce the reference exactly
+  L6 performance  a short benchmark: TAK lean encode and decode against the simulator's 250 us
+                  allowances, the codec's share of one core at the ICD load, sustained-rate fall-off
+  L4 multicast    after every phone is done: one group session in which each phone must hear, and
+                  be heard by, at least half of the others' frames (needs the helper app's lock)
 
 Tiers, best first:
 
-  product      fit to stand in for the fielded device: API and ABI at the product floor, codec
-               inside the allowances, multicast working
-  codec        fit for the codec gate and benchmark, and for live traffic if multicast works
-  gate_failed  the phone ran the codec and got a different answer: a codec finding, not a phone fault
-  rejected     could not run the tests; the reasons say why
+  product             fit to stand in for the fielded device: API and ABI at the product floor, the
+                      codec inside its allowances, multicast working
+  test                fit for the L6 tests, and for L4 live traffic if multicast works
+  conformance_failed  the phone ran the codec and got a different answer: an L6 finding on that
+                      platform, not a phone fault
+  rejected            could not run the tests; the reasons say why
 
 The inventory (ar_results/inventory.json) is keyed by the phone's hardware serial, so a phone keeps its
 record whether it connects by USB or over Wi-Fi; fleet.md beside it lists every phone ever qualified.
@@ -37,7 +41,7 @@ from .reporting import fmt
 
 INVENTORY = RESULTS / "inventory.json"
 FLEET = RESULTS / "fleet.md"
-TIER_RANK = {"product": 0, "codec": 1, "gate_failed": 2, "rejected": 3}
+TIER_RANK = {"product": 0, "test": 1, "conformance_failed": 2, "rejected": 3}
 BINARY_FOR_ABI = {"arm64-v8a": "ar_device-aarch64", "armeabi-v7a": "ar_device-armv7", "armeabi": "ar_device-armv7"}
 
 DEFAULT_CONFIG = {
@@ -191,16 +195,16 @@ def qualify_one(phone, artifacts, corpus_files, apk, config):
         records = sum(row["records"] for row in gate_rows)
         failures = sum(row["failures"] for row in gate_rows)
         if len(gate_rows) < 3:
-            r.check("gate", "FAIL", "the gate did not finish")
-            r.tier = "gate_failed"
+            r.check("L6 conformance", "FAIL", "the gate did not finish")
+            r.tier = "conformance_failed"
             return r
         if failures:
-            r.check("gate", "FAIL", f"{failures} of {records:,} records differ from the reference: a codec finding")
-            r.tier = "gate_failed"
+            r.check("L6 conformance", "FAIL", f"{failures} of {records:,} records differ from the reference: an L6 finding")
+            r.tier = "conformance_failed"
             return r
-        r.check("gate", "PASS", f"{records:,} records match the reference, {sum(x['seconds'] for x in gate_rows):.1f} s")
+        r.check("L6 conformance", "PASS", f"{records:,} records match the reference, {sum(x['seconds'] for x in gate_rows):.1f} s")
     else:
-        r.check("gate", "WARN", "no corpus given, so the gate did not run")
+        r.check("L6 conformance", "WARN", "no corpus given, so the gate did not run")
     # speed
     b = config["bench"]
     rows = json_lines(shell(phone.serial, f"cd {REMOTE} && ./ar_device bench rounds={b['rounds']} passes={b['passes']} "
@@ -210,25 +214,25 @@ def qualify_one(phone, artifacts, corpus_files, apk, config):
             r.bench[row["kind"]] = {k: row[k] for k in ("bytes", "encode_us_best", "encode_us_median",
                                                         "decode_us_best", "decode_us_median")}
     if not r.bench:
-        r.check("speed", "FAIL", "the benchmark did not run")
+        r.check("L6 performance", "FAIL", "the benchmark did not run")
         r.tier = "rejected"
         return r
     worst_encode = max(v["encode_us_median"] for v in r.bench.values())
     worst_decode = max(v["decode_us_median"] for v in r.bench.values())
     inside = worst_encode <= config["encode_allowance_us"] and worst_decode <= config["decode_allowance_us"]
-    r.check("allowance", "PASS" if inside else "WARN",
+    r.check("L6 allowance", "PASS" if inside else "WARN",
             f"slowest TAK lean kind: encode {worst_encode:.1f} us, decode {worst_decode:.1f} us (median); "
             f"allowances {config['encode_allowance_us']} and {config['decode_allowance_us']} us")
     r.codec_core_pct = codec_core_pct(r.bench, config["load"])
     if r.codec_core_pct is not None:
-        r.check("load", "PASS" if r.codec_core_pct <= config["max_codec_core_pct"] else "WARN",
+        r.check("L6 load", "PASS" if r.codec_core_pct <= config["max_codec_core_pct"] else "WARN",
                 f"codec uses {r.codec_core_pct:.2f} % of one core at the ICD load "
                 f"(limit {config['max_codec_core_pct']} %)")
     sustain = next((row for row in rows if row.get("what") == "sustain"), None)
     if sustain and len(sustain["decodes_per_second"]) >= 2 and sustain["decodes_per_second"][0]:
         series = sustain["decodes_per_second"]
         r.sustain_change_pct = (series[-1] / series[0] - 1) * 100
-        r.check("sustain", "PASS" if r.sustain_change_pct >= -config["max_sustain_drop_pct"] else "WARN",
+        r.check("L6 sustain", "PASS" if r.sustain_change_pct >= -config["max_sustain_drop_pct"] else "WARN",
                 f"decode rate changed {r.sustain_change_pct:+.0f} % over {len(series)} s")
     return r
 
@@ -269,9 +273,9 @@ def assign_tier(r, config):
     if r.tier:
         return
     status = r.multicast["status"] if r.multicast else "UNTESTED"
-    r.check("multicast", {"PASS": "PASS", "FAIL": "WARN", "UNTESTED": "WARN"}[status],
+    r.check("L4 multicast", {"PASS": "PASS", "FAIL": "WARN", "UNTESTED": "WARN"}[status],
             (r.multicast or {}).get("detail", "not tested"))
-    allowance_ok = all(c["status"] == "PASS" for c in r.checks if c["check"] in ("allowance", "load"))
+    allowance_ok = all(c["status"] == "PASS" for c in r.checks if c["check"] in ("L6 allowance", "L6 load"))
     short = []
     if r.phone.sdk < config["product_min_sdk"]:
         short.append(f"API {r.phone.sdk} is below the product floor {config['product_min_sdk']}")
@@ -280,8 +284,8 @@ def assign_tier(r, config):
     if not allowance_ok:
         short.append("the codec is outside its allowances")
     if status != "PASS":
-        short.append("multicast did not pass")
-    r.tier = "codec" if short else "product"
+        short.append("L4 multicast did not pass")
+    r.tier = "test" if short else "product"
     r.check("product", "PASS" if not short else "INFO", "; ".join(short) or "fit to stand in for the fielded device")
 
 
@@ -306,8 +310,8 @@ def fleet_lines(inventory):
                                                      e["latest"]["phone"]["model"]))
     lines = ["# Phone fleet", "",
              "Every phone the harness has qualified, best tier first. Encode and decode are TAK lean medians in "
-             "microseconds for the event message; codec load is the share of one core at the ICD load.", "",
-             "| Tier | Phone | SoC | Android (API) | ABI | Event encode / decode | Codec load | Sustained | Multicast | Qualified | Notes |",
+             "microseconds for the event message (L6); codec load is its share of one core at the ICD load.", "",
+             "| Tier | Phone | SoC | Android (API) | ABI | L6 event encode / decode | L6 codec load | L6 sustained | L4 multicast | Qualified | Notes |",
              "|---|---|---|---|---|---|---|---|---|---|---|"]
     for entry in rows:
         rec = entry["latest"]
@@ -356,7 +360,7 @@ def run_qualification(listing, phones, artifacts, corpus_files, apk, config, out
             lines.append(f"- {serial}: {state}" + (f" ({hint})" if hint else ""))
         lines.append("")
     ordered = sorted(records, key=lambda x: (TIER_RANK.get(x.tier, 9), x.phone.model))
-    lines += ["| Phone | Android (API) | ABI | Tier | Live traffic | Why not higher |", "|---|---|---|---|---|---|"]
+    lines += ["| Phone | Android (API) | ABI | Tier | L4 live traffic | Why not higher |", "|---|---|---|---|---|---|"]
     for r in ordered:
         why = "; ".join(f"{c['check']}: {c['detail']}" for c in r.checks if c["status"] in ("FAIL", "WARN", "INFO"))
         live = "yes" if r.multicast and r.multicast["status"] == "PASS" else "no"
@@ -373,7 +377,7 @@ def run_qualification(listing, phones, artifacts, corpus_files, apk, config, out
 
 
 def select_phones(phones, need, include_all=False):
-    """Phones whose latest qualification fits `need` ('codec' or 'net'); prints why the rest sit out."""
+    """Phones whose latest qualification fits `need` ('test' for L6, 'live' for L4); prints why the rest sit out."""
     if include_all:
         return phones
     inventory = load_inventory()
@@ -384,11 +388,11 @@ def select_phones(phones, need, include_all=False):
             print(f"skipping {phone.model} ({phone.serial}): not qualified yet; run `harness.py qualify`")
             continue
         rec = entry["latest"]
-        if rec["tier"] not in ("product", "codec"):
+        if rec["tier"] not in ("product", "test"):
             print(f"skipping {phone.model} ({phone.serial}): tier {rec['tier']}")
             continue
-        if need == "net" and not rec.get("net_ok"):
-            print(f"skipping {phone.model} ({phone.serial}): multicast did not pass at qualification")
+        if need == "live" and not rec.get("net_ok"):
+            print(f"skipping {phone.model} ({phone.serial}): L4 multicast did not pass at qualification")
             continue
         chosen.append(phone)
     return chosen

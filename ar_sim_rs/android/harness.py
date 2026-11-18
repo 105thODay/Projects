@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Android test harness for the ar_sim codec and the Network Layer ICD traffic profile.
+"""Android test harness for the ar_sim networking model (OSI layers 4 to 7), on as many phones as you have.
 
-Runs on the host the phones connect to (Wi-Fi adb or USB), with Python 3.8+ and adb on PATH; standard
-library only. Plug in any number of phones; `qualify` decides what each is fit to test and records it
-in the fleet inventory, and every later command uses the phones qualified for it.
+It tests L6, the CoT codec, for conformance and performance, and L4, live multicast traffic per the
+Network Layer ICD with real L6 encoding inside. Runs on the host the phones connect to (Wi-Fi adb or
+USB), with Python 3.8+ and adb on PATH; standard library only. Plug in any number of phones; `qualify`
+decides what each is fit to test and records it in the fleet inventory, and every later command uses
+the phones qualified for it.
 
   python harness.py devices                 every phone adb sees, with its tier from the inventory
   python harness.py wifi                    switch USB-connected phones to adb over Wi-Fi
   python harness.py fetch --out build       download the CI-built binaries and helper app (needs gh)
   python harness.py qualify --artifacts build --corpus ../corpus_ref/glibc_corpus.zip
   python harness.py fleet                   print the fleet inventory
-  python harness.py gate                    golden-corpus gate on every codec-qualified phone
-  python harness.py bench                   full codec benchmark on every codec-qualified phone
-  python harness.py net                     live multicast sessions of up to 8 phones, then analysis
+  python harness.py conformance             L6: the golden-corpus gate on every test-qualified phone (alias: gate)
+  python harness.py performance             L6: the full codec benchmark on every test-qualified phone (alias: bench)
+  python harness.py traffic                 L4: live multicast sessions of up to 8 phones, then analysis (alias: net)
   python harness.py analyze ar_results/<run>/session_1
   python harness.py all --artifacts build --corpus ../corpus_ref/glibc_corpus.zip
 
@@ -163,7 +165,7 @@ def cmd_qualify(args):
     verify_artifacts(artifacts)
     corpus = prepare_corpus(Path(args.corpus)) if args.corpus else []
     if not corpus:
-        print("no --corpus given: the gate will not run, so no phone can reach the codec or product tier "
+        print("no --corpus given: L6 conformance will not run, so no phone reaches the test or product tier "
               "on correctness evidence")
     config = load_config(args.config)
     listing, phones = online_phones(args.serial)
@@ -198,11 +200,11 @@ def run_everywhere(phones, command, out_dir, label, timeout):
 
 def cmd_gate(args):
     _, phones = online_phones(args.serial)
-    phones = require(select_phones(phones, "codec", args.all), "the gate")
-    out = new_run_dir("gate")
+    phones = require(select_phones(phones, "test", args.all), "L6 conformance")
+    out = new_run_dir("conformance")
     with Monitor(phones, out, 5):
         results = run_everywhere(phones, lambda i, p: f"gate {REMOTE}/corpus", out, "gate", 3600)
-    lines = ["# Golden-corpus gate on the phones", "",
+    lines = ["# L6 conformance: the golden-corpus gate on the phones", "",
              "| Phone | File | Records | Failures | Seconds | us per record |", "|---|---|---|---|---|---|"]
     for phone, rows in zip(phones, results):
         gate_rows = [r for r in rows if r.get("what") == "gate"]
@@ -218,12 +220,12 @@ def cmd_gate(args):
 
 def cmd_bench(args):
     _, phones = online_phones(args.serial)
-    phones = require(select_phones(phones, "codec", args.all), "the benchmark")
-    out = new_run_dir("bench")
+    phones = require(select_phones(phones, "test", args.all), "L6 performance")
+    out = new_run_dir("performance")
     command = lambda i, p: f"bench rounds={args.rounds} passes={args.passes} sustain_s={args.sustain}"
     with Monitor(phones, out, 5):
         results = run_everywhere(phones, command, out, "bench", 3600)
-    lines = ["# Codec speed on the phones", "",
+    lines = ["# L6 performance: CoT codec speed on the phones", "",
              f"Microseconds per message, {args.rounds} variants per form and kind, best and median of "
              f"{args.passes} passes; the same messages as `compare_speed` on the desktop.", "",
              "## TAK lean (the ICD baseline wire form)", "",
@@ -264,12 +266,12 @@ def sessions_of(phones, size):
 
 def cmd_net(args):
     _, phones = online_phones(args.serial)
-    phones = require(select_phones(phones, "net", args.all), "live traffic")
+    phones = require(select_phones(phones, "live", args.all), "L4 live traffic")
     if len(phones) < 2:
-        sys.exit("live traffic needs at least two phones qualified for multicast")
+        sys.exit("L4 live traffic needs at least two phones qualified for multicast")
     size = min(args.session_size, SESSION_LIMIT) if not args.allow_large else args.session_size
     sessions = sessions_of(phones, size)
-    out = new_run_dir("net")
+    out = new_run_dir("traffic")
     held = start_helper(phones)
     for phone in phones:
         if not held.get(phone.serial):
@@ -362,14 +364,14 @@ def main():
     add_net(qualify)
     add_monitor(qualify)
     qualify.set_defaults(func=cmd_qualify)
-    gate = sub.add_parser("gate")
+    gate = sub.add_parser("conformance", aliases=["gate"], help="L6: golden-corpus gate")
     add_select(gate)
     gate.set_defaults(func=cmd_gate)
-    bench = sub.add_parser("bench")
+    bench = sub.add_parser("performance", aliases=["bench"], help="L6: codec speed")
     add_select(bench)
     add_bench(bench)
     bench.set_defaults(func=cmd_bench)
-    net = sub.add_parser("net")
+    net = sub.add_parser("traffic", aliases=["net"], help="L4: live multicast traffic")
     add_select(net)
     add_net(net)
     add_monitor(net)

@@ -10,7 +10,8 @@ here=$(cd "$(dirname "$0")" && pwd)
 out=$(mkdir -p "$1" && cd "$1" && pwd)
 sdk=${ANDROID_SDK_ROOT:-${ANDROID_HOME:?set ANDROID_SDK_ROOT}}
 tools=$(ls -d "$sdk"/build-tools/* | sort -V | tail -1)
-platform=$(ls -d "$sdk"/platforms/android-* | sort -V | tail -1)
+# The newest stable platform; preview and beta platforms (android-37.2-beta3 and the like) are skipped.
+platform=$(ls -d "$sdk"/platforms/android-* | grep -E '/android-[0-9]+$' | sort -V | tail -1)
 jar="$platform/android.jar"
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT

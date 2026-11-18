@@ -1,0 +1,22 @@
+{
+  "_notes": [
+    "Thresholds harness.py qualify applies to every phone. Keys starting with _ are ignored.",
+    "harness_min_sdk 23: Android 6.0, the Galaxy S5's last release; the binaries target API 23.",
+    "product_min_sdk 29 and product_abis arm64-v8a: the XREAL SDK floor (Android 10, 64-bit ARM only); PROPOSED, pending a ruling.",
+    "encode/decode_allowance_us 250: the simulator's assumed per-message encode and decode times (encodeUs, decodeUs).",
+    "max_codec_core_pct: the codec's share of one core at the ICD load in 'load' (7 peers at 15 Hz state, 3 Hz summaries, 1 input/s with 3 copies, the 5 items/s catch-up).",
+    "multicast_min_share: each phone must hear, and be heard by, at least this share of its peers' frames."
+  ],
+  "harness_min_sdk": 23,
+  "product_min_sdk": 29,
+  "product_abis": ["arm64-v8a"],
+  "encode_allowance_us": 250,
+  "decode_allowance_us": 250,
+  "max_codec_core_pct": 10.0,
+  "max_sustain_drop_pct": 20.0,
+  "min_free_mb": 64,
+  "max_clock_resolution_ns": 1000,
+  "multicast_min_share": 0.5,
+  "bench": {"rounds": 500, "passes": 9, "sustain_s": 10},
+  "load": {"peers": 7, "state_hz": 15, "summary_hz": 3, "input_hz": 1, "copies": 3, "catchup_items_per_s": 5}
+}

@@ -4,7 +4,7 @@
 #   Android 6+) and 64-bit ARM (arm64-v8a) with the runner's Android NDK at API 23, and the
 #   helper app that holds the Wi-Fi multicast lock, with the runner's Android SDK. Uploads
 #   them as the ar_android artifact; `python harness.py fetch` downloads it.
-# selftest: harness.py end to end against four emulated phones on the runner (fake adb).
+# selftest: harness.py end to end against ten emulated phones on the runner (fake adb), every tier.
 
 name: ar_sim Android harness
 
@@ -87,5 +87,5 @@ jobs:
         run: |
           cargo test --release --locked -p ar_device
           cargo build --release --locked -p ar_device
-      - name: harness.py against four emulated phones
+      - name: harness.py against ten emulated phones
         run: sh ar_sim_rs/android/tools/selftest.sh ar_sim_rs/target/release/ar_device ar_sim_rs/corpus_ref/glibc_corpus.zip

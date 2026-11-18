@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ar_sim multicast lock: holds the Wi-Fi multicast lock, a high-performance Wi-Fi lock and a
+     wake lock while its one screen is open, so the ar_device process started over adb hears
+     the session's multicast group. minSdk 23 covers the Galaxy S5 (Android 6.0.1). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.arsim.mcastlock"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="34" />
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application android:label="ar_sim mcast lock" android:allowBackup="false">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

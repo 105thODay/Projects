@@ -1,0 +1,17 @@
+[package]
+name = "ar_device"
+description = "On-device harness for Android phones: codec gate and benchmark, and live multicast traffic per the Network Layer ICD"
+edition.workspace = true
+version.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "ar_device"
+path = "src/main.rs"
+
+[dependencies]
+cot_codec = { path = "../cot_codec" }
+serde_json = "1"
+flate2 = "1"
+socket2 = { version = "0.5", features = ["all"] }

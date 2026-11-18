@@ -1,0 +1,91 @@
+# Android test harness for ar_sim (ar_sim_rs/android, ar_sim_rs/crates/ar_device).
+#
+# build: the ar_device binary for 32-bit ARM (Galaxy S5 and other armeabi-v7a phones,
+#   Android 6+) and 64-bit ARM (arm64-v8a) with the runner's Android NDK at API 23, and the
+#   helper app that holds the Wi-Fi multicast lock, with the runner's Android SDK. Uploads
+#   them as the ar_android artifact; `python harness.py fetch` downloads it.
+# selftest: harness.py end to end against four emulated phones on the runner (fake adb).
+
+name: ar_sim Android harness
+
+on:
+  push:
+    paths: ["ar_sim_rs/**", ".github/workflows/android_harness.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      API: "23"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rust with the Android targets
+        run: |
+          rustup update stable --no-self-update
+          rustup default stable
+          rustup target add armv7-linux-androideabi aarch64-linux-android
+          rustc --version
+
+      - name: Android NDK linkers
+        run: |
+          ndk="${ANDROID_NDK_LATEST_HOME:-$ANDROID_NDK_HOME}"
+          bin="$ndk/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          echo "NDK: $ndk"
+          ls "$bin/armv7a-linux-androideabi${API}-clang" "$bin/aarch64-linux-android${API}-clang"
+          {
+            echo "CARGO_TARGET_ARMV7_LINUX_ANDROIDEABI_LINKER=$bin/armv7a-linux-androideabi${API}-clang"
+            echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$bin/aarch64-linux-android${API}-clang"
+            echo "CC_armv7_linux_androideabi=$bin/armv7a-linux-androideabi${API}-clang"
+            echo "CC_aarch64_linux_android=$bin/aarch64-linux-android${API}-clang"
+            echo "AR_armv7_linux_androideabi=$bin/llvm-ar"
+            echo "AR_aarch64_linux_android=$bin/llvm-ar"
+          } >> "$GITHUB_ENV"
+
+      - name: Build ar_device for both ABIs
+        working-directory: ar_sim_rs
+        run: |
+          cargo build --release --locked -p ar_device --target armv7-linux-androideabi
+          cargo build --release --locked -p ar_device --target aarch64-linux-android
+          mkdir -p "$RUNNER_TEMP/out"
+          cp target/armv7-linux-androideabi/release/ar_device "$RUNNER_TEMP/out/ar_device-armv7"
+          cp target/aarch64-linux-android/release/ar_device "$RUNNER_TEMP/out/ar_device-aarch64"
+          file "$RUNNER_TEMP/out/ar_device-armv7" "$RUNNER_TEMP/out/ar_device-aarch64"
+
+      - name: Build the helper app
+        run: sh ar_sim_rs/android/mcastlock/build_apk.sh "$RUNNER_TEMP/out"
+
+      - name: Checksums
+        working-directory: ${{ runner.temp }}/out
+        run: |
+          sha256sum ar_device-armv7 ar_device-aarch64 ar_mcastlock.apk > SHA256SUMS
+          cat SHA256SUMS
+          ls -l
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ar_android
+          path: ${{ runner.temp }}/out/*
+          if-no-files-found: error
+
+  selftest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust stable
+        run: |
+          rustup update stable --no-self-update
+          rustup default stable
+      - name: Unit tests and a host build
+        working-directory: ar_sim_rs
+        run: |
+          cargo test --release --locked -p ar_device
+          cargo build --release --locked -p ar_device
+      - name: harness.py against four emulated phones
+        run: sh ar_sim_rs/android/tools/selftest.sh ar_sim_rs/target/release/ar_device ar_sim_rs/corpus_ref/glibc_corpus.zip

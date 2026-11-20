@@ -5,7 +5,7 @@
 //!   ar_device info                         device, CPU and clock facts as one JSON line
 //!   ar_device gate <corpus_dir>            L6 conformance: the golden-corpus gate (messages, sim_messages, flips)
 //!   ar_device bench [key=value ...]        L6 performance: codec encode and decode speed per wire form and kind
-//!   ar_device net id=<i> n=<n> ...         L4 live traffic per the Network Layer ICD over UDP multicast
+//!   ar_device net id=<i> n=<n> ...         L4-L5 live sessions per the Network Layer ICD over UDP multicast
 //!
 //! Every subcommand prints JSON lines on stdout, so the host controller (`android/harness.py`)
 //! can parse them; `net` also writes a per-device event log for offline analysis.
@@ -17,6 +17,7 @@ mod gate;
 mod ledger;
 mod net;
 mod samples;
+mod session;
 
 use std::collections::BTreeMap;
 use std::process::ExitCode;

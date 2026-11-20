@@ -1,8 +1,10 @@
 #!/bin/sh
 # Runs harness.py end to end against ten emulated phones on this machine (tools/fake_adb.py):
 # qualify (every tier and an unauthorized phone), fleet, L6 conformance and performance (the second
-# through its old alias), and L4 traffic split into two sessions with an emulated blackout and a
-# catch-up. Checks tiers, conformance and the ledger.
+# through its old alias), and L4-L5 traffic split into two sessions of three, each with a leader,
+# a member that leaves and rejoins, a late joiner, markers, deletes and an emulated blackout.
+# Checks tiers, conformance, the ledger, every admission, readmission at the old index, and that
+# every member ends with the same retained set.
 # Needs a host build of ar_device.
 #
 # Usage: android/tools/selftest.sh <path to host ar_device> <path to glibc_corpus.zip>
@@ -29,7 +31,8 @@ python3 "$H" qualify --artifacts build --corpus "$corpus" --config "$work/light.
 python3 "$H" fleet
 python3 "$H" conformance
 python3 "$H" bench --rounds 200 --passes 3 --sustain 2
-python3 "$H" traffic --loop --duration 30 --input-hz 3 --catchup-at 15 --blackout-ms 250 --monitor-interval 5 --session-size 4
+python3 "$H" traffic --loop --duration 30 --input-hz 3 --marker-hz 0.3 --delete-hz 0.1 --leave-at 8 --rejoin-at 12 \
+    --late-join-at 15 --blackout-ms 250 --monitor-interval 5 --session-size 4
 
 python3 - <<'PY'
 import glob, json
@@ -50,7 +53,17 @@ for path in sessions:
     assert all(l["ledger_violations"] == 0 for l in net["ledger"]), "ledger violated"
     assert all(e["events"] > 0 for e in net["events"]), "no events measured"
     assert all(p["ok"] for p in net["pairs"]), "a clock pair could not be fitted"
+    assert net["retained_agree"], f"retained sets differ in {path}"
+    admissions = net["admissions"]
+    assert len(admissions) == 3, f"{len(admissions)} admissions"  # phone 1 twice (join, rejoin), phone 2 once
+    assert all(a["ready_ms"] is not None for a in admissions), "an admission never became ready"
+    rejoin = [a for a in admissions if a["phone"] == 1]
+    assert len(rejoin) == 2 and rejoin[0]["index"] == rejoin[1]["index"], "phone 1 not readmitted at its index"
+    late = [a for a in admissions if a["phone"] == 2]
+    assert late and late[0]["barrier_items"] and late[0]["barrier_items"] > 0, "the late joiner caught up nothing"
+    assert all(r.get("close_ms") is not None for r in net["session"] if r["phone"] != 0), "close not heard"
 qualify = json.load(open(glob.glob("ar_results/*_qualify/report.json")[0]))
 assert qualify["not_checked"] == [{"serial": "unauth-10", "state": "unauthorized"}]
-print("selftest: 10 fake phones qualified into the expected tiers; L6 conformance clean on 7; two L4 traffic sessions analyzed clean")
+print("selftest: 10 fake phones qualified into the expected tiers; L6 conformance clean on 7; two L4-L5 sessions "
+      "with leave, rejoin and late join converged on one retained set each")
 PY

@@ -1,16 +1,18 @@
 # Android test harness
 
 Tests the ar_sim networking model on real phones, as many and as varied as you can collect. The networking
-model specifies OSI layers 4 to 7 of a serverless AR game; this harness tests two of them:
+model specifies OSI layers 4 to 7 of a serverless AR game; this harness tests three of them:
 
 | Layer | What it covers | Harness test |
 |---|---|---|
-| L7 Application | Avatar state, urgent events, markers, one authorized writer per entity | appears only as message content |
-| L6 Presentation | The CoT codec: XML 2.0 or TAK v1 protobuf, lean schema | `conformance` (the golden-corpus gate) and `performance` (speed) |
-| L5 Session | Leader, admission, roster epochs, join readiness, catch-up | only the leader's catch-up burst, inside `traffic` |
-| L4 Transport | Multicast, three urgent copies, the rolling 200 kbit/s ledger, deduplication, summary-driven repair | `traffic` (live multicast with real L6 encoding inside) |
+| L7 Application | Avatar state, urgent events, markers placed and deleted, one authorized writer per entity | message content in `traffic`; markers and deletes exercise the retained set |
+| L6 Presentation | The CoT codec: XML 2.0 or TAK v1 protobuf, lean schema; the draft L5 kinds | `conformance` (the golden-corpus gate) and `performance` (speed) |
+| L5 Session | Leader, admission, roster epochs, catch-up, join readiness, departure, close | `traffic` |
+| L4 Transport | Multicast, three urgent copies, the rolling 200 kbit/s ledger, deduplication, summary-driven repair | `traffic` |
 
-"Codec" here means only the L6 encoder/decoder, the `cot_codec` crate.
+"Codec" here means only the L6 encoder/decoder: the `cot_codec` crate, byte-identical to the C++ reference, and
+`cot_draft`, which carries the draft kinds the reference does not (the session record, join request, snapshot
+barrier, catch-up request and marker delete).
 
 Plug a phone in, run `qualify`, and the harness decides what that phone is fit to test, records it in a
 fleet inventory, and from then on includes it in every test it qualified for. Each phone runs one static
@@ -72,10 +74,23 @@ Add phones at any time: plug them in and run `qualify` again. Phones already qua
 alongside the new ones.
 
 `traffic` splits the phones into sessions of at most 8, the ruled player limit, mixing models, and runs the
-sessions one after another so they never share the air. Each session gets an 8 s preflight, then 90 s at
-the ICD operating point, and its own report under `ar_results/<run>/session_<n>/`. Useful options:
-`--duration`, `--input-hz`, `--state-hz`, `--summary-hz`, `--catchup-at` (-1 turns the catch-up off),
-`--blackout-ms` (an emulated receive blackout every 10 s, to exercise repair), `--session-size`.
+sessions one after another so they never share the air. Each session gets an 8 s preflight with fixed indices,
+then 90 s at the ICD operating point as a real L5 session, and its own report under
+`ar_results/<run>/session_<n>/`:
+
+- Phone 0 creates the session and leads. Every other phone joins as a candidate, is admitted, catches up and
+  only then sends.
+- With three or more phones, phone 1 leaves at 25 s and rejoins at 35 s at its old index, and the last phone
+  joins late, at 50 s, into a session that already holds markers and tombstones.
+- Every phone places markers (0.1 a second) and deletes them (0.02 a second) against the 50-item cap.
+- The leader closes the session 3 s before the end.
+
+The report adds, per admission: time from join request to admission, the barrier's item count, catch-up
+requests, catch-up time and time to ready. Per phone it gives the retained set at the end, the departure and
+close delays, and whether every member ends with the same retained set. Useful options: `--duration`,
+`--input-hz`, `--state-hz`, `--summary-hz`, `--marker-hz`, `--delete-hz`, `--late-join-at`, `--leave-at`,
+`--rejoin-at` (-1 turns a step off), `--blackout-ms` (an emulated receive blackout every 10 s, to exercise
+repair), `--session-size`, and `--fixed` for L4 alone with fixed indices.
 
 `conformance`, `performance` and `traffic` take `--all` to include phones regardless of tier, and
 `--serial` (repeatable) to pick phones by adb serial.
@@ -99,9 +114,14 @@ the ICD operating point, and its own report under `ar_results/<run>/session_<n>/
   in each direction, assuming the fastest path is equally fast both ways.
 - **Latency covers the network only:** input onset to the first copy's arrival, including the wait for a send
   opportunity, against the 59 ms left after 10 ms of input, 30 ms of display and 1 ms of uncertainty.
-- **L5 is not built yet.** Phones start together with fixed ids and phone 0 leads by convention, not by
-  admission; catch-up items lost on the air are not repaired (ICD section 8.7). The blackout is emulated in
-  the receiving process, not on the radio.
+- **Readiness waits by roster index.** A newcomer stays silent until it holds everything the barrier lists and
+  has heard a summary at its admission epoch from every present member with a *lower* index. The R17 proposal
+  ("from every member") deadlocks when two newcomers are admitted together; ordering by index cannot. A
+  newcomer still waiting a full catch-up window (10 s) after its catch-up becomes ready anyway, and the report
+  says "timeout".
+- **What L5 does not do yet:** transfer leadership, remove a member, extend the session, or refuse a join with
+  a reason the candidate sees (the leader just stays silent); these await rulings (HICD D-02, D-06, D-07). The
+  blackout is emulated in the receiving process, not on the radio.
 
 ## Testing the harness without phones
 

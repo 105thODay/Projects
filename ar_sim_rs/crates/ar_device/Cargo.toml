@@ -1,6 +1,6 @@
 [package]
 name = "ar_device"
-description = "On-device harness for Android phones: L6 codec conformance and performance, and L4 live multicast traffic per the Network Layer ICD"
+description = "On-device harness for Android phones: L6 codec conformance and performance, and L4-L5 live multicast sessions per the Network Layer ICD"
 edition.workspace = true
 version.workspace = true
 publish.workspace = true
@@ -12,6 +12,7 @@ path = "src/main.rs"
 
 [dependencies]
 cot_codec = { path = "../cot_codec" }
+cot_draft = { path = "../cot_draft" }
 serde_json = "1"
 flate2 = "1"
 socket2 = { version = "0.5", features = ["all"] }

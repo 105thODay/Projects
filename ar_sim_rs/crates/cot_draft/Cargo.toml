@@ -1,0 +1,12 @@
+[package]
+name = "cot_draft"
+description = "L6 encoding of the draft CoT message kinds that are not in the reference codec: the L5 session record, join request, snapshot barrier and catch-up request, and the L7 marker delete"
+edition.workspace = true
+version.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[dev-dependencies]
+cot_codec = { path = "../cot_codec" }

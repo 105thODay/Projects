@@ -14,7 +14,7 @@ the phones qualified for it.
   python harness.py fleet                   print the fleet inventory
   python harness.py conformance             L6: the golden-corpus gate on every test-qualified phone (alias: gate)
   python harness.py performance             L6: the full codec benchmark on every test-qualified phone (alias: bench)
-  python harness.py traffic                 L4: live multicast sessions of up to 8 phones, then analysis (alias: net)
+  python harness.py traffic                 L4-L5: live multicast sessions of up to 8 phones, then analysis (alias: net)
   python harness.py analyze ar_results/<run>/session_1
   python harness.py all --artifacts build --corpus ../corpus_ref/glibc_corpus.zip
 
@@ -154,10 +154,18 @@ def prepare_corpus(corpus_zip):
 
 def net_params(args, **overrides):
     params = {"group": args.group, "duration": args.duration, "warmup": args.warmup, "state_hz": args.state_hz,
-              "summary_hz": args.summary_hz, "input_hz": args.input_hz, "catchup_at": args.catchup_at,
-              "blackout_ms": args.blackout_ms, "seed": args.seed, "loop": args.loop}
+              "summary_hz": args.summary_hz, "input_hz": args.input_hz, "blackout_ms": args.blackout_ms,
+              "seed": args.seed, "loop": args.loop, "mode": "fixed" if args.fixed else "session",
+              "marker_hz": args.marker_hz, "delete_hz": args.delete_hz, "late_join_at": args.late_join_at,
+              "leave_at": args.leave_at, "rejoin_at": args.rejoin_at,
+              "session": f"{int(time.time() * 1000) & 0xFFFFFFFF:08x}"}
     params.update(overrides)
     return params
+
+
+def check_params(args):
+    """Short fixed-index runs with state and summaries only: the preflight and the multicast check."""
+    return net_params(args, duration=8, warmup=2, input_hz=0, blackout_ms=0, mode="fixed")
 
 
 def cmd_qualify(args):
@@ -173,9 +181,8 @@ def cmd_qualify(args):
         sys.exit("adb sees no usable phones")
     out = new_run_dir("qualify")
     print(f"qualifying {len(phones)} phones; this takes a few minutes per phone, all at once")
-    check_params = net_params(args, duration=8, warmup=2, input_hz=0, catchup_at=-1, blackout_ms=0)
     records, lines = run_qualification(listing, phones, artifacts, corpus, artifacts / "ar_mcastlock.apk", config,
-                                       out, check_params, args.monitor_interval)
+                                       out, check_params(args), args.monitor_interval)
     report = {"config": config, "records": [r.as_dict() for r in records],
               "not_checked": [{"serial": s, "state": st} for s, st in listing if st != "device"]}
     finish(out, report, lines)
@@ -285,8 +292,7 @@ def cmd_net(args):
         folder.mkdir()
         print(f"session {number}: " + ", ".join(f"{i} {p.model}" for i, p in enumerate(group)))
         if not args.skip_preflight:
-            run_session(group, folder, "preflight", net_params(args, duration=8, warmup=2, input_hz=0,
-                                                               catchup_at=-1, blackout_ms=0), args.monitor_interval)
+            run_session(group, folder, "preflight", check_params(args), args.monitor_interval)
             matrix = reachability(folder, "preflight", len(group))
             print_matrix(group, matrix)
             worst = min(v for (s, r), v in matrix.items() if s != r)
@@ -294,7 +300,11 @@ def cmd_net(args):
                 print(f"session {number}: a phone hears less than half of another's frames; skipped "
                       "(check the helper app and the access point; --force runs anyway)")
                 continue
-        run_session(group, folder, "main", net_params(args), args.monitor_interval)
+        params = net_params(args)
+        if params["mode"] == "session" and len(group) >= 3:
+            print(f"session {number}: phone 0 leads; phone 1 leaves at {args.leave_at} s and rejoins at "
+                  f"{args.rejoin_at} s; phone {len(group) - 1} joins late at {args.late_join_at} s")
+        run_session(group, folder, "main", params, args.monitor_interval)
         analyze(folder, "main")
     print(f"\nsaved to {out}")
 
@@ -346,7 +356,12 @@ def main():
         p.add_argument("--state-hz", type=float, default=15)
         p.add_argument("--summary-hz", type=float, default=3)
         p.add_argument("--input-hz", type=float, default=1, help="mean urgent inputs per second per phone")
-        p.add_argument("--catchup-at", type=float, default=45, help="leader sends the 50-item catch-up at this second; -1 off")
+        p.add_argument("--marker-hz", type=float, default=0.1, help="markers placed per second per phone (L7, retained)")
+        p.add_argument("--delete-hz", type=float, default=0.02, help="marker deletes per second per phone")
+        p.add_argument("--late-join-at", type=float, default=50, help="second the last phone joins (3+ phones); -1 off")
+        p.add_argument("--leave-at", type=float, default=25, help="second phone 1 leaves (3+ phones); -1 off")
+        p.add_argument("--rejoin-at", type=float, default=35, help="second phone 1 rejoins")
+        p.add_argument("--fixed", action="store_true", help="L4 only: fixed indices, no L5 session")
         p.add_argument("--blackout-ms", type=float, default=0, help="emulated receive blackout every 10 s")
         p.add_argument("--group", default="239.255.82.6:18206")
         p.add_argument("--seed", type=int, default=1)
@@ -371,7 +386,7 @@ def main():
     add_select(bench)
     add_bench(bench)
     bench.set_defaults(func=cmd_bench)
-    net = sub.add_parser("traffic", aliases=["net"], help="L4: live multicast traffic")
+    net = sub.add_parser("traffic", aliases=["net"], help="L4-L5: live multicast sessions")
     add_select(net)
     add_net(net)
     add_monitor(net)

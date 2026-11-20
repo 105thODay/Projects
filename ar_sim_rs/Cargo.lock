@@ -28,6 +28,7 @@ name = "ar_device"
 version = "0.1.0"
 dependencies = [
  "cot_codec",
+ "cot_draft",
  "flate2",
  "serde_json",
  "socket2",
@@ -66,6 +67,13 @@ name = "cot_codec"
 version = "0.1.0"
 dependencies = [
  "serde_json",
+]
+
+[[package]]
+name = "cot_draft"
+version = "0.1.0"
+dependencies = [
+ "cot_codec",
 ]
 
 [[package]]

@@ -11,7 +11,8 @@ a port changes no result.
 | `sim_rng` | The simulator's nine MT19937-64 streams and their portable draws | forbidden |
 | `cpp_reference` | Test only: the C++ codec and the C library behind a C shim, for differential tests | the foreign calls |
 | `tak_oracle` | Test only: `prost` types from the official TAK .proto files | none |
-| `ar_device` | The on-phone half of the Android harness (`android/`): L6 codec conformance and performance, L4 live multicast traffic per the Network Layer ICD | forbidden |
+| `ar_device` | The on-phone half of the Android harness (`android/`): L6 codec conformance and performance, L4–L5 live multicast sessions per the Network Layer ICD | forbidden |
+| `cot_draft` | L6 encoding of the draft kinds the reference codec does not carry: L5 session record, join request, snapshot barrier, catch-up request; L7 marker delete | forbidden |
 
 ## Running the gates
 

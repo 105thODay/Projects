@@ -8,7 +8,6 @@ from pathlib import Path
 from .adbio import monitor_summary
 from .reporting import add_monitor_lines, fmt
 
-CATCHUP_BASE = 1_000_000
 NETWORK_BUDGET_MS = 59.0  # 100 ms less 10 input, 30 display, 1 uncertainty (requirements, section 02)
 KIND_NAMES = {0: "event", 1: "state", 2: "summary", 3: "repair_request", 4: "repair_status", 5: "calibration"}
 
@@ -33,12 +32,17 @@ def print_matrix(phones, matrix):
             f"{'-':>6}" if s == r else f"{matrix[(s, r)] * 100:5.1f}%" for r in range(count)))
 
 
-def load_logs(out, name, count):
+def load_logs(out, name, count, session=False):
+    """Each phone's sends, onsets, deferrals, receptions and L5 notes, by log id (the phone's place in the run).
+
+    In session mode the frames name senders by roster index, which the leader assigns at admission;
+    receptions are mapped back to log ids from each phone's own 'admitted' note (the leader holds 0).
+    """
     logs = []
     for index in range(count):
         folder = Path(out) / f"{name}_{index}"
         sends, onsets, deferred = [], {}, []
-        recvs, blackout = [], 0
+        recvs, blackout, notes = [], 0, []
         tx = folder / f"tx_{index}.csv"
         rx = folder / f"rx_{index}.csv"
         if tx.is_file():
@@ -51,18 +55,47 @@ def load_logs(out, name, count):
                     onsets[int(p[2])] = (int(p[1]), int(p[3]) if len(p) > 3 else 0)
                 elif p[0] == "D":
                     deferred.append((int(p[1]), p[2], int(p[3]), int(p[4])))
+                elif p[0] == "L":
+                    notes.append((int(p[1]), p[2], int(p[3]), int(p[4]), int(p[5])))
         if rx.is_file():
             for line in rx.read_text().splitlines():
                 p = line.split(",")
                 if p[0] == "R":
-                    # t, sender, owner, kind, seq, bytes, decode_ns, ok, hash
+                    # t, sender, owner, kind, seq, bytes, decode_ns, ok, hash (then disposition, ignored here)
                     recvs.append((int(p[1]), int(p[2]), int(p[3]), int(p[4]), int(p[5]), int(p[6]), int(p[7]),
                                   int(p[8]), p[9]))
                 elif p[0] == "B":
                     blackout += 1
         logs.append({"sends": sends, "onsets": onsets, "deferred": deferred, "recvs": recvs,
-                     "blackout": blackout})
+                     "blackout": blackout, "notes": notes})
+    if session:
+        index_to_log = {0: 0}
+        for log_id, log in enumerate(logs):
+            admitted = next((a for (t, what, a, b, c) in log["notes"] if what == "admitted"), None)
+            if admitted is not None:
+                index_to_log[admitted] = log_id
+        mapped = lambda i: index_to_log.get(i, -1) if i >= 0 else i
+        for log in logs:
+            log["recvs"] = [(t, mapped(snd), mapped(own), kind, seq, size, dec, ok, h)
+                            for (t, snd, own, kind, seq, size, dec, ok, h) in log["recvs"]]
     return logs
+
+
+def presence(log, log_id, session, end_ns):
+    """Intervals of the phone's own clock in which it was a member that should hear traffic."""
+    if not session:
+        return [(0, end_ns)]
+    intervals = []
+    start = 0 if log_id == 0 else None
+    for (t, what, a, b, c) in log["notes"]:
+        if what == "admitted" and start is None:
+            start = t
+        elif what in ("left", "closed", "close_sent") and start is not None:
+            intervals.append((start, t))
+            start = None
+    if start is not None:
+        intervals.append((start, end_ns))
+    return intervals
 
 
 def percentile(values, q):
@@ -126,10 +159,17 @@ def analyze(out, name):
     meta = json.loads((out / f"{name}_meta.json").read_text())
     phones = meta["phones"]
     count = len(phones)
-    logs = load_logs(out, name, count)
+    session = meta.get("mode") == "session"
+    logs = load_logs(out, name, count, session)
     warmup_ns = int(meta["warmup_s"] * 1e9)
     end_ns = int(meta["duration_s"] * 1e9)
     window = (warmup_ns + 1_000_000_000, end_ns - 2_000_000_000)
+    present = [presence(logs[i], i, session, end_ns) for i in range(count)]
+    MARGIN_NS = 1_000_000_000
+
+    def hears(r, t_r):
+        """Whether receiver r was a member from t_r (its own clock) through the next second."""
+        return any(lo + MARGIN_NS <= t_r and t_r + MARGIN_NS <= hi for lo, hi in present[r])
 
     # Frame times by sender and hash; unique frames (state, summaries) set the clocks.
     send_index = []
@@ -173,7 +213,7 @@ def analyze(out, name):
         return clock.offset(t_s)
 
     report = {"phones": phones, "meta": {k: v for k, v in meta.items() if k not in ("phones", "stdout")},
-              "pairs": [], "events": [], "state": [], "catchup": [], "ledger": [], "codec": []}
+              "pairs": [], "events": [], "state": [], "session": [], "admissions": [], "ledger": [], "codec": []}
 
     # Clocks.
     for s in range(count):
@@ -185,11 +225,12 @@ def analyze(out, name):
 
     # State: loss, one-way delay and age at each receiver.
     for s in range(count):
-        state_sends = [row for row in logs[s]["sends"] if row[2] == 1 and window[0] <= row[0] <= window[1]]
-        sent_hashes = {row[7] for row in state_sends}
+        all_state = [row for row in logs[s]["sends"] if row[2] == 1 and window[0] <= row[0] <= window[1]]
         for r in range(count):
             if r == s:
                 continue
+            state_sends = [row for row in all_state if hears(r, row[0] + offset(s, r, row[0]))]
+            sent_hashes = {row[7] for row in state_sends}
             pairs = matched(s, r, {1})
             heard = [(st, rt) for st, rt, row in pairs if row[7] in sent_hashes]
             delays = [(rt - st - offset(s, r, st)) / 1e6 for st, rt in heard]
@@ -200,13 +241,16 @@ def analyze(out, name):
             index = 0
             lo = window[0] + offset(s, r, window[0])
             hi = window[1] + offset(s, r, window[1])
+            sender_present = present[s]
             step = 10_000_000
             t = lo
             while t <= hi:
                 while index < len(arrivals) and arrivals[index][0] <= t:
                     newest = arrivals[index][1] if newest is None else max(newest, arrivals[index][1])
                     index += 1
-                if newest is not None:
+                t_s = t - offset(s, r, t)
+                sending = any(a + MARGIN_NS <= t_s <= b for a, b in sender_present)
+                if newest is not None and hears(r, t) and sending:
                     ages.append((t - newest) / 1e6)
                 t += step
             report["state"].append({
@@ -220,15 +264,20 @@ def analyze(out, name):
 
     # Urgent events: first arrival against onset, copies heard, repair.
     for s in range(count):
-        onsets = {seq: on for seq, on in logs[s]["onsets"].items() if window[0] <= on[0] <= window[1]}
+        all_onsets = {seq: on for seq, on in logs[s]["onsets"].items() if window[0] <= on[0] <= window[1]}
         copy_sends = {}
         repair_sends = {}
         for row in logs[s]["sends"]:
-            if row[2] == 0 and row[3] < CATCHUP_BASE:
-                (repair_sends if row[4] == 99 else copy_sends).setdefault(row[3], []).append(row[0])
+            # Own events only: urgent copies, and resends answering repair (copy 99). A leader's
+            # catch-up relays (repair class, copy 0) carry other members' markers.
+            if row[2] == 0 and row[1] == "urgent":
+                copy_sends.setdefault(row[3], []).append(row[0])
+            elif row[2] == 0 and row[4] == 99:
+                repair_sends.setdefault(row[3], []).append(row[0])
         for r in range(count):
             if r == s:
                 continue
+            onsets = {seq: on for seq, on in all_onsets.items() if hears(r, on[0] + offset(s, r, on[0]))}
             arrivals = {}
             for (t, snd, owner, kind, seq, size, dec, ok, h) in logs[r]["recvs"]:
                 if owner == s and kind == 0 and seq in onsets:
@@ -240,10 +289,17 @@ def analyze(out, name):
             unrecovered = 0
             copies_heard = 0
             copies_possible = 0
+            held = []
+            air = []
             for seq, (onset, _) in onsets.items():
                 times = sorted(arrivals.get(seq, []))
                 first_repair = min(repair_sends.get(seq, [float("inf")]))
                 copies_possible += len(copy_sends.get(seq, []))
+                first_copy = min(copy_sends.get(seq, [onset]))
+                # More than one send opportunity (11.1 ms) between onset and the first copy: the
+                # sender held the input for room in the urgent reserve (7 events a second).
+                if first_copy - onset > 12_000_000:
+                    held.append((first_copy - onset) / 1e6)
                 if not times:
                     unrecovered += 1
                     continue
@@ -255,6 +311,7 @@ def analyze(out, name):
                 if via_copies:
                     by_copies += 1
                     latencies.append(latency_ms)
+                    air.append((corrected[0] - first_copy) / 1e6)
                     if latency_ms <= NETWORK_BUDGET_MS:
                         on_time += 1
                 else:
@@ -266,29 +323,57 @@ def analyze(out, name):
                 "latency_ms_max": max(latencies) if latencies else float("nan"),
                 "copy_delivery_pct": 100 * copies_heard / copies_possible if copies_possible else float("nan"),
                 "repaired": len(repaired), "repair_ms_max": max(repaired) if repaired else float("nan"),
-                "unrecovered": unrecovered,
+                "unrecovered": unrecovered, "held": len(held), "held_ms_max": max(held) if held else float("nan"),
+                "air_ms_p95": percentile(air, 0.95), "air_ms_max": max(air) if air else float("nan"),
             })
 
-    # Catch-up from the leader (id 0).
-    leader_items = [row for row in logs[0]["sends"] if row[2] == 0 and row[3] >= CATCHUP_BASE]
-    if leader_items:
-        first = min(row[0] for row in leader_items)
-        for r in range(1, count):
-            got = {}
-            for (t, snd, owner, kind, seq, size, dec, ok, h) in logs[r]["recvs"]:
-                if owner == 0 and kind == 0 and seq >= CATCHUP_BASE and seq not in got:
-                    got[seq] = t - offset(0, r, first)
-            done = (max(got.values()) - first) / 1e9 if got else float("nan")
-            report["catchup"].append({"receiver": r, "items_sent": len(leader_items), "items_heard": len(got),
-                                      "complete_s": done})
+    # L5: admissions, catch-up, readiness, departures, the close, and retained-set agreement.
+    if session:
+        for log_id in range(count):
+            current = None
+            for (t, what, a, b, c) in logs[log_id]["notes"]:
+                if what == "admitted":
+                    current = {"phone": log_id, "admission": 1 + sum(1 for x in report["admissions"] if x["phone"] == log_id),
+                               "at_s": t / 1e9, "index": a, "epoch": b, "join_to_admitted_ms": c / 1e6 if c >= 0 else None,
+                               "barrier_items": None, "barrier_after_ms": None, "catchup_ms": None,
+                               "requests": 0, "ready_ms": None, "ready_how": None}
+                    report["admissions"].append(current)
+                elif current is None:
+                    continue
+                elif what == "barrier_heard":
+                    current["barrier_items"] = a + b
+                    current["barrier_after_ms"] = c / 1e6
+                elif what == "catchup_request_sent":
+                    current["requests"] += 1
+                elif what == "catchup_complete" and current["catchup_ms"] is None:
+                    current["catchup_ms"] = a / 1e6
+                elif what in ("ready", "ready_by_timeout") and current["ready_ms"] is None:
+                    current["ready_ms"] = a / 1e6
+                    current["ready_how"] = "timeout" if what == "ready_by_timeout" else "summaries"
+        leader_notes = logs[0]["notes"]
+        close_at = next((t for (t, what, *_ ) in leader_notes if what == "close_sent"), None)
+        for log_id in range(count):
+            notes = logs[log_id]["notes"]
+            row = {"phone": log_id}
+            if close_at is not None and log_id != 0:
+                closed = next((t for (t, what, *_ ) in notes if what == "closed"), None)
+                row["close_ms"] = (closed - offset(0, log_id, close_at) - close_at) / 1e6 if closed is not None else None
+            left = next((t for (t, what, *_ ) in notes if what == "left"), None)
+            if left is not None:
+                marked = next((t for (t, what, a, *_ ) in leader_notes
+                               if what == "departure_marked" and t >= left + offset(log_id, 0, left) - 1e9), None)
+                row["departure_marked_ms"] = ((marked - offset(log_id, 0, left) - left) / 1e6
+                                              if marked is not None else None)
+            report["session"].append(row)
 
-    # Ledger and errors, from each phone's closing summary.
+    # Ledger and errors, from each phone's closing summary.    # Ledger and errors, from each phone's closing summary.
     for index, rows in enumerate(meta["stdout"]):
         done = next((row for row in rows if row.get("what") == "net_done"), None)
         if done:
-            report["ledger"].append({"id": index, **{k: done[k] for k in (
+            report["ledger"].append({"id": index, **{k: done.get(k) for k in (
                 "ledger_max_rolling_bits", "ledger_violations", "deferred", "sent", "send_failures",
-                "decode_failures", "events_created", "inputs_delayed", "blackout_drops")}})
+                "decode_failures", "events_created", "inputs_delayed", "blackout_drops",
+                "heard_before_admission", "from_non_members", "session")}})
 
     # L6 codec cost inside the live run.
     for index in range(count):
@@ -324,9 +409,14 @@ def net_report_lines(report):
     phones = report["phones"]
     meta = report["meta"]
     name = lambda i: f"{i} {phones[i]['model']}"
-    lines = ["# L4 live traffic on the phones", "",
-             "Layer 4 behavior (multicast, three urgent copies, the rolling ledger, summary-driven repair) with real "
-             "L6 encoding inside; L5 appears only as the leader's catch-up burst.", "",
+    session = meta.get("mode") == "session"
+    lines = ["# L4–L5 live traffic on the phones" if session else "# L4 live traffic on the phones", "",
+             ("L5 sessions (admission, roster epochs, catch-up, readiness, departure, close) over L4 (multicast, "
+              "three urgent copies, the rolling ledger, summary-driven repair), with real L6 encoding inside. "
+              "Phone 0 leads. Loss and latency count only frames a phone should have heard, while it was a member."
+              if session else
+              "L4 behavior (multicast, three urgent copies, the rolling ledger, summary-driven repair) with real "
+              "L6 encoding inside; every phone holds a fixed index, with no L5 session."), "",
              f"{len(phones)} phones, {meta['duration_s']} s, avatar state {meta['state_hz']} Hz, summaries "
              f"{meta['summary_hz']} Hz, inputs {meta['input_hz']} per s per phone, group {meta['group']}. "
              f"Measured from {meta['warmup_s'] + 1} s to 2 s before the end. Network budget per urgent event: "
@@ -340,11 +430,16 @@ def net_report_lines(report):
         lines.append(f"| {pair['a']}–{pair['b']} | {fmt(pair['min_one_way_ms'], 2)} ms | "
                      f"{fmt(pair['drift_ppm'], 1)} ppm | {pair['samples']} |")
     lines += ["", "## Urgent events (three copies each)", "",
-              "| Sender → receiver | Events | On time | Latency P50 / P95 / max | Copies heard | Repaired (worst) | Lost |",
-              "|---|---|---|---|---|---|---|"]
+              "Latency runs from input onset to the first arrival. *Held* counts inputs the sender kept back for "
+              "room in the urgent reserve (7 events a second); *on the air* runs from the first copy sent to the "
+              "first arrival.", "",
+              "| Sender → receiver | Events | On time | Latency P50 / P95 / max | Held (worst) | On the air P95 / max | "
+              "Copies heard | Repaired (worst) | Lost |",
+              "|---|---|---|---|---|---|---|---|---|"]
     for e in report["events"]:
         lines.append(f"| {name(e['sender'])} → {e['receiver']} | {e['events']} | {fmt(e['on_time_pct'])} % | "
                      f"{fmt(e['latency_ms_p50'])} / {fmt(e['latency_ms_p95'])} / {fmt(e['latency_ms_max'])} ms | "
+                     f"{e['held']} ({fmt(e['held_ms_max'], 0)} ms) | {fmt(e['air_ms_p95'])} / {fmt(e['air_ms_max'])} ms | "
                      f"{fmt(e['copy_delivery_pct'])} % | {e['repaired']} ({fmt(e['repair_ms_max'], 0)} ms) | "
                      f"{e['unrecovered']} |")
     lines += ["", "## Avatar state", "",
@@ -353,12 +448,39 @@ def net_report_lines(report):
         lines.append(f"| {name(st['sender'])} → {st['receiver']} | {fmt(st['loss_pct'], 2)} % | "
                      f"{fmt(st['delay_ms_p50'])} / {fmt(st['delay_ms_p95'])} ms | "
                      f"{fmt(st['age_ms_p50'])} / {fmt(st['age_ms_p95'])} / {fmt(st['age_ms_max'])} ms |")
-    if report["catchup"]:
-        lines += ["", "## Catch-up from the leader (phone 0)", "",
-                  "| Receiver | Items heard | Complete after |", "|---|---|---|"]
-        for c in report["catchup"]:
-            lines.append(f"| {name(c['receiver'])} | {c['items_heard']} of {c['items_sent']} | "
-                         f"{fmt(c['complete_s'], 2)} s |")
+    if session:
+        lines += ["", "## L5 admissions and catch-up", "",
+                  "Times run from admission on the newcomer's own clock; the barrier lists every retained item "
+                  "the leader held; requests ask for items the newcomer still lacked after the barrier.", "",
+                  "| Phone | Admission | Index (epoch) | Join to admitted | Barrier items (after) | Requests | "
+                  "Catch-up complete | Ready (how) |", "|---|---|---|---|---|---|---|---|"]
+        for a in report["admissions"]:
+            lines.append(f"| {name(a['phone'])} | {a['admission']} at {a['at_s']:.1f} s | {a['index']} ({a['epoch']}) | "
+                         f"{fmt(a['join_to_admitted_ms'], 0)} ms | {a['barrier_items'] if a['barrier_items'] is not None else '–'} "
+                         f"({fmt(a['barrier_after_ms'], 0)} ms) | {a['requests']} | {fmt(a['catchup_ms'], 0)} ms | "
+                         f"{fmt(a['ready_ms'], 0)} ms ({a['ready_how'] or '–'}) |")
+        lines += ["", "## L5 retained set, departure and close", "",
+                  "Every member should end holding the same retained set (live markers and tombstones); the digest "
+                  "is a hash of both lists.", "",
+                  "| Phone | State at end | Live / tombstones | Digest | Placed / refused / deletes | "
+                  "Departure marked after | Close heard after | Heard before admission / from non-members |",
+                  "|---|---|---|---|---|---|---|---|"]
+        rows = {r["phone"]: r for r in report["session"]}
+        digests = set()
+        for l in report["ledger"]:
+            ses = l.get("session") or {}
+            row = rows.get(l["id"], {})
+            if ses.get("state") in ("closed", "ready"):
+                digests.add(ses.get("retained_digest"))
+            lines.append(
+                f"| {name(l['id'])} | {ses.get('state', '–')} | {ses.get('live_markers', '–')} / {ses.get('tombstones', '–')} | "
+                f"{(ses.get('retained_digest') or '–')[:8]} | {ses.get('markers_placed', '–')} / {ses.get('markers_refused', '–')} / "
+                f"{ses.get('deletes_sent', '–')} | {fmt(row.get('departure_marked_ms'), 0)} ms | "
+                f"{fmt(row.get('close_ms'), 0)} ms | {l.get('heard_before_admission', '–')} / {l.get('from_non_members', '–')} |")
+        report["retained_agree"] = len(digests) == 1
+        lines += ["", f"**Retained sets {'agree' if len(digests) == 1 else 'DIFFER'}** across the "
+                      f"{sum(1 for l in report['ledger'] if (l.get('session') or {}).get('state') in ('closed', 'ready'))} "
+                      "phones still in the session at the end."]
     lines += ["", "## Ledger", "",
               "| Phone | Worst rolling second | Violations | Deferred or dropped | Send failures | Decode failures |",
               "|---|---|---|---|---|---|"]

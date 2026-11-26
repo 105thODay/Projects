@@ -89,3 +89,19 @@ jobs:
           cargo build --release --locked -p ar_device
       - name: harness.py against ten emulated phones
         run: sh ar_sim_rs/android/tools/selftest.sh ar_sim_rs/target/release/ar_device ar_sim_rs/corpus_ref/glibc_corpus.zip
+
+  arm_profile:
+    # Native 64-bit Arm, 4 cores: the nearest CI stand-in for a Raspberry Pi CM5-class processor.
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust stable
+        run: |
+          rustup update stable --no-self-update
+          rustup default stable
+      - name: Build
+        working-directory: ar_sim_rs
+        run: cargo build --release --locked -p ar_device
+      - name: Profile on Arm
+        run: sh ar_sim_rs/android/tools/arm_profile.sh ar_sim_rs/target/release/ar_device ar_sim_rs/corpus_ref/glibc_corpus.zip

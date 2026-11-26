@@ -9,7 +9,8 @@ from .adbio import monitor_summary
 from .reporting import add_monitor_lines, fmt
 
 NETWORK_BUDGET_MS = 59.0  # 100 ms less 10 input, 30 display, 1 uncertainty (requirements, section 02)
-KIND_NAMES = {0: "event", 1: "state", 2: "summary", 3: "repair_request", 4: "repair_status", 5: "calibration"}
+KIND_NAMES = {0: "event", 1: "state", 2: "summary", 3: "repair_request", 4: "repair_status", 5: "calibration",
+              10: "session_record", 11: "join_request", 12: "barrier", 13: "catchup_request", 14: "marker_delete"}
 
 
 def reachability(out, name, count):

@@ -761,6 +761,16 @@ fn queue_urgent(
     }
 }
 
+/// CPU time this process has used, all threads, from the kernel's scheduler statistics.
+fn cpu_ns() -> Option<u64> {
+    let mut total = 0u64;
+    for entry in std::fs::read_dir("/proc/self/task").ok()? {
+        let stat = std::fs::read_to_string(entry.ok()?.path().join("schedstat")).ok()?;
+        total += stat.split_whitespace().next()?.parse::<u64>().ok()?;
+    }
+    Some(total)
+}
+
 pub fn run(args: &Args) -> Result<(), String> {
     let config = Config::from_args(args)?;
     std::fs::create_dir_all(&config.out).map_err(|e| format!("{}: {e}", config.out.display()))?;
@@ -1388,6 +1398,7 @@ pub fn run(args: &Args) -> Result<(), String> {
             "heard_before_admission": report.before_admission,
             "from_non_members": report.not_member,
             "session": session.as_ref().map(|s| s.summary()),
+            "cpu_pct_of_one_core": cpu_ns().map(|ns| ns as f64 / config.duration_ns as f64 * 100.0),
         })
     );
     Ok(())

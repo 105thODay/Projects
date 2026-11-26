@@ -105,3 +105,5 @@ jobs:
         run: cargo build --release --locked -p ar_device
       - name: Profile on Arm
         run: sh ar_sim_rs/android/tools/arm_profile.sh ar_sim_rs/target/release/ar_device ar_sim_rs/corpus_ref/glibc_corpus.zip
+      - name: Core pinning study
+        run: sh ar_sim_rs/android/tools/arm_pinning.sh ar_sim_rs/target/release/ar_device 45

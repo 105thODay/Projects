@@ -16,3 +16,4 @@ cot_draft = { path = "../cot_draft" }
 serde_json = "1"
 flate2 = "1"
 socket2 = { version = "0.5", features = ["all"] }
+cpu-time = "1"

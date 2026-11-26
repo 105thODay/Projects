@@ -7,6 +7,8 @@
 //!   ar_device bench [key=value ...]        L6 performance: codec encode and decode speed per wire form and kind
 //!   ar_device net id=<i> n=<n> ...         L4-L5 live sessions per the Network Layer ICD over UDP multicast
 //!
+//!   ar_device render hz=<f> work_ms=<m>   a frame-paced CPU load, to study core pinning
+//!
 //! Every subcommand prints JSON lines on stdout, so the host controller (`android/harness.py`)
 //! can parse them; `net` also writes a per-device event log for offline analysis.
 
@@ -16,6 +18,7 @@ mod bench;
 mod gate;
 mod ledger;
 mod net;
+mod render;
 mod samples;
 mod session;
 
@@ -128,6 +131,10 @@ fn run(words: &[String]) -> Result<(), String> {
         "bench" => {
             let args = Args::parse(&words[1..])?;
             bench::run(&args)
+        }
+        "render" => {
+            let args = Args::parse(&words[1..])?;
+            render::run(&args)
         }
         "net" => {
             let args = Args::parse(&words[1..])?;

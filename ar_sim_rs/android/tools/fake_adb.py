@@ -84,7 +84,12 @@ def shell(serial, command):
     env = dict(os.environ, PATH=f"{tools(serial)}:{os.environ['PATH']}")
     command = local(serial, command).replace("cat /sys/devices/system/cpu/cpu*/cpufreq/",
                                              "printf '1800000\\n2400000\\n' #")
-    result = subprocess.run(["bash", "-c", command], capture_output=True, text=True, env=env)
+    # FAKE_ADB_CPUS="px-1=2;px-2=0-1" confines a fake phone's commands to those cores (taskset).
+    cpus = dict(pair.split("=") for pair in os.environ.get("FAKE_ADB_CPUS", "").split(";") if "=" in pair)
+    argv = ["bash", "-c", command]
+    if serial in cpus:
+        argv = ["taskset", "-c", cpus[serial]] + argv
+    result = subprocess.run(argv, capture_output=True, text=True, env=env)
     sys.stdout.write(result.stdout)
     sys.stdout.write(result.stderr)
     return result.returncode
